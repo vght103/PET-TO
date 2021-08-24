@@ -9,6 +9,10 @@ class AuthService {
     // promise 가 리턴된다
     return firebaseApp.auth().signInWithPopup(provider);
   }
+
+  onAuthChanged(userChanged) {
+    firebase.auth().onAuthStateChanged((user) => userChanged(user));
+  }
 }
 
 export default AuthService;

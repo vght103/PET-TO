@@ -27,7 +27,7 @@ const Navbar = (props) => {
       </li>
       <li onClick={goToLogin}>
         <i className="fas fa-user fa-lg"></i>
-        <span className={styles.nav_text}>로그인</span>
+        <span className={styles.nav_text}>나의정보</span>
       </li>
     </ul>
   );

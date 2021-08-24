@@ -12,13 +12,13 @@ function App({ authService }) {
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact path="/">
-            <Intro />
+            <Intro authService={authService} />
           </Route>
           <Route path="/pet-home">
             <PetList />
           </Route>
           <Route path="/login">
-            <Login authService={authService} />
+            <Login />
           </Route>
           <Route path="/chat">
             <Chat />
