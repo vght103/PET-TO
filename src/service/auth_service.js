@@ -1,13 +1,13 @@
-import firebaseApp from "firebase";
+import firebaseApp from "./firebase";
+import firebase from "firebase";
 
 class AuthService {
   login() {
-    const provider = new firebaseApp.auth.GoogleAuthProvider();
-    console.log(provider);
+    const provider = new firebase.auth.GoogleAuthProvider();
 
     // return 해야되네?
     // promise 가 리턴된다
-    // return firebaseApp.auth().signInWithPopup(provider);
+    return firebaseApp.auth().signInWithPopup(provider);
   }
 }
 

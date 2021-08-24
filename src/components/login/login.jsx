@@ -1,11 +1,24 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import styles from "./login.module.css";
 
 const Login = ({ authService }) => {
+  const history = useHistory();
+
+  const goToHome = (userId) => {
+    // 로그인 완료되면 사용자정보와 함께 홈으로 간다
+    history.push({
+      pathname: "/pet-home",
+      state: userId,
+    });
+    console.log(userId);
+  };
+
+  // 구글 로그인
   const googleLogin = () => {
-    authService.login();
+    authService.login().then((data) => goToHome(data.user.uid));
   };
 
   return (

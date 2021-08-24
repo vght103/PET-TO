@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./pet_item.module.css";
 
 const PetItem = ({ item }) => {
-  console.log(item);
   return (
     <li className={styles.pet_item}>
       <div className={styles.pet_wrap}>
