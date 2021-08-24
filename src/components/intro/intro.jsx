@@ -6,7 +6,7 @@ const Intro = (props) => {
   const history = useHistory();
 
   const goToPetList = () => {
-    history.push("/pet-list");
+    history.push("/pet-home");
   };
 
   return (

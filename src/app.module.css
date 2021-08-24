@@ -1,8 +1,9 @@
 .app {
   display: flex;
-  justify-content: center;
-  /* min-width: 480px; */
+  flex-direction: column;
+
   max-width: 1023px;
+
   height: 100vh;
   margin: 0 auto;
 }

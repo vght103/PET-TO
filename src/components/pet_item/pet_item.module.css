@@ -1,0 +1,25 @@
+.pet_item {
+  width: 100%;
+  /* margin-bottom: 0.5em; */
+  border-bottom: 1px solid lightgray;
+  padding: 0.5em;
+}
+
+.pet_wrap {
+  display: flex;
+}
+
+.pet_img {
+  width: 7rem;
+  height: 7rem;
+}
+
+.pet_text {
+  margin: 0.8em 0.8em;
+  font-size: 0.8rem;
+  width: 100%;
+}
+
+.pet_text > p {
+  margin-bottom: 0.2em;
+}

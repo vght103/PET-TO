@@ -2,10 +2,11 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import styles from "./app.module.css";
 import Intro from "./components/intro/intro";
-import Navbar from "./components/navbar/navbar";
 import PetList from "./components/pet_list/pet_list";
+import Login from "./components/login/login";
+import Chat from "./components/chat/chat";
 
-function App() {
+function App({ authService }) {
   return (
     <div className={styles.app}>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
@@ -13,8 +14,14 @@ function App() {
           <Route exact path="/">
             <Intro />
           </Route>
-          <Route path="/pet-list">
+          <Route path="/pet-home">
             <PetList />
+          </Route>
+          <Route path="/login">
+            <Login authService={authService} />
+          </Route>
+          <Route path="/chat">
+            <Chat />
           </Route>
         </Switch>
       </BrowserRouter>
