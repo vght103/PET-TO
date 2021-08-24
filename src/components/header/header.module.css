@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #48bbed;
+  padding: 1em;
+}
+
+.logo {
+  width: 125px;
+  cursor: pointer;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.search_input {
+  padding: 0.5em;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5em;
+}
