@@ -8,7 +8,7 @@ import PetList from "./components/pet_list/pet_list";
 function App() {
   return (
     <div className={styles.app}>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact path="/">
             <Intro />
