@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import PetItem from "../pet_item/pet_item";

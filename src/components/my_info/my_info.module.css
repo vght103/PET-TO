@@ -1,0 +1,21 @@
+.my_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+}
+
+.logout {
+  display: flex;
+  justify-content: center;
+}
+
+.logout_button {
+  background-color: skyblue;
+  color: white;
+  padding: 1em;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+}

@@ -1,5 +1,5 @@
-import React from "react";
-import { useHistory, useEffect } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import styles from "./intro.module.css";
 
 const Intro = ({ authService }) => {
@@ -18,17 +18,17 @@ const Intro = ({ authService }) => {
     authService.login().then((data) => goToHome(data.user.uid));
   };
 
-  // useEffect(() => {
-  //   authService.onAuthChanged((user) => {
-  //     if (user) {
-  //       goToHome(user.uid);
-  //       console.log("로그인 됐다!");
-  //     } else {
-  //       history.push("/");
-  //       console.log("로그인 실패!");
-  //     }
-  //   });
-  // });
+  useEffect(() => {
+    authService.onAuthChanged((user) => {
+      if (user) {
+        console.log(user);
+        goToHome(user.uid);
+      } else {
+        history.push("/");
+        console.log("로그인 실패!");
+      }
+    });
+  });
 
   return (
     <div className={styles.intro}>
