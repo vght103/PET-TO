@@ -17,6 +17,11 @@ class AuthService {
   logout() {
     firebase.auth().signOut();
   }
+
+  // 현재 유저확인
+  onUserCheck() {
+    const user = firebase.auth().currentUser;
+  }
 }
 
 export default AuthService;

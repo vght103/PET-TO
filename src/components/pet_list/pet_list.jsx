@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import Footer from "../footer/footer";
-import Header from "../header/header";
+import { useHistory } from "react-router-dom";
 import PetItem from "../pet_item/pet_item";
 import styles from "./pet_list.module.css";
 
 const PetList = (props) => {
+  const history = useHistory();
+  const [click, setClick] = useState(false);
+
   const [pets, setPets] = useState([
     {
       id: "1",
@@ -49,39 +51,44 @@ const PetList = (props) => {
       character: "다른 반려견과 사이좋게 지내는 아이에요!",
       img: null,
     },
-    {
-      id: "5",
-      name: "황구",
-      breed: "골든 리트리버",
-      age: "3개월",
-      gender: "수컷",
-      weight: "1.5kg",
-      character: "다른 반려견과 사이좋게 지내는 아이에요!",
-      img: null,
-    },
-    {
-      id: "6",
-      name: "두치",
-      breed: "시츄",
-      age: "3개월",
-      gender: "수컷",
-      weight: "1.5kg",
-      character: "다른 반려견과 사이좋게 지내는 아이에요!",
-      img: null,
-    },
   ]);
+
+  const goToAddItem = () => {
+    history.push({
+      pathname: "/add-pets",
+      state: { pets },
+    });
+  };
+
+  const handleClick = () => setClick(!click);
+  console.log(click);
 
   return (
     <section className={styles.pet_list_wrap}>
-      <Header />
-
       <ul className={styles.pet_list}>
         {pets.map((item) => (
           <PetItem key={item.id} item={item} />
         ))}
       </ul>
 
-      <Footer />
+      <div className={styles.add_button}>
+        <button className={styles.plus} onClick={handleClick}>
+          <i className={"fas fa-plus fa-lg"}></i>
+        </button>
+        <ul className={styles.add_list}>
+          <li
+            className={
+              click
+                ? `${styles.add_item} ${styles.active}`
+                : `${styles.add_item}`
+            }
+            onClick={goToAddItem}
+          >
+            <span> 글쓰기</span>
+            <i className="fas fa-pen"></i>
+          </li>
+        </ul>
+      </div>
     </section>
   );
 };

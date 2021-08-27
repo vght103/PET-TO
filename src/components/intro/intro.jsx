@@ -15,20 +15,25 @@ const Intro = ({ authService }) => {
 
   // 구글 로그인
   const googleLogin = () => {
-    authService.login().then((data) => goToHome(data.user.uid));
+    authService.login().then((data) => {
+      goToHome(data.user.uid);
+    });
   };
 
   useEffect(() => {
     authService.onAuthChanged((user) => {
       if (user) {
-        console.log(user);
         goToHome(user.uid);
       } else {
         history.push("/");
-        console.log("로그인 실패!");
       }
     });
   });
+
+  const check = () => {
+    authService.onUserCheck();
+  };
+  check();
 
   return (
     <div className={styles.intro}>

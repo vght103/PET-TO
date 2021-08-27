@@ -1,14 +1,15 @@
 .my_info {
   display: flex;
   flex-direction: column;
+
   justify-content: space-between;
+  width: 100%;
   height: 100%;
-  position: relative;
 }
 
 .logout {
-  display: flex;
-  justify-content: center;
+  margin-bottom: 0.5em;
+  margin: 0 auto;
 }
 
 .logout_button {

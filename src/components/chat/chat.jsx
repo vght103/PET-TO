@@ -1,14 +1,13 @@
 import React from "react";
-import Footer from "../footer/footer";
-import Header from "../header/header";
+import Navbar from "../navbar/navbar";
+
 import styles from "./chat.module.css";
 
 const Chat = (props) => {
   return (
     <section className={styles.chat_wrap}>
-      <Header />
-      <h2>채팅</h2>;
-      <Footer />
+      <h2>채팅</h2>
+      <Navbar />
     </section>
   );
 };

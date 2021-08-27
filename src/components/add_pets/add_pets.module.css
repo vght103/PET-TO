@@ -1,0 +1,67 @@
+.add_pets {
+  height: 100%;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+
+.cancel {
+  border: none;
+  margin-left: 1em;
+  padding: 0.5em;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.title > h2 {
+  margin: 0.8em 1em;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90%;
+}
+
+.file {
+  padding: 1em 0.5em;
+}
+
+.name,
+.breed,
+.age,
+.gender,
+.weight,
+.character,
+.submit_button {
+  border: none;
+  border-bottom: 1px solid lightgray;
+  padding: 0.5em;
+  font-size: 1.2rem;
+}
+
+.name::placeholder,
+.breed::placeholder,
+.age::placeholder,
+.gender::placeholder,
+.weight::placeholder,
+.character::placeholder,
+.submit_button::placeholder {
+  opacity: 0.5;
+}
+
+.character {
+  height: 30%;
+  border: 1px solid lightgray;
+}
+
+.submit_button {
+  cursor: pointer;
+  background-color: skyblue;
+  color: white;
+  font-weight: 600;
+}

@@ -1,35 +1,40 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import styles from "./navbar.module.css";
 
 const Navbar = (props) => {
-  const history = useHistory();
-
-  const goToHome = () => {
-    history.push("/pet-home");
-  };
-  const goToChat = () => {
-    history.push("/chat");
-  };
-  const goToLogin = () => {
-    history.push("/login");
-  };
-
   return (
-    <ul className={styles.navbar}>
-      <li onClick={goToHome}>
-        <i className="fas fa-home fa-lg"></i>
-        <span className={styles.nav_text}>홈</span>
-      </li>
-      <li onClick={goToChat}>
-        <i className="far fa-comments fa-lg"></i>
-        <span className={styles.nav_text}>채팅</span>
-      </li>
-      <li onClick={goToLogin}>
-        <i className="fas fa-user fa-lg"></i>
-        <span className={styles.nav_text}>나의정보</span>
-      </li>
-    </ul>
+    <>
+      <nav>
+        <ul className={styles.navbar}>
+          <li>
+            <Link to="/pet-home">
+              <i className="fas fa-home fa-lg"></i>
+              <span className={styles.nav_text}>홈</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/community">
+              <i className="fas fa-map-marker-alt fa-lg"></i>
+              <span>커뮤니티</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/chat">
+              <i className="far fa-comments fa-lg"></i>
+              <span className={styles.nav_text}>채팅</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/my-info">
+              <i className="fas fa-user fa-lg"></i>
+              <span className={styles.nav_text}>나의정보</span>
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </>
   );
 };
 

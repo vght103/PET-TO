@@ -3,6 +3,7 @@
   /* margin-bottom: 0.5em; */
   border-bottom: 1px solid lightgray;
   padding: 0.5em;
+  cursor: pointer;
 }
 
 .pet_wrap {

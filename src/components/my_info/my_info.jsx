@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Footer from "../footer/footer";
-import Header from "../header/header";
+import Navbar from "../navbar/navbar";
+
 import styles from "./my_info.module.css";
 
 const MyInfo = ({ authService }) => {
+  // const [user, setUser] = useState();
   const history = useHistory();
   const onLogout = () => {
     authService.logout();
@@ -12,16 +13,18 @@ const MyInfo = ({ authService }) => {
     console.log("로그아웃 완료");
   };
 
+  useEffect(() => {
+    authService.onAuthChanged((user) => authService.onUserCheck(user));
+  });
+
   return (
     <section className={styles.my_info}>
-      <Header />
       <div className={styles.logout}>
         <button className={styles.logout_button} onClick={onLogout}>
           로그아웃
         </button>
       </div>
-
-      <Footer />
+      <Navbar />
     </section>
   );
 };

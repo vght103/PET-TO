@@ -7,7 +7,6 @@ const Header = (props) => {
 
   return (
     <header className={styles.header}>
-      <h3>사용자변경하기</h3>
       <img
         src={process.env.PUBLIC_URL + "/imgs/logo.jpg"}
         alt="logo"
