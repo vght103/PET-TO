@@ -16,7 +16,7 @@
 
 .add_button {
   position: absolute;
-  bottom: 25px;
+  bottom: 80px;
   right: 25px;
   border-radius: 50%;
   background-color: skyblue;
@@ -44,6 +44,10 @@
 .add_item.active {
   cursor: pointer;
   display: block;
+}
+
+.add_item.active:hover {
+  border-bottom: 1px solid gray;
 }
 
 .add_item {

@@ -1,0 +1,29 @@
+.content_item {
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+.content_wrap {
+  display: flex;
+}
+
+.content_wrap {
+  display: flex;
+}
+
+.content_img {
+  width: 7rem;
+  height: 7rem;
+}
+
+.content_text {
+  margin: 0.8em 0.8em;
+  font-size: 0.8rem;
+  width: 100%;
+}
+
+.content_text > p {
+  margin-bottom: 0.2em;
+}

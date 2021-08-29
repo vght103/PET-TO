@@ -9,7 +9,7 @@ const Navbar = (props) => {
       <nav>
         <ul className={styles.navbar}>
           <li>
-            <Link to="/pet-home">
+            <Link to="/pet-list">
               <i className="fas fa-home fa-lg"></i>
               <span className={styles.nav_text}>홈</span>
             </Link>

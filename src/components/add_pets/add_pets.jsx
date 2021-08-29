@@ -1,12 +1,22 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
+import { dbService } from "../../service/firebase";
 import styles from "./add_pets.module.css";
 
-const AddPets = ({ location }) => {
-  // history.push 로 state(props) 까지 가져왔다
-  console.log(location.state.pets);
-  const history = useHistory();
+const AddPets = ({ petDatabase }) => {
+  const [newPet, setNewPet] = useState("");
+  const [pets, setPests] = useState([]);
 
+  const getPets = async () => {
+    const dbPets = await dbService.collection("pet-to").get();
+    dbPets.forEach((doc) => console.log(doc.data()));
+  };
+
+  useEffect(() => {
+    getPets();
+  }, []);
+
+  const history = useHistory();
   const formRef = useRef();
   const nameRef = useRef();
   const breedRef = useRef();
@@ -15,9 +25,10 @@ const AddPets = ({ location }) => {
   const weightRef = useRef();
   const noteRef = useRef();
 
-  const onsubmit = (event) => {
+  const onsubmit = async (event) => {
     event.preventDefault();
-    const newPet = {
+    await dbService.collection("pet-to").add({
+      newPet,
       id: Date.now(),
       name: nameRef.current.value,
       breed: breedRef.current.value,
@@ -26,16 +37,34 @@ const AddPets = ({ location }) => {
       weight: weightRef.current.value,
       character: noteRef.current.value,
       img: null,
-    };
+    });
+
+    formRef.current.reset();
+    goToHome();
+    // const newPet = {
+    //   id: Date.now(),
+    //   name: nameRef.current.value,
+    //   breed: breedRef.current.value,
+    //   age: ageRef.current.value,
+    //   gender: genderRef.current.value,
+    //   weight: weightRef.current.value,
+    //   character: noteRef.current.value,
+    //   img: null,
+    // };
+
+    // if (!newPet.character) {
+    //   return;
+    // }
+  };
+
+  const goToHome = () => {
+    history.push("/pet-list");
   };
 
   return (
     <section className={styles.add_pets}>
       <div className={styles.title}>
-        <button
-          className={styles.cancel}
-          onClick={() => history.push("/pet-home")}
-        >
+        <button className={styles.cancel} onClick={goToHome}>
           <i className="fas fa-arrow-left fa-2x"></i>
         </button>
         <h2>강아지 정보 업로드</h2>

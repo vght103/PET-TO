@@ -3,4 +3,56 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  position: relative;
+}
+.content_list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.add_button {
+  position: absolute;
+  bottom: 80px;
+  right: 25px;
+  border-radius: 50%;
+  background-color: skyblue;
+}
+
+.add_button:hover {
+  opacity: 0.8;
+}
+
+.plus {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.5em;
+}
+
+.add_list {
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+  width: 5rem;
+}
+
+.add_item.active {
+  cursor: pointer;
+  display: block;
+}
+
+.add_item.active:hover {
+  border-bottom: 1px solid gray;
+}
+
+.add_item {
+  display: none;
+}
+
+.add_item > span {
+  margin-right: 0.5em;
 }

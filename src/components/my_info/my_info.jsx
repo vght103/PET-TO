@@ -1,21 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../navbar/navbar";
 
 import styles from "./my_info.module.css";
 
 const MyInfo = ({ authService }) => {
-  // const [user, setUser] = useState();
+  const [userInfo, SetUserInfo] = useState();
   const history = useHistory();
   const onLogout = () => {
     authService.logout();
-    history.push("/");
+    // history.push("/");
     console.log("로그아웃 완료");
   };
 
-  useEffect(() => {
-    authService.onAuthChanged((user) => authService.onUserCheck(user));
-  });
+  // useEffect(() => {
+  //   authService.onAuthChanged((user) => {
+  //     if (user) {
+  //       const user={
+
+  //       }
+  //       setUserId(user.uid);
+  //     } else {
+  //       history.push("/");
+  //     }
+  //   });
+  // });
 
   return (
     <section className={styles.my_info}>
