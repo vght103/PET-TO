@@ -6,16 +6,6 @@
   height: 4rem;
 }
 
-/* .navbar > li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  text-align: center;
-  cursor: pointer;
-} */
-
 .navbar > li > a {
   display: flex;
   flex-direction: column;

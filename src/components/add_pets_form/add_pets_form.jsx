@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
 import { dbService } from "../../service/firebase";
-import styles from "./add_pets.module.css";
+import styles from "./add_pets_form.module.css";
 
-const AddPets = ({ petDatabase }) => {
-  const [newPet, setNewPet] = useState("");
-  const [pets, setPests] = useState([]);
+const AddPetsForm = ({ petDatabase }) => {
+  // const [newPet, setNewPet] = useState("");
+  // const [pets, setPests] = useState([]);
 
   const getPets = async () => {
-    const dbPets = await dbService.collection("pet-to").get();
+    const dbPets = await dbService.collection("pets-list").get();
     dbPets.forEach((doc) => console.log(doc.data()));
   };
 
@@ -24,11 +24,12 @@ const AddPets = ({ petDatabase }) => {
   const genderRef = useRef();
   const weightRef = useRef();
   const noteRef = useRef();
+  const fileRef = useRef();
 
   const onsubmit = async (event) => {
     event.preventDefault();
-    await dbService.collection("pet-to").add({
-      newPet,
+
+    await dbService.collection("pets-list").add({
       id: Date.now(),
       name: nameRef.current.value,
       breed: breedRef.current.value,
@@ -36,7 +37,7 @@ const AddPets = ({ petDatabase }) => {
       gender: genderRef.current.value,
       weight: weightRef.current.value,
       character: noteRef.current.value,
-      img: null,
+      img: fileRef.current.value,
     });
 
     formRef.current.reset();
@@ -71,7 +72,12 @@ const AddPets = ({ petDatabase }) => {
       </div>
 
       <form className={styles.form} ref={formRef}>
-        <input type="file" accept="image/*" className={styles.file} />
+        <input
+          ref={fileRef}
+          type="file"
+          accept="image/*"
+          className={styles.file}
+        />
 
         <input
           ref={nameRef}
@@ -123,4 +129,4 @@ const AddPets = ({ petDatabase }) => {
   );
 };
 
-export default AddPets;
+export default AddPetsForm;

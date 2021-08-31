@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import Content from "../content/content";
 import Header from "../header/header";
 import Navbar from "../navbar/navbar";
 import styles from "./community.module.css";
 
 const Community = (props) => {
-  const history = useHistory();
   const [click, setClick] = useState(false);
   const [contents, setContents] = useState([
     {

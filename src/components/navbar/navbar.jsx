@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import styles from "./navbar.module.css";
 
@@ -9,28 +9,28 @@ const Navbar = (props) => {
       <nav>
         <ul className={styles.navbar}>
           <li>
-            <Link to="/pet-list">
+            <NavLink to="/pet-list">
               <i className="fas fa-home fa-lg"></i>
               <span className={styles.nav_text}>홈</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/community">
-              <i className="fas fa-map-marker-alt fa-lg"></i>
+            <NavLink to="/community">
+              <i className={"fas fa-tablet-alt fa-lg"}></i>
               <span>커뮤니티</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/chat">
+            <NavLink to="/chat">
               <i className="far fa-comments fa-lg"></i>
               <span className={styles.nav_text}>채팅</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/my-info">
+            <NavLink to="/my-info">
               <i className="fas fa-user fa-lg"></i>
               <span className={styles.nav_text}>나의정보</span>
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>

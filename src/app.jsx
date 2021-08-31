@@ -5,9 +5,10 @@ import Intro from "./components/intro/intro";
 import Chat from "./components/chat/chat";
 import MyInfo from "./components/my_info/my_info";
 import Community from "./components/community/community";
-import AddPets from "./components/add_pets/add_pets";
 import PetInfo from "./components/pet_info/pet_info";
 import PetList from "./components/pet_list/pet_list";
+import AddPetsForm from "./components/add_pets_form/add_pets_form";
+import AddContentForm from "./components/add_content_form/add_content_form";
 
 function App({ authService, petDatabase }) {
   return (
@@ -26,11 +27,14 @@ function App({ authService, petDatabase }) {
           <Route path="/chat" component={Chat} />
           <Route path="/community" component={Community} />
           <Route
-            path="/add-pets"
-            component={AddPets}
+            path="/add-pets-form"
+            component={AddPetsForm}
             petDatabase={petDatabase}
           />
           <Route path="/pet-item/pet-info" component={PetInfo} />
+          <Route path="">
+            <AddContentForm />
+          </Route>
         </Switch>
       </div>
     </BrowserRouter>

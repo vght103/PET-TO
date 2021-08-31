@@ -5,26 +5,25 @@ import Navbar from "../navbar/navbar";
 import styles from "./my_info.module.css";
 
 const MyInfo = ({ authService }) => {
-  const [userInfo, SetUserInfo] = useState();
+  const [userInfo, setUserInfo] = useState("");
   const history = useHistory();
   const onLogout = () => {
     authService.logout();
-    // history.push("/");
+    history.push("/");
     console.log("로그아웃 완료");
   };
 
-  // useEffect(() => {
-  //   authService.onAuthChanged((user) => {
-  //     if (user) {
-  //       const user={
+  useEffect(() => {
+    authService.onAuthChanged((user) => {
+      if (user) {
+        setUserInfo(user);
+      } else {
+        history.push("/");
+      }
+    });
+  }, []);
 
-  //       }
-  //       setUserId(user.uid);
-  //     } else {
-  //       history.push("/");
-  //     }
-  //   });
-  // });
+  console.log(userInfo);
 
   return (
     <section className={styles.my_info}>
@@ -33,6 +32,7 @@ const MyInfo = ({ authService }) => {
           로그아웃
         </button>
       </div>
+      <h2>{userInfo.displayName}</h2>
       <Navbar />
     </section>
   );

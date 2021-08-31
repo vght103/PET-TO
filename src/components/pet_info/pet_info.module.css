@@ -1,0 +1,48 @@
+.add_content {
+  height: 100%;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+
+.cancel {
+  border: none;
+  margin-left: 1em;
+  padding: 0.5em;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.title > h2 {
+  margin: 0.8em 1em;
+}
+
+.pet_img {
+  width: 100%;
+}
+
+.pet_info {
+  margin: 0.7em;
+}
+
+.pet_info > p {
+  margin-bottom: 0.5em;
+}
+
+.apply {
+  margin-top: 1em;
+}
+
+.apply_button {
+  width: 100%;
+  padding: 1em;
+  border: none;
+  background-color: skyblue;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}

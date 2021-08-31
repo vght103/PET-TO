@@ -11,7 +11,7 @@ const Header = (props) => {
         src={process.env.PUBLIC_URL + "/imgs/logo.jpg"}
         alt="logo"
         className={styles.logo}
-        onClick={() => history.push("/pet-home")}
+        onClick={() => history.push("/pet-list")}
       />
       <div className={styles.search}>
         <input className={styles.search_input} />
