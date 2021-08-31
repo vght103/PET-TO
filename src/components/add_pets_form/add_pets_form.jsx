@@ -18,7 +18,7 @@ const AddPetsForm = ({ userObj }) => {
     event.preventDefault();
 
     await dbService.collection("pets-list").add({
-      id: Date.now(),
+      createAt: Date.now(),
       creatorId: userObj.uid,
       name: nameRef.current.value,
       breed: breedRef.current.value,

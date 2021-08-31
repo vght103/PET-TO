@@ -2,29 +2,31 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import styles from "./pet_info.module.css";
 import { useLocation } from "react-router";
+import { dbService } from "../../service/firebase";
 
 const PetInfo = ({ userObj }) => {
   const location = useLocation();
-  console.log(location);
   const history = useHistory();
   const [click, setClick] = useState(false);
-  // const [isOwner, setIsOwner] = useState(false);
 
+  console.log(userObj);
   const goToHome = () => {
     history.push("/pet-list");
   };
 
-  // console.log(userObj);
   const handleClick = () => {
     setClick(!click);
     console.log(click);
   };
 
-  // useEffect(() => {
-  //   setIsOwner(userObj.uid === location.state.item.creatorId);
-  // }, []);
-
-  // console.log(isOwner);
+  const onDeleteData = () => {
+    const ok = window.confirm("게시글을 삭제하시겠습니까?");
+    if (ok) {
+      dbService.doc(`pets-list/${location.state.item.id}`).delete();
+      console.log(location.state.item.id);
+    }
+    goToHome();
+  };
 
   return (
     <section className={styles.add_content}>
@@ -47,7 +49,7 @@ const PetInfo = ({ userObj }) => {
               }
             >
               <li>게시글 수정</li>
-              <li>삭제</li>
+              <li onClick={onDeleteData}>삭제</li>
             </ul>
           </div>
         )}
