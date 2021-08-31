@@ -1,21 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useHistory } from "react-router";
 import { dbService } from "../../service/firebase";
 import styles from "./add_pets_form.module.css";
 
-const AddPetsForm = ({ petDatabase }) => {
-  // const [newPet, setNewPet] = useState("");
-  // const [pets, setPests] = useState([]);
-
-  const getPets = async () => {
-    const dbPets = await dbService.collection("pets-list").get();
-    dbPets.forEach((doc) => console.log(doc.data()));
-  };
-
-  useEffect(() => {
-    getPets();
-  }, []);
-
+const AddPetsForm = ({ userObj }) => {
   const history = useHistory();
   const formRef = useRef();
   const nameRef = useRef();
@@ -31,6 +19,7 @@ const AddPetsForm = ({ petDatabase }) => {
 
     await dbService.collection("pets-list").add({
       id: Date.now(),
+      creatorId: userObj.uid,
       name: nameRef.current.value,
       breed: breedRef.current.value,
       age: ageRef.current.value,
@@ -42,20 +31,6 @@ const AddPetsForm = ({ petDatabase }) => {
 
     formRef.current.reset();
     goToHome();
-    // const newPet = {
-    //   id: Date.now(),
-    //   name: nameRef.current.value,
-    //   breed: breedRef.current.value,
-    //   age: ageRef.current.value,
-    //   gender: genderRef.current.value,
-    //   weight: weightRef.current.value,
-    //   character: noteRef.current.value,
-    //   img: null,
-    // };
-
-    // if (!newPet.character) {
-    //   return;
-    // }
   };
 
   const goToHome = () => {

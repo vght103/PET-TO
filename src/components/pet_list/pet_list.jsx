@@ -6,44 +6,35 @@ import Navbar from "../navbar/navbar";
 import PetItem from "../pet_item/pet_item";
 import styles from "./pet_list.module.css";
 
-const PetList = ({ authService }) => {
+const PetList = ({ userObj }) => {
   const history = useHistory();
   const [click, setClick] = useState(false);
   const [pets, setPets] = useState([]);
 
-  const getPets = async () => {
-    const dbPets = await dbService.collection("pets-list").get();
-    dbPets.forEach((document) => {
-      const petsObj = {
-        ...document.data(),
-        id: document.id,
-      };
-      setPets((prev) => [petsObj, ...prev]);
-    });
-  };
-
-  useEffect(() => {
-    getPets();
-  }, []);
-
-  // useEffect(() => {
-  //   authService.onAuthChanged((user) => {
-  //     if (user) {
-  //       setUserId(user.uid);
-  //     } else {
-  //       history.push("/");
-  //     }
-  //   });
-  // });
-
-  // const onAddPet = (newPet) => {
-  //   setPets((pets) => {
-  //     const updated = [...pets, newPet];
-  //     updated[newPet.id] = newPet;
-  //     console.log("생성됐다");
-  //     return updated;
+  // 구식 방법 - not real time 방법
+  // const getPets = async () => {
+  //   const dbPets = await dbService.collection("pets-list").get();
+  //   dbPets.forEach((document) => {
+  //     const petsObj = {
+  //       ...document.data(),
+  //       id: document.id,
+  //     };
+  //     setPets((prev) => [petsObj, ...prev]);
   //   });
   // };
+
+  useEffect(() => {
+    // getPets();
+    // onSnapshot 방법 - real time 방법
+    // forEach 를 사용하는 것보다 매번 Rerender 되지 않아서 이 방법이 많이 선호
+    dbService.collection("pets-list").onSnapshot((snapshot) => {
+      const dbPets = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setPets(dbPets);
+    });
+  }, []);
 
   const goToAddPetForm = () => {
     history.push({ pathname: "/add-pets-form" });
@@ -57,7 +48,11 @@ const PetList = ({ authService }) => {
       <Header />
       <ul className={styles.pet_list}>
         {pets.map((item) => (
-          <PetItem key={item.id} item={item} />
+          <PetItem
+            key={item.id}
+            item={item}
+            isOwner={userObj.uid === item.creatorId}
+          />
         ))}
       </ul>
 

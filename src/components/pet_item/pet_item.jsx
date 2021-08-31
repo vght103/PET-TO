@@ -2,13 +2,13 @@ import React from "react";
 import styles from "./pet_item.module.css";
 import { useHistory } from "react-router-dom";
 
-const PetItem = ({ item }) => {
+const PetItem = ({ item, isOwner }) => {
   const history = useHistory();
-
+  console.log(item);
   const goToPetInfo = () => {
     history.push({
       pathname: "/pet-item/pet-info",
-      state: item,
+      state: { item, isOwner },
     });
   };
 

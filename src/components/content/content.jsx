@@ -1,10 +1,7 @@
 import React from "react";
-import { useHistory } from "react-router";
 import styles from "./content.module.css";
 
 const Content = ({ item }) => {
-  const history = useHistory();
-
   return (
     <li className={styles.content_item}>
       <div className={styles.content_wrap}>
