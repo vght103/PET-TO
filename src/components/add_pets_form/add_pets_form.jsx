@@ -1,40 +1,83 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useHistory } from "react-router";
 import { dbService } from "../../service/firebase";
 import styles from "./add_pets_form.module.css";
 
 const AddPetsForm = ({ userObj }) => {
+  const [imgFiles, setImgFiles] = useState();
+
   const history = useHistory();
   const formRef = useRef();
+  const titleRef = useRef();
   const nameRef = useRef();
   const breedRef = useRef();
   const ageRef = useRef();
   const genderRef = useRef();
   const weightRef = useRef();
-  const noteRef = useRef();
+  const characterRef = useRef();
   const fileRef = useRef();
 
-  const onsubmit = async (event) => {
+  const onsubmit = (event) => {
     event.preventDefault();
 
-    await dbService.collection("pets-list").add({
-      createAt: Date.now(),
-      creatorId: userObj.uid,
-      name: nameRef.current.value,
-      breed: breedRef.current.value,
-      age: ageRef.current.value,
-      gender: genderRef.current.value,
-      weight: weightRef.current.value,
-      character: noteRef.current.value,
-      img: fileRef.current.value,
-    });
+    const ok = window.confirm("등록하시겠습니까?");
+
+    if (ok) {
+      onAddPet();
+    }
 
     formRef.current.reset();
     goToHome();
   };
 
+  const onAddPet = async () => {
+    await dbService.collection("pets-list").add({
+      createAt: Date.now(),
+      creatorId: userObj.uid,
+      title: titleRef.current.value,
+      name: nameRef.current.value,
+      breed: breedRef.current.value,
+      age: ageRef.current.value,
+      gender: genderRef.current.value,
+      weight: weightRef.current.value,
+      character: characterRef.current.value,
+      img: fileRef.current.value,
+    });
+  };
+
   const goToHome = () => {
     history.push("/pet-list");
+  };
+
+  const onChangeFile = (event) => {
+    // es6 문법
+    // event 안에서 target 안으로 가서 files 를 받아오는 것
+    const {
+      target: { files },
+    } = event;
+
+    const petFiles = files[0];
+
+    // 2. 파일 불러오기
+    // -> fileReader API 이용하기 : 비동기적으로 데이터(파일)를 읽기 위한 것
+
+    const imgsReader = new FileReader();
+    imgsReader.onloadend = (finishedEvent) => {
+      // const imgsResult = finishedEvent.currentTarget.result;
+      const {
+        currentTarget: { result },
+      } = finishedEvent;
+      setImgFiles(result);
+    };
+
+    imgsReader.readAsDataURL(petFiles);
+
+    // result = petFiles를 갖고, 이미지리더를 만들고,
+    // readAsDataURL 로 이미지 데이터를 읽는다
+  };
+
+  const onFileClear = () => {
+    setImgFiles(null);
   };
 
   return (
@@ -52,6 +95,28 @@ const AddPetsForm = ({ userObj }) => {
           type="file"
           accept="image/*"
           className={styles.file}
+          onChange={onChangeFile}
+        />
+
+        {imgFiles && (
+          <div className={styles.pet_imgs}>
+            <img
+              src={imgFiles}
+              width="50px"
+              height="50px"
+              alt={nameRef.current.name}
+            />
+            <button className={styles.clear_button} onClick={onFileClear}>
+              삭제
+            </button>
+          </div>
+        )}
+
+        <input
+          ref={titleRef}
+          name="title"
+          className={styles.form_title}
+          placeholder="제목을 적어주세요"
         />
 
         <input
@@ -90,7 +155,7 @@ const AddPetsForm = ({ userObj }) => {
         />
 
         <textarea
-          ref={noteRef}
+          ref={characterRef}
           name="note"
           className={styles.character}
           placeholder="강아지의 특징 또는 성격을 작성해주세요"

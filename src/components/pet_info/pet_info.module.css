@@ -1,4 +1,7 @@
 .add_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
 }
 
@@ -66,6 +69,10 @@
 
 .pet_info {
   margin: 0.7em;
+}
+
+.pet_info > h3 {
+  margin-bottom: 0.7em;
 }
 
 .pet_info > p {

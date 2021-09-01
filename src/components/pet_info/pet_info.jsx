@@ -8,6 +8,8 @@ const PetInfo = ({ userObj }) => {
   const location = useLocation();
   const history = useHistory();
   const [click, setClick] = useState(false);
+  // const [editing, setEditing] = useState(false);
+  //
 
   console.log(userObj);
   const goToHome = () => {
@@ -27,6 +29,8 @@ const PetInfo = ({ userObj }) => {
     }
     goToHome();
   };
+
+  const onEditData = () => {};
 
   return (
     <section className={styles.add_content}>
@@ -48,7 +52,7 @@ const PetInfo = ({ userObj }) => {
                   : `${styles.menu_list}`
               }
             >
-              <li>게시글 수정</li>
+              <li onClick={onEditData}>게시글 수정</li>
               <li onClick={onDeleteData}>삭제</li>
             </ul>
           </div>
@@ -61,6 +65,7 @@ const PetInfo = ({ userObj }) => {
         className={styles.pet_img}
       />
       <div className={styles.pet_info}>
+        <h3>{location.state.item.title}</h3>
         <p>{`이름 : ${location.state.item.name}`}</p>
         <p>{`견종 : ${location.state.item.breed}`}</p>
         <p>{`나이 : ${location.state.item.age}`}</p>
