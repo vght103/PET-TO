@@ -31,7 +31,7 @@ const AddPetsForm = ({ userObj }) => {
     }
 
     formRef.current.reset();
-    // goToHome();
+    goToHome();
   };
 
   const onAddPet = () => {
