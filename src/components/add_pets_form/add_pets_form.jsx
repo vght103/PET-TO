@@ -20,34 +20,34 @@ const AddPetsForm = ({ userObj }) => {
   const onsubmit = async (event) => {
     event.preventDefault();
     // 스토리지로 이미지 업로드
-    const fileRef = storageService.ref().child(`${userObj.uid}/${uuidv4}`);
-    const response = await fileRef.putString(imgFiles, "data_url");
-    console.log(response);
+    // const fileRef = storageService.ref().child(`${userObj.uid}/${uuidv4}`);
+    // const response = await fileRef.putString(imgFiles, "data_url");
+    // console.log(response);
 
-    // const ok = window.confirm("등록하시겠습니까?");
+    const ok = window.confirm("등록하시겠습니까?");
 
-    // if (ok) {
-    //   // onAddPet();
-    // }
+    if (ok) {
+      onAddPet();
+    }
 
     formRef.current.reset();
     // goToHome();
   };
 
-  // const onAddPet = () => {
-  //   dbService.collection("pets-list").add({
-  //     createAt: Date.now(),
-  //     creatorId: userObj.uid,
-  //     title: titleRef.current.value,
-  //     name: nameRef.current.value,
-  //     breed: breedRef.current.value,
-  //     age: ageRef.current.value,
-  //     gender: genderRef.current.value,
-  //     weight: weightRef.current.value,
-  //     character: characterRef.current.value,
-  //     // img:
-  //   });
-  // };
+  const onAddPet = () => {
+    dbService.collection("pets-list").add({
+      createAt: Date.now(),
+      creatorId: userObj.uid,
+      title: titleRef.current.value,
+      name: nameRef.current.value,
+      breed: breedRef.current.value,
+      age: ageRef.current.value,
+      gender: genderRef.current.value,
+      weight: weightRef.current.value,
+      character: characterRef.current.value,
+      // img:
+    });
+  };
 
   const goToHome = () => {
     history.push("/pet-list");
