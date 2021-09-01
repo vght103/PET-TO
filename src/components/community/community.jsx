@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Content from "../content/content";
 import Header from "../header/header";
 import Navbar from "../navbar/navbar";
 import styles from "./community.module.css";
 
 const Community = (props) => {
+  const history = useHistory();
   const [click, setClick] = useState(false);
   const [contents, setContents] = useState([
     {
@@ -33,6 +35,12 @@ const Community = (props) => {
   const handleClick = () => setClick(!click);
   console.log(click);
 
+  const goToAddContentForm = () => {
+    history.push({
+      pathname: "/content-add-form",
+    });
+  };
+
   return (
     <section className={styles.community}>
       <Header />
@@ -48,6 +56,7 @@ const Community = (props) => {
         </button>
         <ul className={styles.add_list}>
           <li
+            onClick={goToAddContentForm}
             className={
               click
                 ? `${styles.add_item} ${styles.active}`

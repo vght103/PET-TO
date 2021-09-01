@@ -29,9 +29,9 @@ const RouterList = ({ authService, userObj }) => (
     <Route exact path="/pet-item/pet-info">
       <PetInfo userObj={userObj} />
     </Route>
-    {/* <Route>
+    <Route path="/content-add-form">
       <AddContentForm />
-    </Route> */}
+    </Route>
   </Switch>
 );
 

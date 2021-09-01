@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { useHistory } from "react-router";
-import { dbService } from "../../service/firebase";
+import { dbService, storageService } from "../../service/firebase";
 import styles from "./add_pets_form.module.css";
 
 const AddPetsForm = ({ userObj }) => {
@@ -15,35 +16,38 @@ const AddPetsForm = ({ userObj }) => {
   const genderRef = useRef();
   const weightRef = useRef();
   const characterRef = useRef();
-  const fileRef = useRef();
 
-  const onsubmit = (event) => {
+  const onsubmit = async (event) => {
     event.preventDefault();
+    // 스토리지로 이미지 업로드
+    const fileRef = storageService.ref().child(`${userObj.uid}/${uuidv4}`);
+    const response = await fileRef.putString(imgFiles, "data_url");
+    console.log(response);
 
-    const ok = window.confirm("등록하시겠습니까?");
+    // const ok = window.confirm("등록하시겠습니까?");
 
-    if (ok) {
-      onAddPet();
-    }
+    // if (ok) {
+    //   // onAddPet();
+    // }
 
     formRef.current.reset();
-    goToHome();
+    // goToHome();
   };
 
-  const onAddPet = async () => {
-    await dbService.collection("pets-list").add({
-      createAt: Date.now(),
-      creatorId: userObj.uid,
-      title: titleRef.current.value,
-      name: nameRef.current.value,
-      breed: breedRef.current.value,
-      age: ageRef.current.value,
-      gender: genderRef.current.value,
-      weight: weightRef.current.value,
-      character: characterRef.current.value,
-      img: fileRef.current.value,
-    });
-  };
+  // const onAddPet = () => {
+  //   dbService.collection("pets-list").add({
+  //     createAt: Date.now(),
+  //     creatorId: userObj.uid,
+  //     title: titleRef.current.value,
+  //     name: nameRef.current.value,
+  //     breed: breedRef.current.value,
+  //     age: ageRef.current.value,
+  //     gender: genderRef.current.value,
+  //     weight: weightRef.current.value,
+  //     character: characterRef.current.value,
+  //     // img:
+  //   });
+  // };
 
   const goToHome = () => {
     history.push("/pet-list");
@@ -63,7 +67,6 @@ const AddPetsForm = ({ userObj }) => {
 
     const imgsReader = new FileReader();
     imgsReader.onloadend = (finishedEvent) => {
-      // const imgsResult = finishedEvent.currentTarget.result;
       const {
         currentTarget: { result },
       } = finishedEvent;
@@ -91,7 +94,7 @@ const AddPetsForm = ({ userObj }) => {
 
       <form className={styles.form} ref={formRef}>
         <input
-          ref={fileRef}
+          // ref={fileRef}
           type="file"
           accept="image/*"
           className={styles.file}
