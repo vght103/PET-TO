@@ -11,18 +11,6 @@ const PetList = ({ userObj }) => {
   const [click, setClick] = useState(false);
   const [pets, setPets] = useState([]);
 
-  // 구식 방법 - not real time 방법
-  // const getPets = async () => {
-  //   const dbPets = await dbService.collection("pets-list").get();
-  //   dbPets.forEach((document) => {
-  //     const petsObj = {
-  //       ...document.data(),
-  //       id: document.id,
-  //     };
-  //     setPets((prev) => [petsObj, ...prev]);
-  //   });
-  // };
-
   useEffect(() => {
     // getPets();
     // onSnapshot 방법 - real time 방법

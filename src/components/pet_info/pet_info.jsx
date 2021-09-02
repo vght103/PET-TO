@@ -60,7 +60,7 @@ const PetInfo = ({ userObj }) => {
       </div>
 
       <img
-        src={process.env.PUBLIC_URL + "/imgs/dog3.jpg"}
+        src={location.state.item.img}
         alt={`${location.state.name} 사진입니다`}
         className={styles.pet_img}
       />

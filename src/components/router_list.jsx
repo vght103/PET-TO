@@ -9,7 +9,7 @@ import MyInfo from "./my_info/my_info";
 import PetInfo from "./pet_info/pet_info";
 import PetList from "./pet_list/pet_list";
 
-const RouterList = ({ authService, userObj }) => (
+const RouterList = ({ FileInput, authService, userObj }) => (
   <Switch>
     <Route exact path="/">
       <Intro authService={authService} />
@@ -24,13 +24,13 @@ const RouterList = ({ authService, userObj }) => (
     <Route path="/community" component={Community} />
 
     <Route path="/add-pets-form">
-      <AddPetsForm userObj={userObj} />
+      <AddPetsForm userObj={userObj} FileInput={FileInput} />
     </Route>
     <Route exact path="/pet-item/pet-info">
       <PetInfo userObj={userObj} />
     </Route>
     <Route path="/content-add-form">
-      <AddContentForm />
+      <AddContentForm FileInput={FileInput} />
     </Route>
   </Switch>
 );

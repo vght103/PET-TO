@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./add_content_form.module.css";
 
-const AddContentForm = (props) => {
+const AddContentForm = ({ FileInput }) => {
   const history = useHistory();
   const formRef = useRef();
   const titleRef = useRef();
@@ -27,12 +27,13 @@ const AddContentForm = (props) => {
       </div>
 
       <form className={styles.form} ref={formRef}>
-        <input
+        <FileInput />
+        {/* <input
           // ref={fileRef}
           type="file"
           accept="image/*"
           className={styles.file}
-        />
+        /> */}
         {/* <div className={styles.content_imgs}>
           <img src="" width="50px" height="50px" alt="" />
           <button className={styles.clear_button}>삭제</button>
