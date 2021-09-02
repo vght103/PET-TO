@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { v4 as uuidv4 } from "uuidv4";
+import { v4 as uuidv4 } from "uuid";
 import { dbService, storageService } from "../../service/firebase";
 import styles from "./add_content_form.module.css";
 
@@ -14,19 +14,19 @@ const AddContentForm = ({ userObj }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    // const imgFilesRef = storageService
-    //   .ref()
-    //   .child(`${userObj.uid}/${uuidv4()}`);
+    const imgFilesRef = storageService
+      .ref()
+      .child(`${userObj.uid}/${uuidv4()}`);
 
-    // const response = await imgFilesRef.putString(imgFiles, "data_url");
-    // const imgFilesUrl = await response.ref.getDownloadURL();
+    const response = await imgFilesRef.putString(imgFiles, "data_url");
+    const imgFilesUrl = await response.ref.getDownloadURL();
 
     const ok = window.confirm("등록하시겠습니까?");
 
     if (ok) {
       await dbService.collection("contents-list").add({
         createAt: Date.now(),
-        // img: imgFilesUrl,
+        img: imgFilesUrl,
         category: selectRef.current.value,
         contentText: textareaRef.current.value,
       });
@@ -36,27 +36,25 @@ const AddContentForm = ({ userObj }) => {
     goToComunity();
   };
 
-  // const onChangeFile = (event) => {
-  //   // 바뀌는 이미지 불러오기
-  //   // 이미지를 업로드 -> imageReader 로 읽어주기
-  //   const {
-  //     target: { files },
-  //   } = event;
+  const onChangeFile = (event) => {
+    const {
+      target: { files },
+    } = event;
 
-  //   const contentFiles = files[0];
+    const contentFiles = files[0];
 
-  //   const imgsReader = new FileReader();
-  //   imgsReader.onloadend = (finishedEvent) => {
-  //     const imgResult = finishedEvent.currentTarget.result;
-  //     setImageFiles(imgResult);
-  //   };
-  //   imgsReader.readAsDataURL(contentFiles);
-  //   console.log(contentFiles);
-  // };
+    const imgsReader = new FileReader();
+    imgsReader.onloadend = (finishedEvent) => {
+      const imgResult = finishedEvent.currentTarget.result;
+      setImageFiles(imgResult);
+    };
+    imgsReader.readAsDataURL(contentFiles);
+    console.log(contentFiles);
+  };
 
-  // const onFileClear = () => {
-  //   setImageFiles(null);
-  // };
+  const onFileClear = () => {
+    setImageFiles(null);
+  };
 
   const goToComunity = () => {
     history.push("/community");
@@ -76,13 +74,15 @@ const AddContentForm = ({ userObj }) => {
           type="file"
           accept="image/*"
           className={styles.file}
-          // onChange={onChangeFile}
+          onChange={onChangeFile}
         />
 
         {imgFiles && (
           <div className={styles.content_imgs}>
             <img src={imgFiles} width="50px" height="50px" alt="이미지" />
-            <button className={styles.clear_button}>삭제</button>
+            <button className={styles.clear_button} onClick={onFileClear}>
+              삭제
+            </button>
           </div>
         )}
 
