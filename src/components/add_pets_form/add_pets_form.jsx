@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import { dbService, storageService } from "../../service/firebase";
 import styles from "./add_pets_form.module.css";
 
-const AddPetsForm = ({ FileInput, userObj }) => {
+const AddPetsForm = ({ userObj }) => {
   const [imgFiles, setImgFiles] = useState();
 
   const history = useHistory();
@@ -15,9 +15,9 @@ const AddPetsForm = ({ FileInput, userObj }) => {
   const ageRef = useRef();
   const genderRef = useRef();
   const weightRef = useRef();
-  const characterRef = useRef();
+  const textareaRef = useRef();
 
-  const onsubmit = async (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     // 스토리지로 이미지 업로드
     const imgFilesRef = storageService
@@ -38,7 +38,7 @@ const AddPetsForm = ({ FileInput, userObj }) => {
         age: ageRef.current.value,
         gender: genderRef.current.value,
         weight: weightRef.current.value,
-        character: characterRef.current.value,
+        character: textareaRef.current.value,
         img: imgFilesUrl,
       });
     }
@@ -145,13 +145,13 @@ const AddPetsForm = ({ FileInput, userObj }) => {
         />
 
         <textarea
-          ref={characterRef}
+          ref={textareaRef}
           name="note"
           className={styles.character}
           placeholder="강아지의 특징 또는 성격을 작성해주세요"
         ></textarea>
 
-        <button className={styles.submit_button} onClick={onsubmit}>
+        <button className={styles.submit_button} onClick={onSubmit}>
           완료
         </button>
       </form>

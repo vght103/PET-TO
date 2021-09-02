@@ -30,7 +30,7 @@ const RouterList = ({ FileInput, authService, userObj }) => (
       <PetInfo userObj={userObj} />
     </Route>
     <Route path="/content-add-form">
-      <AddContentForm FileInput={FileInput} />
+      <AddContentForm FileInput={FileInput} userObj={userObj} />
     </Route>
   </Switch>
 );

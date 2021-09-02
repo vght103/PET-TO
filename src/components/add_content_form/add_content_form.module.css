@@ -36,7 +36,7 @@
 .age,
 .gender,
 .weight,
-.character,
+.content_info,
 .submit_button,
 .category {
   border: none;
@@ -45,17 +45,12 @@
   font-size: 1.2rem;
 }
 .form_title::placeholder,
-.name::placeholder,
-.breed::placeholder,
-.age::placeholder,
-.gender::placeholder,
-.weight::placeholder,
-.character::placeholder,
+.content_info::placeholder,
 .submit_button::placeholder {
   opacity: 0.5;
 }
 
-.character {
+.content_info {
   height: 100%;
   border: 1px solid lightgray;
 }
