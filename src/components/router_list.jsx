@@ -4,6 +4,7 @@ import AddContentForm from "./add_content_form/add_content_form";
 import AddPetsForm from "./add_pets_form/add_pets_form";
 import Chat from "./chat/chat";
 import Community from "./community/community";
+import ContentInfo from "./content_info/content_info";
 import Intro from "./intro/intro";
 import MyInfo from "./my_info/my_info";
 import PetInfo from "./pet_info/pet_info";
@@ -14,23 +15,33 @@ const RouterList = ({ FileInput, authService, userObj }) => (
     <Route exact path="/">
       <Intro authService={authService} />
     </Route>
-    <Route path="/my-info">
-      <MyInfo authService={authService} />
-    </Route>
+
+    {/* navbar */}
     <Route path="/pet-list">
       <PetList authService={authService} userObj={userObj} />
     </Route>
     <Route path="/chat" component={Chat} />
-    <Route path="/community" component={Community} />
 
+    <Route path="/my-info">
+      <MyInfo authService={authService} />
+    </Route>
+
+    {/* page */}
     <Route path="/add-pets-form">
       <AddPetsForm userObj={userObj} FileInput={FileInput} />
     </Route>
-    <Route exact path="/pet-item/pet-info">
+    <Route path="/pet-item/pet-info">
       <PetInfo userObj={userObj} />
+    </Route>
+
+    <Route exact path="/contents-list">
+      <Community userObj={userObj} />
     </Route>
     <Route path="/content-add-form">
       <AddContentForm FileInput={FileInput} userObj={userObj} />
+    </Route>
+    <Route exact path="/contents-list/content-info">
+      <ContentInfo userObj={userObj} />
     </Route>
   </Switch>
 );

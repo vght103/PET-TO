@@ -6,7 +6,7 @@ import Header from "../header/header";
 import Navbar from "../navbar/navbar";
 import styles from "./community.module.css";
 
-const Community = (props) => {
+const Community = ({ userObj }) => {
   const history = useHistory();
   const [click, setClick] = useState(false);
   const [contents, setContents] = useState([]);
@@ -35,7 +35,7 @@ const Community = (props) => {
       <Header />
       <ul className={styles.content_list}>
         {contents.map((item) => (
-          <Content key={item.id} item={item} />
+          <Content key={item.id} item={item} userObj={userObj} />
         ))}
       </ul>
 

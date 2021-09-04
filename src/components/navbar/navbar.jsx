@@ -15,7 +15,7 @@ const Navbar = (props) => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/community">
+            <NavLink to="/contents-list">
               <i className={"fas fa-tablet-alt fa-lg"}></i>
               <span>커뮤니티</span>
             </NavLink>

@@ -33,7 +33,7 @@ const AddContentForm = ({ userObj }) => {
     }
 
     formRef.current.reset();
-    goToComunity();
+    goToCommunity();
   };
 
   const onChangeFile = (event) => {
@@ -56,14 +56,14 @@ const AddContentForm = ({ userObj }) => {
     setImageFiles(null);
   };
 
-  const goToComunity = () => {
-    history.push("/community");
+  const goToCommunity = () => {
+    history.push("/contents-list");
   };
 
   return (
     <section className={styles.add_content}>
       <div className={styles.title}>
-        <button className={styles.cancel} onClick={goToComunity}>
+        <button className={styles.cancel} onClick={goToCommunity}>
           <i className="fas fa-arrow-left fa-2x"></i>
         </button>
         <h2>컨텐츠 업로드</h2>

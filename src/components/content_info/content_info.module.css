@@ -1,0 +1,17 @@
+.title {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+
+.cancel {
+  border: none;
+  margin-left: 1em;
+  padding: 0.5em;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.title > h2 {
+  margin: 0.8em 1em;
+}
