@@ -26,10 +26,13 @@ const AddContentForm = ({ userObj }) => {
     if (ok) {
       await dbService.collection("contents-list").add({
         createAt: Date.now(),
-        img: imgFilesUrl,
+        creatorId: userObj.uid,
         category: selectRef.current.value,
         contentText: textareaRef.current.value,
+        imgFilesUrl,
       });
+    } else {
+      return;
     }
 
     formRef.current.reset();
@@ -47,10 +50,29 @@ const AddContentForm = ({ userObj }) => {
     imgsReader.onloadend = (finishedEvent) => {
       const imgResult = finishedEvent.currentTarget.result;
       setImageFiles(imgResult);
+      console.log(imgResult);
     };
     imgsReader.readAsDataURL(contentFiles);
-    console.log(contentFiles);
   };
+
+  // const onChangeFile = (event) => {
+  //   const fileArray = event.target.files;
+
+  //   const fileUrl = [];
+  //   const filesLength = fileArray.length > 10 ? 10 : fileArray.length;
+
+  //   for (let i = 0; i < filesLength; i++) {
+  //     const uploadFiles = fileArray[i];
+  //     // console.log(uploadFiles);
+
+  //     const imgReader = new FileReader();
+  //     imgReader.onloadend = () => {
+  //       fileUrl[i] = imgReader.result;
+  //       setImageFiles([...fileUrl]);
+  //     };
+  //     imgReader.readAsDataURL(uploadFiles);
+  //   }
+  // };
 
   const onFileClear = () => {
     setImageFiles(null);
@@ -80,6 +102,7 @@ const AddContentForm = ({ userObj }) => {
         {imgFiles && (
           <div className={styles.content_imgs}>
             <img src={imgFiles} width="50px" height="50px" alt="이미지" />
+
             <button className={styles.clear_button} onClick={onFileClear}>
               삭제
             </button>

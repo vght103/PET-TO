@@ -12,9 +12,6 @@ const PetList = ({ userObj }) => {
   const [pets, setPets] = useState([]);
 
   useEffect(() => {
-    // getPets();
-    // onSnapshot 방법 - real time 방법
-    // forEach 를 사용하는 것보다 매번 Rerender 되지 않아서 이 방법이 많이 선호
     dbService.collection("pets-list").onSnapshot((snapshot) => {
       const dbPets = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -28,9 +25,8 @@ const PetList = ({ userObj }) => {
     history.push({ pathname: "/add-pets-form" });
   };
 
-  const handleClick = () => {
-    setClick(!click);
-  };
+  const handleClick = () => setClick(!click);
+
   return (
     <section className={styles.pet_list_wrap}>
       <Header />

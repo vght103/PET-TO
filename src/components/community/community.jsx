@@ -17,25 +17,28 @@ const Community = ({ userObj }) => {
         id: doc.id,
         ...doc.data(),
       }));
+
       setContents(dbContents);
+      console.log(dbContents);
     });
   }, []);
 
-  const handleClick = () => setClick(!click);
-  console.log(click);
-
   const goToAddContentForm = () => {
-    history.push({
-      pathname: "/content-add-form",
-    });
+    history.push("/content-add-form");
   };
 
+  const handleClick = () => setClick(!click);
   return (
     <section className={styles.community}>
       <Header />
       <ul className={styles.content_list}>
         {contents.map((item) => (
-          <Content key={item.id} item={item} userObj={userObj} />
+          <Content
+            key={item.id}
+            item={item}
+            isOwner={userObj.uid === item.creatorId}
+            userObj={userObj}
+          />
         ))}
       </ul>
 

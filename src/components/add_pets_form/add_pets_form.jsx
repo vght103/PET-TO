@@ -25,7 +25,6 @@ const AddPetsForm = ({ userObj }) => {
       .child(`${userObj.uid}/${uuidv4()}`);
     const response = await imgFilesRef.putString(imgFiles, "data_url");
     const imgFilesUrl = await response.ref.getDownloadURL();
-    // const onCreatePet = {};
 
     const ok = window.confirm("등록하시겠습니까?");
     if (ok) {
@@ -39,7 +38,7 @@ const AddPetsForm = ({ userObj }) => {
         gender: genderRef.current.value,
         weight: weightRef.current.value,
         character: textareaRef.current.value,
-        img: imgFilesUrl,
+        imgFilesUrl,
       });
     }
 

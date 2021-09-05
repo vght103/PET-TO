@@ -11,12 +11,11 @@ const PetItem = ({ item, isOwner }) => {
       state: { item, isOwner },
     });
   };
-  console.log("item 반응");
 
   return (
     <li className={styles.pet_item} onClick={goToPetInfo}>
       <div className={styles.pet_wrap}>
-        <img src={item.img} alt="강아지" className={styles.pet_img} />
+        <img src={item.imgFilesUrl} alt="강아지" className={styles.pet_img} />
         <div className={styles.pet_text}>
           <h3 className={styles.title}>{item.title}</h3>
           <p className={styles.name}>{`이름: ${item.name}`}</p>

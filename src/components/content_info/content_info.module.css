@@ -1,7 +1,8 @@
-.title {
+.header {
   display: flex;
   align-items: center;
   border-bottom: 1px solid lightgray;
+  position: relative;
 }
 
 .cancel {
@@ -12,6 +13,89 @@
   cursor: pointer;
 }
 
-.title > h2 {
+.header > h2 {
   margin: 0.8em 1em;
+}
+
+.menu {
+  position: absolute;
+  right: -5px;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu_button {
+  cursor: pointer;
+  width: 7rem;
+  text-align: center;
+  padding: 0.5em;
+}
+
+.menu_list {
+  display: none;
+  margin-top: 0.5em;
+  background-color: white;
+  border: 1px solid lightgray;
+  text-align: center;
+
+  /* padding: 0.5em; */
+}
+.menu_list > li {
+  padding: 0.5em;
+}
+
+.menu_list > li:hover {
+  cursor: pointer;
+  background-color: lightblue;
+  width: 100%;
+}
+
+.menu_list.active {
+  display: block;
+}
+
+.info {
+  margin: 0.5em;
+}
+
+.info_category {
+  display: inline-block;
+  background-color: lightgray;
+  font-size: 0.7rem;
+  border-radius: 5px;
+  padding: 0.3em;
+  margin-bottom: 1.5em;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid lightgray;
+}
+
+.user_img {
+  border-radius: 50%;
+  margin-right: 0.5em;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 2em;
+}
+
+.content > p {
+  margin-bottom: 2em;
+}
+
+.content > img {
+  margin: 0 auto;
+}
+
+.comment {
 }

@@ -27,7 +27,7 @@ const Navbar = (props) => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/my-info">
+            <NavLink to="/profile">
               <i className="fas fa-user fa-lg"></i>
               <span className={styles.nav_text}>나의정보</span>
             </NavLink>

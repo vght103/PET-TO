@@ -6,9 +6,9 @@ import Chat from "./chat/chat";
 import Community from "./community/community";
 import ContentInfo from "./content_info/content_info";
 import Intro from "./intro/intro";
-import MyInfo from "./my_info/my_info";
 import PetInfo from "./pet_info/pet_info";
 import PetList from "./pet_list/pet_list";
+import Profile from "./profile/profile";
 
 const RouterList = ({ FileInput, authService, userObj }) => (
   <Switch>
@@ -22,8 +22,8 @@ const RouterList = ({ FileInput, authService, userObj }) => (
     </Route>
     <Route path="/chat" component={Chat} />
 
-    <Route path="/my-info">
-      <MyInfo authService={authService} />
+    <Route path="/profile">
+      <Profile authService={authService} />
     </Route>
 
     {/* page */}

@@ -2,30 +2,29 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import styles from "./pet_info.module.css";
 import { useLocation } from "react-router";
-import { dbService } from "../../service/firebase";
+import { dbService, storageService } from "../../service/firebase";
 
-const PetInfo = ({ userObj }) => {
+const PetInfo = (props) => {
   const location = useLocation();
   const history = useHistory();
   const [click, setClick] = useState(false);
-  // const [editing, setEditing] = useState(false);
-  //
 
-  console.log(userObj);
   const goToHome = () => {
     history.push("/pet-list");
   };
 
   const handleClick = () => {
     setClick(!click);
-    console.log(click);
   };
 
-  const onDeleteData = () => {
+  const onDeleteData = async () => {
     const ok = window.confirm("게시글을 삭제하시겠습니까?");
     if (ok) {
-      dbService.doc(`pets-list/${location.state.item.id}`).delete();
+      await dbService.doc(`pets-list/${location.state.item.id}`).delete();
+      await storageService.refFromURL(location.state.item.imgFilesUrl).delete();
       console.log(location.state.item.id);
+    } else {
+      return;
     }
     goToHome();
   };
@@ -33,7 +32,7 @@ const PetInfo = ({ userObj }) => {
   const onEditData = () => {};
 
   return (
-    <section className={styles.add_content}>
+    <section className={styles.pet_info}>
       <div className={styles.header}>
         <button className={styles.cancel} onClick={goToHome}>
           <i className="fas fa-arrow-left fa-2x"></i>
@@ -60,18 +59,38 @@ const PetInfo = ({ userObj }) => {
       </div>
 
       <img
-        src={location.state.item.img}
-        alt={`${location.state.name} 사진입니다`}
+        src={location.state.item.imgFilesUrl}
+        alt={`${location.state.item.name} 사진입니다`}
         className={styles.pet_img}
       />
-      <div className={styles.pet_info}>
+      <div className={styles.pet_detail}>
         <h3>{location.state.item.title}</h3>
-        <p>{`이름 : ${location.state.item.name}`}</p>
-        <p>{`견종 : ${location.state.item.breed}`}</p>
-        <p>{`나이 : ${location.state.item.age}`}</p>
-        <p>{`성별 : ${location.state.item.gender}`}</p>
-        <p>{`무게 : ${location.state.item.weight}`}</p>
-        <p>{`성격 : ${location.state.item.character}`}</p>
+        <ul className={styles.detail_info}>
+          <li>
+            <span>이름</span>
+            <span>{location.state.item.name}</span>
+          </li>
+          <li>
+            <span>견종</span>
+            <span>{location.state.item.breed}</span>
+          </li>
+          <li>
+            <span>나이</span>
+            <span>{location.state.item.age}</span>
+          </li>
+          <li>
+            <span>성별</span>
+            <span>{location.state.item.gender}</span>
+          </li>
+          <li>
+            <span>무게</span>
+            <span>{location.state.item.weight}</span>
+          </li>
+          <li>
+            <span className={styles.character}>성격</span>
+            <p>{location.state.item.character}</p>
+          </li>
+        </ul>
       </div>
       <div className={styles.apply}>
         <button className={styles.apply_button}>임시보호 신청하기</button>
