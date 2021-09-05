@@ -22,7 +22,6 @@ const PetInfo = (props) => {
     if (ok) {
       await dbService.doc(`pets-list/${location.state.item.id}`).delete();
       await storageService.refFromURL(location.state.item.imgFilesUrl).delete();
-      console.log(location.state.item.id);
     } else {
       return;
     }

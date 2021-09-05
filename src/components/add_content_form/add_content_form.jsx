@@ -50,7 +50,6 @@ const AddContentForm = ({ userObj }) => {
     imgsReader.onloadend = (finishedEvent) => {
       const imgResult = finishedEvent.currentTarget.result;
       setImageFiles(imgResult);
-      console.log(imgResult);
     };
     imgsReader.readAsDataURL(contentFiles);
   };

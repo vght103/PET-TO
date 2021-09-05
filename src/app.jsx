@@ -11,7 +11,6 @@ function App({ FileInput, authService }) {
     authService.onAuthChanged((user) => {
       if (user) {
         setUserObj(user);
-        // goToHome(user.uid);
       }
     });
   });
@@ -30,24 +29,3 @@ function App({ FileInput, authService }) {
 }
 
 export default App;
-
-// {
-//   <Switch>
-//           <Route exact path="/">
-//             <Intro authService={authService} />
-//           </Route>
-//           <Route path="/my-info">
-//             <MyInfo authService={authService} />
-//           </Route>
-//           <Route path="/pet-list">
-//             <PetList authService={authService} />
-//           </Route>
-//           <Route path="/chat" component={Chat} />
-//           <Route path="/community" component={Community} />
-//           <Route path="/add-pets-form" component={AddPetsForm} />
-//           <Route path="/pet-item/pet-info" component={PetInfo} />
-//           <Route path="">
-//             <AddContentForm />
-//           </Route>
-//         </Switch>
-// }

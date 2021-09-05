@@ -19,7 +19,6 @@ const Community = ({ userObj }) => {
       }));
 
       setContents(dbContents);
-      console.log(dbContents);
     });
   }, []);
 
