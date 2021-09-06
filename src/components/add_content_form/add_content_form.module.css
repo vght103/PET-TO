@@ -27,9 +27,27 @@
   height: 90%;
 }
 
+.image_box {
+  display: flex;
+  /* border-bottom: 1px solid lightgray; */
+}
+
 .file {
   padding: 1em 0.5em;
 }
+
+.content_imgs {
+  margin: 1em 0.5em;
+}
+
+.clear_button {
+  border: none;
+  cursor: pointer;
+  margin-left: 0.8em;
+  padding: 0.3em;
+  background-color: transparent;
+}
+
 .form_title,
 .name,
 .breed,
@@ -48,6 +66,10 @@
 .content_info::placeholder,
 .submit_button::placeholder {
   opacity: 0.5;
+}
+
+.category {
+  border: 1px solid lightgray;
 }
 
 .content_info {

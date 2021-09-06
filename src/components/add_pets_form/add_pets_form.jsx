@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useHistory } from "react-router";
 import { dbService, storageService } from "../../service/firebase";
 import styles from "./add_pets_form.module.css";
+import ImageInput from "../image_input/image_input";
 
 const AddPetsForm = ({ userObj }) => {
   const [imgFiles, setImgFiles] = useState();
@@ -80,26 +81,29 @@ const AddPetsForm = ({ userObj }) => {
       </div>
 
       <form className={styles.form} ref={formRef}>
-        <input
+        <div className={styles.image_box}>
+          <ImageInput onChangeFile={onChangeFile} />
+          {/* <input
           type="file"
           accept="image/*"
           className={styles.file}
           onChange={onChangeFile}
-        />
+        /> */}
 
-        {imgFiles && (
-          <div className={styles.pet_imgs}>
-            <img
-              src={imgFiles}
-              width="50px"
-              height="50px"
-              alt={nameRef.current.name}
-            />
-            <button className={styles.clear_button} onClick={onFileClear}>
-              ❌
-            </button>
-          </div>
-        )}
+          {imgFiles && (
+            <div className={styles.pet_imgs}>
+              <img
+                src={imgFiles}
+                width="50px"
+                height="50px"
+                alt={nameRef.current.name}
+              />
+              <button className={styles.clear_button} onClick={onFileClear}>
+                ❌
+              </button>
+            </div>
+          )}
+        </div>
 
         <input
           ref={titleRef}

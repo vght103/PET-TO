@@ -27,6 +27,11 @@
   height: 90%;
 }
 
+.image_box {
+  display: flex;
+  border-bottom: 1px solid lightgray;
+}
+
 .file {
   padding: 1em 0.5em;
 }
@@ -67,9 +72,9 @@
   opacity: 0.5;
 }
 
-.form_title {
+/* .form_title {
   border-top: 1px solid lightgray;
-}
+} */
 
 .character {
   height: 30%;

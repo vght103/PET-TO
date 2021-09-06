@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { dbService, storageService } from "../../service/firebase";
+import ImageInput from "../image_input/image_input";
 import styles from "./add_content_form.module.css";
 
 const AddContentForm = ({ userObj }) => {
@@ -14,22 +15,27 @@ const AddContentForm = ({ userObj }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    const imgFilesRef = storageService
-      .ref()
-      .child(`${userObj.uid}/${uuidv4()}`);
-
-    const response = await imgFilesRef.putString(imgFiles, "data_url");
-    const imgFilesUrl = await response.ref.getDownloadURL();
+    console.log(imgFiles);
 
     const ok = window.confirm("등록하시겠습니까?");
 
     if (ok) {
+      const imgFilesRef = storageService
+        .ref()
+        .child(`${userObj.uid}/${uuidv4()}`);
+
+      let imgFilesUrl = null;
+      if (imgFiles) {
+        const response = await imgFilesRef.putString(imgFiles, "data_url");
+        imgFilesUrl = await response.ref.getDownloadURL();
+      }
+
       await dbService.collection("contents-list").add({
-        createAt: Date.now(),
         creatorId: userObj.uid,
         category: selectRef.current.value,
         contentText: textareaRef.current.value,
         imgFilesUrl,
+        createdAt: new Date(),
       });
     } else {
       return;
@@ -49,29 +55,11 @@ const AddContentForm = ({ userObj }) => {
     const imgsReader = new FileReader();
     imgsReader.onloadend = (finishedEvent) => {
       const imgResult = finishedEvent.currentTarget.result;
+
       setImageFiles(imgResult);
     };
     imgsReader.readAsDataURL(contentFiles);
   };
-
-  // const onChangeFile = (event) => {
-  //   const fileArray = event.target.files;
-
-  //   const fileUrl = [];
-  //   const filesLength = fileArray.length > 10 ? 10 : fileArray.length;
-
-  //   for (let i = 0; i < filesLength; i++) {
-  //     const uploadFiles = fileArray[i];
-  //     // console.log(uploadFiles);
-
-  //     const imgReader = new FileReader();
-  //     imgReader.onloadend = () => {
-  //       fileUrl[i] = imgReader.result;
-  //       setImageFiles([...fileUrl]);
-  //     };
-  //     imgReader.readAsDataURL(uploadFiles);
-  //   }
-  // };
 
   const onFileClear = () => {
     setImageFiles(null);
@@ -91,22 +79,19 @@ const AddContentForm = ({ userObj }) => {
       </div>
 
       <form className={styles.form} ref={formRef}>
-        <input
-          type="file"
-          accept="image/*"
-          className={styles.file}
-          onChange={onChangeFile}
-        />
+        <div className={styles.image_box}>
+          <ImageInput onChangeFile={onChangeFile} />
 
-        {imgFiles && (
-          <div className={styles.content_imgs}>
-            <img src={imgFiles} width="50px" height="50px" alt="이미지" />
+          {imgFiles && (
+            <div className={styles.content_imgs}>
+              <img src={imgFiles} width="50px" height="50px" alt="이미지" />
 
-            <button className={styles.clear_button} onClick={onFileClear}>
-              삭제
-            </button>
-          </div>
-        )}
+              <button className={styles.clear_button} onClick={onFileClear}>
+                ❌
+              </button>
+            </div>
+          )}
+        </div>
 
         <select ref={selectRef} className={styles.category}>
           <option>카테고리</option>

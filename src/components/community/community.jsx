@@ -12,14 +12,17 @@ const Community = ({ userObj }) => {
   const [contents, setContents] = useState([]);
 
   useEffect(() => {
-    dbService.collection("contents-list").onSnapshot((snapshot) => {
-      const dbContents = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+    dbService
+      .collection("contents-list")
+      .orderBy("createdAt", "desc")
+      .onSnapshot((snapshot) => {
+        const dbContents = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
 
-      setContents(dbContents);
-    });
+        setContents(dbContents);
+      });
   }, []);
 
   const goToAddContentForm = () => {

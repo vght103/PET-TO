@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import { dbService, storageService } from "../../service/firebase";
 import styles from "./content_info.module.css";
@@ -7,6 +7,11 @@ const ContentInfo = ({ userObj }) => {
   const location = useLocation();
   const history = useHistory();
   const [click, setClick] = useState(false);
+  const [coment, setComent] = useState(null);
+
+  const inputRef = useRef();
+  const buttonRef = useRef();
+  const labelRef = useRef();
 
   const goToCommunity = () => {
     history.push("/contents-list");
@@ -25,6 +30,26 @@ const ContentInfo = ({ userObj }) => {
       return;
     }
     goToCommunity();
+  };
+
+  const commentClick = (event) => {
+    event.preventDefault();
+    commentResult();
+  };
+  const commentEnter = (event) => {
+    if (event.Key === "Enter") {
+      commentResult();
+    }
+  };
+
+  const commentResult = () => {
+    const inputText = inputRef.current.value;
+    if (!inputText) {
+      return;
+    }
+    setComent(inputText);
+
+    console.log(inputText);
   };
 
   return (
@@ -72,7 +97,26 @@ const ContentInfo = ({ userObj }) => {
       </div>
 
       <div className={styles.comment}>
-        <h2>댓글</h2>
+        <h4>댓글</h4>
+        <div>
+          <input
+            ref={inputRef}
+            type="text"
+            className={styles.comment_input}
+            onKeyPress={commentEnter}
+          />
+          <button
+            ref={buttonRef}
+            className={styles.comment_button}
+            onClick={commentClick}
+          >
+            작성
+          </button>
+        </div>
+        <span className={styles.comment_writer}>{userObj.displayName}</span>
+        <label ref={labelRef} className={styles.comment_label}>
+          {coment}
+        </label>
       </div>
     </section>
   );

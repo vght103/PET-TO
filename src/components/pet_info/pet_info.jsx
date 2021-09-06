@@ -50,7 +50,7 @@ const PetInfo = (props) => {
                   : `${styles.menu_list}`
               }
             >
-              <li onClick={onEditData}>게시글 수정</li>
+              {/* <li onClick={onEditData}>게시글 수정</li> */}
               <li onClick={onDeleteData}>삭제</li>
             </ul>
           </div>

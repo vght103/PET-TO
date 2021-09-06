@@ -37,8 +37,9 @@
 .add_list {
   position: absolute;
   bottom: 40px;
-  right: 0;
+  right: 5px;
   width: 5rem;
+  text-align: center;
 }
 
 .add_item.active {
@@ -47,11 +48,16 @@
 }
 
 .add_item.active:hover {
-  border-bottom: 1px solid gray;
+  /* border-bottom: 1px solid gray; */
+  background-color: rgb(226, 247, 255);
+  transition: 0.3s ease-in-out;
 }
 
 .add_item {
   display: none;
+  border: 1px solid lightgray;
+  width: 5rem;
+  padding: 0.3em 0;
 }
 
 .add_item > span {
