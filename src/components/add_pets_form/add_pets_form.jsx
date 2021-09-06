@@ -96,7 +96,7 @@ const AddPetsForm = ({ userObj }) => {
               alt={nameRef.current.name}
             />
             <button className={styles.clear_button} onClick={onFileClear}>
-              삭제
+              ❌
             </button>
           </div>
         )}

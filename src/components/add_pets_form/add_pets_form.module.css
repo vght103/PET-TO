@@ -30,6 +30,19 @@
 .file {
   padding: 1em 0.5em;
 }
+
+.pet_imgs {
+  margin: 1em 0.5em;
+}
+
+.clear_button {
+  border: none;
+  cursor: pointer;
+  margin-left: 0.8em;
+  padding: 0.3em;
+  background-color: transparent;
+}
+
 .form_title,
 .name,
 .breed,
@@ -52,6 +65,10 @@
 .character::placeholder,
 .submit_button::placeholder {
   opacity: 0.5;
+}
+
+.form_title {
+  border-top: 1px solid lightgray;
 }
 
 .character {
