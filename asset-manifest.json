@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/PET-TO/static/css/main.9ce73c1a.chunk.css",
-    "main.js": "/PET-TO/static/js/main.765615d3.chunk.js",
-    "main.js.map": "/PET-TO/static/js/main.765615d3.chunk.js.map",
+    "main.css": "/PET-TO/static/css/main.55bc8662.chunk.css",
+    "main.js": "/PET-TO/static/js/main.3f0a4b15.chunk.js",
+    "main.js.map": "/PET-TO/static/js/main.3f0a4b15.chunk.js.map",
     "runtime-main.js": "/PET-TO/static/js/runtime-main.cc1ff028.js",
     "runtime-main.js.map": "/PET-TO/static/js/runtime-main.cc1ff028.js.map",
     "static/js/2.e6d06ba2.chunk.js": "/PET-TO/static/js/2.e6d06ba2.chunk.js",
     "static/js/2.e6d06ba2.chunk.js.map": "/PET-TO/static/js/2.e6d06ba2.chunk.js.map",
     "index.html": "/PET-TO/index.html",
-    "static/css/main.9ce73c1a.chunk.css.map": "/PET-TO/static/css/main.9ce73c1a.chunk.css.map",
+    "static/css/main.55bc8662.chunk.css.map": "/PET-TO/static/css/main.55bc8662.chunk.css.map",
     "static/js/2.e6d06ba2.chunk.js.LICENSE.txt": "/PET-TO/static/js/2.e6d06ba2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.cc1ff028.js",
     "static/js/2.e6d06ba2.chunk.js",
-    "static/css/main.9ce73c1a.chunk.css",
-    "static/js/main.765615d3.chunk.js"
+    "static/css/main.55bc8662.chunk.css",
+    "static/js/main.3f0a4b15.chunk.js"
   ]
 }
