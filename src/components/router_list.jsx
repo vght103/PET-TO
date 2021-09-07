@@ -23,7 +23,7 @@ const RouterList = ({ FileInput, authService, userObj }) => (
     <Route path="/chat" component={Chat} />
 
     <Route path="/profile">
-      <Profile authService={authService} />
+      <Profile authService={authService} userObj={userObj} />
     </Route>
 
     {/* page */}

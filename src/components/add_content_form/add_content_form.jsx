@@ -6,12 +6,13 @@ import ImageInput from "../image_input/image_input";
 import styles from "./add_content_form.module.css";
 
 const AddContentForm = ({ userObj }) => {
-  const [imgFiles, setImageFiles] = useState();
-
   const history = useHistory();
   const formRef = useRef();
   const textareaRef = useRef();
   const selectRef = useRef();
+
+  const [imgFiles, setImageFiles] = useState();
+  const [formValues, setFormValues] = useState(false);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -70,6 +71,11 @@ const AddContentForm = ({ userObj }) => {
     history.push("/contents-list");
   };
 
+  const onValueChange = () => {
+    const textAreaValue = textareaRef.current.value;
+    setFormValues(textAreaValue);
+  };
+
   return (
     <section className={styles.add_content}>
       <div className={styles.title}>
@@ -93,8 +99,14 @@ const AddContentForm = ({ userObj }) => {
           )}
         </div>
 
-        <select ref={selectRef} className={styles.category}>
-          <option>카테고리</option>
+        <select
+          ref={selectRef}
+          defaultValue="카테고리"
+          className={styles.category}
+        >
+          <option disabled value="카테고리" hidden>
+            카테고리
+          </option>
           <option>찾아주세요</option>
           <option>공유해요</option>
           <option>같이해요</option>
@@ -106,9 +118,14 @@ const AddContentForm = ({ userObj }) => {
           ref={textareaRef}
           name="note"
           className={styles.content_info}
+          onChange={onValueChange}
           placeholder="선택하신 카테고리에 맞는 내용을 작성해주세요."
         ></textarea>
-        <button className={styles.submit_button} onClick={onSubmit}>
+        <button
+          disabled={!formValues}
+          className={styles.submit_button}
+          onClick={onSubmit}
+        >
           완료
         </button>
       </form>

@@ -12,7 +12,6 @@ const PetItem = ({ item, isOwner }) => {
     });
   };
 
-  console.log(item);
   return (
     <li className={styles.pet_item} onClick={goToPetInfo}>
       <div className={styles.pet_wrap}>

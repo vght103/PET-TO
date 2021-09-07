@@ -87,6 +87,11 @@
   background-color: skyblue;
   color: white;
   font-weight: 600;
+  transition: 0.3s linear;
+}
+
+.submit_button:disabled {
+  background-color: lightgray;
 }
 
 .loading {

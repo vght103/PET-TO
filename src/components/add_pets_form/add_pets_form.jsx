@@ -6,9 +6,6 @@ import styles from "./add_pets_form.module.css";
 import ImageInput from "../image_input/image_input";
 
 const AddPetsForm = ({ userObj }) => {
-  const [imgFiles, setImgFiles] = useState();
-  const [loading, setLoading] = useState(false);
-
   const history = useHistory();
   const formRef = useRef();
   const titleRef = useRef();
@@ -18,6 +15,10 @@ const AddPetsForm = ({ userObj }) => {
   const genderRef = useRef();
   const weightRef = useRef();
   const textareaRef = useRef();
+
+  const [imgFiles, setImgFiles] = useState();
+  const [loading, setLoading] = useState(false);
+  const [formValues, setFormValues] = useState(false);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -60,7 +61,7 @@ const AddPetsForm = ({ userObj }) => {
   const goToHome = () => {
     history.push("/pet-list");
   };
-
+  // img 파일 change
   const onChangeFile = (event) => {
     setLoading(true);
     const {
@@ -81,6 +82,30 @@ const AddPetsForm = ({ userObj }) => {
 
   const onFileClear = () => {
     setImgFiles(null);
+  };
+
+  //  form 유효성 검사
+  const onValueChange = (event) => {
+    const titleValue = titleRef.current.value;
+    const nameValue = nameRef.current.value;
+    const breedValue = breedRef.current.value;
+    const ageValue = ageRef.current.value;
+    const genderValue = genderRef.current.value;
+    const weightValue = weightRef.current.value;
+    const textareaValue = textareaRef.current.value;
+    if (
+      titleValue &&
+      nameValue &&
+      breedValue &&
+      ageValue &&
+      genderValue &&
+      weightValue &&
+      textareaValue
+    ) {
+      setFormValues(true);
+    } else {
+      setFormValues(false);
+    }
   };
 
   return (
@@ -116,6 +141,7 @@ const AddPetsForm = ({ userObj }) => {
           name="title"
           className={styles.form_title}
           placeholder="제목을 적어주세요"
+          onChange={onValueChange}
         />
 
         <input
@@ -123,6 +149,7 @@ const AddPetsForm = ({ userObj }) => {
           name="name"
           className={styles.name}
           placeholder="이름 ex) 황구"
+          onChange={onValueChange}
         />
 
         <input
@@ -130,6 +157,7 @@ const AddPetsForm = ({ userObj }) => {
           name="breed"
           className={styles.breed}
           placeholder="견종 ex) 진돗개"
+          onChange={onValueChange}
         />
 
         <input
@@ -137,6 +165,7 @@ const AddPetsForm = ({ userObj }) => {
           name="age"
           className={styles.age}
           placeholder="나이 ex) 2세 / 24개월 "
+          onChange={onValueChange}
         />
 
         <input
@@ -144,6 +173,7 @@ const AddPetsForm = ({ userObj }) => {
           name="gender"
           className={styles.gender}
           placeholder="성별 ex) 암컷 or 수컷"
+          onChange={onValueChange}
         />
 
         <input
@@ -151,6 +181,7 @@ const AddPetsForm = ({ userObj }) => {
           name="weight"
           className={styles.weight}
           placeholder="무게 ex) 5kg"
+          onChange={onValueChange}
         />
 
         <textarea
@@ -158,9 +189,14 @@ const AddPetsForm = ({ userObj }) => {
           name="note"
           className={styles.character}
           placeholder="강아지의 특징 또는 성격을 작성해주세요"
+          onChange={onValueChange}
         ></textarea>
 
-        <button className={styles.submit_button} onClick={onSubmit}>
+        <button
+          disabled={!formValues}
+          className={styles.submit_button}
+          onClick={onSubmit}
+        >
           완료
         </button>
       </form>
