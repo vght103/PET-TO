@@ -10,19 +10,34 @@ const Community = ({ userObj }) => {
   const history = useHistory();
   const [click, setClick] = useState(false);
   const [contents, setContents] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
+
     dbService
       .collection("contents-list")
       .orderBy("createdAt", "desc")
-      .onSnapshot((snapshot) => {
-        const dbContents = snapshot.docs.map((doc) => ({
+      .get()
+      .then((querySnapshot) => {
+        const data = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-
-        setContents(dbContents);
+        setLoading(false);
+        setContents(data);
       });
+
+    // setContents(doc);
+
+    // .onSnapshot((snapshot) => {
+    //   const dbContents = snapshot.docs.map((doc) => ({
+    //     id: doc.id,
+    //     ...doc.data(),
+    //   }));
+
+    //   setContents(dbContents);
+    // });
   }, []);
 
   const goToAddContentForm = () => {
@@ -35,6 +50,7 @@ const Community = ({ userObj }) => {
       <Header />
       <ul className={styles.content_list}>
         {contents.map((item) => (
+          // console.log(item)
           <Content
             key={item.id}
             item={item}
@@ -62,6 +78,8 @@ const Community = ({ userObj }) => {
           </li>
         </ul>
       </div>
+      {loading && <div className={styles.loading}></div>}
+
       <Navbar />
     </section>
   );

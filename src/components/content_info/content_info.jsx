@@ -3,11 +3,12 @@ import { useHistory, useLocation } from "react-router";
 import { dbService, storageService } from "../../service/firebase";
 import styles from "./content_info.module.css";
 
-const ContentInfo = ({ userObj }) => {
+const ContentInfo = (props) => {
   const location = useLocation();
   const history = useHistory();
   const [click, setClick] = useState(false);
-  const [coment, setComent] = useState(null);
+  const [comment, setComment] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const inputRef = useRef();
   const buttonRef = useRef();
@@ -22,22 +23,26 @@ const ContentInfo = ({ userObj }) => {
   };
 
   const onDeleteData = async () => {
+    setLoading(true);
     const ok = window.confirm("게시글을 삭제하시겠습니까?");
+
     if (ok) {
       await dbService.doc(`contents-list/${location.state.item.id}`).delete();
       await storageService.refFromURL(location.state.item.imgFilesUrl).delete();
     } else {
       return;
     }
+    setLoading(false);
     goToCommunity();
   };
 
   const commentClick = (event) => {
     event.preventDefault();
+    console.log(event);
     commentResult();
   };
   const commentEnter = (event) => {
-    if (event.Key === "Enter") {
+    if (event.key === "Enter") {
       commentResult();
     }
   };
@@ -47,9 +52,8 @@ const ContentInfo = ({ userObj }) => {
     if (!inputText) {
       return;
     }
-    setComent(inputText);
-
     console.log(inputText);
+    setComment(inputText);
   };
 
   return (
@@ -82,13 +86,16 @@ const ContentInfo = ({ userObj }) => {
         <span className={styles.info_category}>{location.state.category}</span>
         <div className={styles.user}>
           <img
-            src={userObj.photoURL}
-            alt={`${userObj.displayName} 사진`}
+            src={location.state.item.creatorPhoto}
+            alt={`${location.state.item.creatorName} 사진`}
             width="30px"
             height="30px"
             className={styles.user_img}
           />
-          <span className={styles.user_name}>{userObj.displayName}</span>
+
+          <span className={styles.user_name}>
+            {location.state.item.creatorName}
+          </span>
         </div>
         <div className={styles.content}>
           <p>{location.state.item.contentText}</p>
@@ -102,8 +109,8 @@ const ContentInfo = ({ userObj }) => {
           <input
             ref={inputRef}
             type="text"
-            className={styles.comment_input}
             onKeyPress={commentEnter}
+            className={styles.comment_input}
           />
           <button
             ref={buttonRef}
@@ -113,11 +120,15 @@ const ContentInfo = ({ userObj }) => {
             작성
           </button>
         </div>
-        <span className={styles.comment_writer}>{userObj.displayName}</span>
+
+        <span className={styles.comment_writer}>
+          {location.state.item.creatorName}
+        </span>
         <label ref={labelRef} className={styles.comment_label}>
-          {coment}
+          {comment}
         </label>
       </div>
+      {loading && <div className={styles.loading}></div>}
     </section>
   );
 };

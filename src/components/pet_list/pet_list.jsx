@@ -10,15 +10,28 @@ const PetList = ({ userObj }) => {
   const history = useHistory();
   const [click, setClick] = useState(false);
   const [pets, setPets] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    dbService.collection("pets-list").onSnapshot((snapshot) => {
-      const dbPets = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setPets(dbPets);
-    });
+    setLoading(true);
+    dbService
+      .collection("pets-list")
+      .orderBy("createAt", "desc")
+      .get()
+      .then((querySnapshot) => {
+        const data = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setLoading(false);
+        setPets(data);
+      });
+    // .onSnapshot((snapshot) => {
+    //   const dbPets = snapshot.docs.map((doc) => ({
+    //     id: doc.id,
+    //     ...doc.data(),
+    //   }));
+    // setPets(dbPets);
   }, []);
 
   const goToAddPetForm = () => {
@@ -58,6 +71,8 @@ const PetList = ({ userObj }) => {
           </li>
         </ul>
       </div>
+      {loading && <div className={styles.loading}></div>}
+
       <Navbar />
     </section>
   );

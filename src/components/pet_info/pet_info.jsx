@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
 import styles from "./pet_info.module.css";
 import { useLocation } from "react-router";
@@ -8,6 +8,7 @@ const PetInfo = (props) => {
   const location = useLocation();
   const history = useHistory();
   const [click, setClick] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const goToHome = () => {
     history.push("/pet-list");
@@ -18,17 +19,19 @@ const PetInfo = (props) => {
   };
 
   const onDeleteData = async () => {
+    setLoading(true);
+
     const ok = window.confirm("게시글을 삭제하시겠습니까?");
     if (ok) {
       await dbService.doc(`pets-list/${location.state.item.id}`).delete();
       await storageService.refFromURL(location.state.item.imgFilesUrl).delete();
+      setLoading(false);
     } else {
       return;
     }
+
     goToHome();
   };
-
-  const onEditData = () => {};
 
   return (
     <section className={styles.pet_info}>
@@ -95,6 +98,7 @@ const PetInfo = (props) => {
         <button className={styles.apply_button}>임시보호 신청하기</button>
         {/* 삭제버튼 추가 필요 */}
       </div>
+      {loading && <div className={styles.loading}></div>}
     </section>
   );
 };

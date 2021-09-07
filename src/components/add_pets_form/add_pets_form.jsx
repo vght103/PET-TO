@@ -7,6 +7,7 @@ import ImageInput from "../image_input/image_input";
 
 const AddPetsForm = ({ userObj }) => {
   const [imgFiles, setImgFiles] = useState();
+  const [loading, setLoading] = useState(false);
 
   const history = useHistory();
   const formRef = useRef();
@@ -20,18 +21,27 @@ const AddPetsForm = ({ userObj }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     // 스토리지로 이미지 업로드
-    const imgFilesRef = storageService
-      .ref()
-      .child(`${userObj.uid}/${uuidv4()}`);
-    const response = await imgFilesRef.putString(imgFiles, "data_url");
-    const imgFilesUrl = await response.ref.getDownloadURL();
 
     const ok = window.confirm("등록하시겠습니까?");
     if (ok) {
+      const imgFilesRef = storageService
+        .ref()
+        .child(`${userObj.uid}/${uuidv4()}`);
+
+      let imgFilesUrl = null;
+
+      if (imgFiles) {
+        const response = await imgFilesRef.putString(imgFiles, "data_url");
+        imgFilesUrl = await response.ref.getDownloadURL();
+      }
+
       await dbService.collection("pets-list").add({
-        createAt: Date.now(),
+        createAt: new Date(),
         creatorId: userObj.uid,
+        creatorName: userObj.displayName,
+        creatorPhoto: userObj.photoURL,
         title: titleRef.current.value,
         name: nameRef.current.value,
         breed: breedRef.current.value,
@@ -42,7 +52,7 @@ const AddPetsForm = ({ userObj }) => {
         imgFilesUrl,
       });
     }
-
+    setLoading(false);
     formRef.current.reset();
     goToHome();
   };
@@ -52,6 +62,7 @@ const AddPetsForm = ({ userObj }) => {
   };
 
   const onChangeFile = (event) => {
+    setLoading(true);
     const {
       target: { files },
     } = event;
@@ -65,6 +76,7 @@ const AddPetsForm = ({ userObj }) => {
     };
 
     imgsReader.readAsDataURL(petFiles);
+    setLoading(false);
   };
 
   const onFileClear = () => {
@@ -83,12 +95,6 @@ const AddPetsForm = ({ userObj }) => {
       <form className={styles.form} ref={formRef}>
         <div className={styles.image_box}>
           <ImageInput onChangeFile={onChangeFile} />
-          {/* <input
-          type="file"
-          accept="image/*"
-          className={styles.file}
-          onChange={onChangeFile}
-        /> */}
 
           {imgFiles && (
             <div className={styles.pet_imgs}>
@@ -158,6 +164,7 @@ const AddPetsForm = ({ userObj }) => {
           완료
         </button>
       </form>
+      {loading && <div className={styles.loading}></div>}
     </section>
   );
 };

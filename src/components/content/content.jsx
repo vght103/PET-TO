@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router";
 import styles from "./content.module.css";
 
-const Content = ({ item, userObj, isOwner }) => {
+const Content = ({ item, isOwner }) => {
   const history = useHistory();
   const goToContentInfo = () => {
     history.push({
@@ -27,7 +27,7 @@ const Content = ({ item, userObj, isOwner }) => {
             />
           )}
           <div>
-            <span className={styles.user_name}>{userObj.displayName}</span>
+            <span className={styles.user_name}>{item.creatorName}</span>
           </div>
         </div>
       </li>

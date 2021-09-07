@@ -15,7 +15,6 @@ const AddContentForm = ({ userObj }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    console.log(imgFiles);
 
     const ok = window.confirm("등록하시겠습니까?");
 
@@ -31,11 +30,13 @@ const AddContentForm = ({ userObj }) => {
       }
 
       await dbService.collection("contents-list").add({
+        createdAt: new Date(),
         creatorId: userObj.uid,
+        creatorName: userObj.displayName,
+        creatorPhoto: userObj.photoURL,
         category: selectRef.current.value,
         contentText: textareaRef.current.value,
         imgFilesUrl,
-        createdAt: new Date(),
       });
     } else {
       return;
@@ -85,7 +86,6 @@ const AddContentForm = ({ userObj }) => {
           {imgFiles && (
             <div className={styles.content_imgs}>
               <img src={imgFiles} width="50px" height="50px" alt="이미지" />
-
               <button className={styles.clear_button} onClick={onFileClear}>
                 ❌
               </button>

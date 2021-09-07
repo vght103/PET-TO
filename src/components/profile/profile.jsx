@@ -22,8 +22,6 @@ const Profile = ({ authService }) => {
     });
   }, []);
 
-  console.log(userInfo);
-
   return (
     <section className={styles.profile}>
       <div className={styles.user_info}>
