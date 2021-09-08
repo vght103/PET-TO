@@ -1,38 +1,47 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { dbService } from "../../service/firebase";
 import Header from "../header/header";
 import Navbar from "../navbar/navbar";
 import PetItem from "../pet_item/pet_item";
 import styles from "./pet_list.module.css";
 
-const PetList = ({ userObj }) => {
+const PetList = ({ userObj, dataService }) => {
   const history = useHistory();
   const [click, setClick] = useState(false);
   const [pets, setPets] = useState([]);
+  // const [nextPets, setNextPets] = useState(false);
+  const [lastKey, setLastKey] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    dbService
-      .collection("pets-list")
-      .orderBy("createAt", "desc")
-      .get()
-      .then((querySnapshot) => {
-        const data = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+
+    dataService //
+      .firstPetData()
+      .then((res) => {
+        setPets(res.petsArr);
+        setLastKey(res.lastKey);
         setLoading(false);
-        setPets(data);
       });
-    // .onSnapshot((snapshot) => {
-    //   const dbPets = snapshot.docs.map((doc) => ({
-    //     id: doc.id,
-    //     ...doc.data(),
-    //   }));
-    // setPets(dbPets);
-  }, []);
+  }, [dataService]);
+
+  const fetchMoreData = (key) => {
+    console.log("hi");
+    if (key > 0) {
+      setLoading(true);
+      dataService //
+        .nextPetsData(key)
+        .then((res) => {
+          setLastKey(res.lastKey);
+          setPets(pets.concat(res.petsArr));
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error(err);
+          setLoading(false);
+        });
+    }
+  };
 
   const goToAddPetForm = () => {
     history.push({ pathname: "/add-pets-form" });
@@ -72,6 +81,11 @@ const PetList = ({ userObj }) => {
         </ul>
       </div>
       {loading && <div className={styles.loading}></div>}
+      {lastKey > 0 ? (
+        <button onClick={() => fetchMoreData(lastKey)}>다시해보자</button>
+      ) : (
+        <span>이제없나??</span>
+      )}
 
       <Navbar />
     </section>

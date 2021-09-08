@@ -31,6 +31,7 @@
 .image_box {
   display: flex;
   border-bottom: 1px solid lightgray;
+  margin-left: 0.5em;
 }
 
 .file {

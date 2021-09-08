@@ -10,7 +10,7 @@ import PetInfo from "./pet_info/pet_info";
 import PetList from "./pet_list/pet_list";
 import Profile from "./profile/profile";
 
-const RouterList = ({ FileInput, authService, userObj }) => (
+const RouterList = ({ FileInput, authService, userObj, dataService }) => (
   <Switch>
     <Route exact path="/">
       <Intro authService={authService} />
@@ -18,7 +18,7 @@ const RouterList = ({ FileInput, authService, userObj }) => (
 
     {/* navbar */}
     <Route path="/pet-list">
-      <PetList authService={authService} userObj={userObj} />
+      <PetList userObj={userObj} dataService={dataService} />
     </Route>
     <Route path="/chat" component={Chat} />
 
