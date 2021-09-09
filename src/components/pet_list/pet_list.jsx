@@ -9,7 +9,6 @@ const PetList = ({ userObj, dataService }) => {
   const history = useHistory();
   const [click, setClick] = useState(false);
   const [pets, setPets] = useState([]);
-  // const [nextPets, setNextPets] = useState(false);
   const [lastKey, setLastKey] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -26,7 +25,6 @@ const PetList = ({ userObj, dataService }) => {
   }, [dataService]);
 
   const fetchMoreData = (key) => {
-    console.log("hi");
     if (key > 0) {
       setLoading(true);
       dataService //
@@ -43,6 +41,21 @@ const PetList = ({ userObj, dataService }) => {
     }
   };
 
+  //무한 스크롤
+  const handleScroll = (event) => {
+    console.log(event);
+    let scrollTop = event.target.scrollTop;
+    let clientHeight = event.target.clientHeight;
+    let scrollHeigth = event.target.scrollHeight;
+
+    if (scrollTop + (clientHeight + 1) >= scrollHeigth) {
+      fetchMoreData(lastKey);
+    }
+    console.log(scrollTop + clientHeight);
+    console.log(scrollHeigth);
+  };
+  document.addEventListener("scroll", handleScroll);
+
   const goToAddPetForm = () => {
     history.push({ pathname: "/add-pets-form" });
   };
@@ -52,7 +65,8 @@ const PetList = ({ userObj, dataService }) => {
   return (
     <section className={styles.pet_list_wrap}>
       <Header />
-      <ul className={styles.pet_list}>
+
+      <ul className={styles.pet_list} onScroll={handleScroll}>
         {pets.map((item) => (
           <PetItem
             key={item.id}
@@ -81,11 +95,6 @@ const PetList = ({ userObj, dataService }) => {
         </ul>
       </div>
       {loading && <div className={styles.loading}></div>}
-      {lastKey > 0 ? (
-        <button onClick={() => fetchMoreData(lastKey)}>다시해보자</button>
-      ) : (
-        <span>이제없나??</span>
-      )}
 
       <Navbar />
     </section>
