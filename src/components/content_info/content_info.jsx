@@ -12,7 +12,7 @@ const ContentInfo = (props) => {
 
   const inputRef = useRef();
   const buttonRef = useRef();
-  const labelRef = useRef();
+  const textRef = useRef();
 
   const goToCommunity = () => {
     history.push("/contents-list");
@@ -40,7 +40,6 @@ const ContentInfo = (props) => {
 
   const commentClick = (event) => {
     event.preventDefault();
-    console.log(event);
     commentResult();
   };
   const commentEnter = (event) => {
@@ -54,8 +53,8 @@ const ContentInfo = (props) => {
     if (!inputText) {
       return;
     }
-    console.log(inputText);
     setComment(inputText);
+    // setComment(null);
   };
 
   return (
@@ -105,30 +104,33 @@ const ContentInfo = (props) => {
         </div>
       </div>
 
-      <div className={styles.comment}>
+      <div className={styles.comment_container}>
         <h4>댓글</h4>
         <div>
+          {comment && (
+            <div className={styles.uploaded_comment}>
+              <span className={styles.comment_writer}>
+                {location.state.item.creatorName}
+              </span>
+              <p ref={textRef} className={styles.comment_text}>
+                {comment}
+              </p>
+            </div>
+          )}
           <input
             ref={inputRef}
-            type="text"
+            placeholder="댓글을 입력해주세요"
             onKeyPress={commentEnter}
             className={styles.comment_input}
           />
           <button
             ref={buttonRef}
-            className={styles.comment_button}
+            className={`${styles.comment_button}`}
             onClick={commentClick}
           >
-            작성
+            <i className="fas fa-arrow-right"></i>
           </button>
         </div>
-
-        <span className={styles.comment_writer}>
-          {location.state.item.creatorName}
-        </span>
-        <label ref={labelRef} className={styles.comment_label}>
-          {comment}
-        </label>
       </div>
       {loading && <div className={styles.loading}></div>}
     </section>

@@ -14,6 +14,11 @@ const PetInfo = (props) => {
     history.push("/pet-list");
   };
 
+  const goToSurvey = () => {
+    window.open("https://forms.gle/tX7ofs4qZFMtXqaF8", "_blank");
+    goToHome();
+  };
+
   const handleClick = () => {
     setClick(!click);
   };
@@ -97,7 +102,9 @@ const PetInfo = (props) => {
         </ul>
       </div>
       <div className={styles.apply}>
-        <button className={styles.apply_button}>임시보호 신청하기</button>
+        <button className={styles.apply_button} onClick={goToSurvey}>
+          임시보호 신청하기
+        </button>
         {/* 삭제버튼 추가 필요 */}
       </div>
       {loading && <div className={styles.loading}></div>}

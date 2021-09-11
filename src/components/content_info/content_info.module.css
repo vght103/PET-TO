@@ -82,6 +82,10 @@
   margin-right: 0.5em;
 }
 
+.user_name {
+  font-weight: bold;
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -97,7 +101,46 @@
   margin: 0 auto;
 }
 
-.comment {
+.comment_container {
+  margin: 0.5em;
+  position: relative;
+}
+
+.comment_container h4 {
+  margin-bottom: 0.5em;
+}
+
+.comment_input {
+  padding: 0.8em;
+  background-color: rgb(230, 230, 230);
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.uploaded_comment {
+  margin-bottom: 2em;
+}
+
+.comment_writer {
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.comment_button {
+  position: absolute;
+  right: 2px;
+  bottom: 1px;
+  background-color: skyblue;
+  padding: 0.7em;
+  border: none;
+  border-radius: 50%;
+}
+
+.comment_button.active {
+  display: block;
 }
 
 .loading {
