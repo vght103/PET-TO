@@ -35,7 +35,7 @@ const RouterList = ({ FileInput, authService, userObj, dataService }) => (
     </Route>
 
     <Route exact path="/contents-list">
-      <Community userObj={userObj} />
+      <Community userObj={userObj} dataService={dataService} />
     </Route>
     <Route path="/content-add-form">
       <AddContentForm FileInput={FileInput} userObj={userObj} />

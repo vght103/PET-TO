@@ -15,7 +15,7 @@
 
 .content_img {
   align-self: center;
-  width: 350px;
+  width: 50%;
   margin-bottom: 1.5em;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .content_text {
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .user_name {

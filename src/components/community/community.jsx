@@ -1,44 +1,57 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { dbService } from "../../service/firebase";
 import Content from "../content/content";
 import Header from "../header/header";
 import Navbar from "../navbar/navbar";
 import styles from "./community.module.css";
 
-const Community = ({ userObj }) => {
+const Community = ({ userObj, dataService }) => {
   const history = useHistory();
   const [click, setClick] = useState(false);
   const [contents, setContents] = useState([]);
+  const [lastKey, setLastKey] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
 
-    dbService
-      .collection("contents-list")
-      .orderBy("createdAt", "desc")
-      .get()
-      .then((querySnapshot) => {
-        const data = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+    dataService //
+      .firstContentsData()
+      .then((res) => {
+        setContents(res.contentsArr);
+        setLastKey(res.lastKey);
         setLoading(false);
-        setContents(data);
       });
+  }, [dataService]);
 
-    // setContents(doc);
+  const fetchMoreData = (key) => {
+    if (key > 0) {
+      setLoading(true);
+      dataService //
+        .nextContentsData(key)
+        .then((res) => {
+          setLastKey(res.lastKey);
+          setContents(contents.concat(res.contentsArr));
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error(err);
+          setLoading(false);
+        });
+    }
+  };
 
-    // .onSnapshot((snapshot) => {
-    //   const dbContents = snapshot.docs.map((doc) => ({
-    //     id: doc.id,
-    //     ...doc.data(),
-    //   }));
+  //무한 스크롤
+  const handleScroll = (event) => {
+    let scrollTop = event.target.scrollTop;
+    let clientHeight = event.target.clientHeight;
+    let scrollHeigth = event.target.scrollHeight;
 
-    //   setContents(dbContents);
-    // });
-  }, []);
+    if (scrollTop + (clientHeight + 1) >= scrollHeigth) {
+      fetchMoreData(lastKey);
+    }
+  };
+  document.addEventListener("scroll", handleScroll);
 
   const goToAddContentForm = () => {
     history.push("/content-add-form");
@@ -48,14 +61,12 @@ const Community = ({ userObj }) => {
   return (
     <section className={styles.community}>
       <Header />
-      <ul className={styles.content_list}>
+      <ul className={styles.content_list} onScroll={handleScroll}>
         {contents.map((item) => (
-          // console.log(item)
           <Content
             key={item.id}
             item={item}
             isOwner={userObj.uid === item.creatorId}
-            userObj={userObj}
           />
         ))}
       </ul>
@@ -64,7 +75,7 @@ const Community = ({ userObj }) => {
         <button className={styles.plus} onClick={handleClick}>
           <i className={"fas fa-plus fa-lg"}></i>
         </button>
-        <ul className={styles.add_list}>
+        <ul className={styles.add_list} onScroll={handleScroll}>
           <li
             onClick={goToAddContentForm}
             className={

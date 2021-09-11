@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../navbar/navbar";
 import styles from "./profile.module.css";

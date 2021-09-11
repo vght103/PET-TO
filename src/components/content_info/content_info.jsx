@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useHistory, useLocation } from "react-router";
-import { dbService, storageService } from "../../service/firebase";
+import { firestoreService, storageService } from "../../service/firebase";
 import styles from "./content_info.module.css";
 
 const ContentInfo = (props) => {
@@ -27,7 +27,9 @@ const ContentInfo = (props) => {
     const ok = window.confirm("게시글을 삭제하시겠습니까?");
 
     if (ok) {
-      await dbService.doc(`contents-list/${location.state.item.id}`).delete();
+      await firestoreService
+        .doc(`contents-list/${location.state.item.id}`)
+        .delete();
       await storageService.refFromURL(location.state.item.imgFilesUrl).delete();
     } else {
       return;

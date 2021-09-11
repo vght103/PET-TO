@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { dbService, storageService } from "../../service/firebase";
+import { firestoreService, storageService } from "../../service/firebase";
 import ImageInput from "../image_input/image_input";
 import styles from "./add_content_form.module.css";
 
@@ -30,7 +30,7 @@ const AddContentForm = ({ userObj }) => {
         imgFilesUrl = await response.ref.getDownloadURL();
       }
 
-      await dbService.collection("contents-list").add({
+      await firestoreService.collection("contents-list").add({
         createdAt: new Date(),
         creatorId: userObj.uid,
         creatorName: userObj.displayName,

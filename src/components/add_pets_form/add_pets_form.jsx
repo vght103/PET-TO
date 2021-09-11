@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useHistory } from "react-router";
-import { dbService, storageService } from "../../service/firebase";
+import { firestoreService, storageService } from "../../service/firebase";
 import styles from "./add_pets_form.module.css";
 import ImageInput from "../image_input/image_input";
 
@@ -38,7 +38,7 @@ const AddPetsForm = ({ userObj }) => {
         imgFilesUrl = await response.ref.getDownloadURL();
       }
 
-      await dbService.collection("pets-list").add({
+      await firestoreService.collection("pets-list").add({
         createAt: new Date(),
         creatorId: userObj.uid,
         creatorName: userObj.displayName,
@@ -61,9 +61,11 @@ const AddPetsForm = ({ userObj }) => {
   const goToHome = () => {
     history.push("/pet-list");
   };
+
   // img 파일 change
   const onChangeFile = (event) => {
     setLoading(true);
+
     const {
       target: { files },
     } = event;
@@ -85,7 +87,7 @@ const AddPetsForm = ({ userObj }) => {
   };
 
   //  form 유효성 검사
-  const onValueChange = (event) => {
+  const onValueChange = () => {
     const titleValue = titleRef.current.value;
     const nameValue = nameRef.current.value;
     const breedValue = breedRef.current.value;

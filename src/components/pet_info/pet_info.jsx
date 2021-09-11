@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 import styles from "./pet_info.module.css";
 import { useLocation } from "react-router";
-import { dbService, storageService } from "../../service/firebase";
+import { firestoreService, storageService } from "../../service/firebase";
 
 const PetInfo = (props) => {
   const location = useLocation();
@@ -23,7 +23,9 @@ const PetInfo = (props) => {
 
     const ok = window.confirm("게시글을 삭제하시겠습니까?");
     if (ok) {
-      await dbService.doc(`pets-list/${location.state.item.id}`).delete();
+      await firestoreService
+        .doc(`pets-list/${location.state.item.id}`)
+        .delete();
       await storageService.refFromURL(location.state.item.imgFilesUrl).delete();
       setLoading(false);
     } else {

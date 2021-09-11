@@ -43,7 +43,6 @@ const PetList = ({ userObj, dataService }) => {
 
   //무한 스크롤
   const handleScroll = (event) => {
-    console.log(event);
     let scrollTop = event.target.scrollTop;
     let clientHeight = event.target.clientHeight;
     let scrollHeigth = event.target.scrollHeight;
@@ -51,8 +50,6 @@ const PetList = ({ userObj, dataService }) => {
     if (scrollTop + (clientHeight + 1) >= scrollHeigth) {
       fetchMoreData(lastKey);
     }
-    console.log(scrollTop + clientHeight);
-    console.log(scrollHeigth);
   };
   document.addEventListener("scroll", handleScroll);
 
