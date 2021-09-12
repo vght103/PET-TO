@@ -10,7 +10,7 @@ import PetInfo from "./pet_info/pet_info";
 import PetList from "./pet_list/pet_list";
 import Profile from "./profile/profile";
 
-const RouterList = ({ FileInput, authService, userObj, dataService }) => (
+const RouterList = ({ FileInput, authService, userObj, getDataService }) => (
   <Switch>
     <Route exact path="/">
       <Intro authService={authService} />
@@ -18,7 +18,7 @@ const RouterList = ({ FileInput, authService, userObj, dataService }) => (
 
     {/* navbar */}
     <Route path="/pet-list">
-      <PetList userObj={userObj} dataService={dataService} />
+      <PetList userObj={userObj} getDataService={getDataService} />
     </Route>
     <Route path="/chat" component={Chat} />
 
@@ -35,13 +35,13 @@ const RouterList = ({ FileInput, authService, userObj, dataService }) => (
     </Route>
 
     <Route exact path="/contents-list">
-      <Community userObj={userObj} dataService={dataService} />
+      <Community userObj={userObj} getDataService={getDataService} />
     </Route>
     <Route path="/content-add-form">
       <AddContentForm FileInput={FileInput} userObj={userObj} />
     </Route>
     <Route exact path="/contents-list/content-info">
-      <ContentInfo userObj={userObj} />
+      <ContentInfo userObj={userObj} getDataService={getDataService} />
     </Route>
   </Switch>
 );

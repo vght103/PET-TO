@@ -1,6 +1,6 @@
 import { firestoreService } from "./firebase";
 
-class DataService {
+class GetDataService {
   // 펫 리스트 데이타
 
   firstPetData = async () => {
@@ -103,5 +103,26 @@ class DataService {
       console.log(error);
     }
   };
+
+  // 댓글 데이터
+  // firstCommentData = async () => {
+  //   const dbComments = await firestoreService
+  //     .collection("comments-list")
+  //     .orderBy("createdAt", "asc")
+  //     // .limit(10)
+  //     .get();
+
+  //   let commentsArr = [];
+  //   let lastKey = null;
+
+  //   dbComments.forEach((doc) => {
+  //     commentsArr.push({
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     });
+  //     lastKey = doc.data().createdAt;
+  //   });
+  //   return { commentsArr, lastKey };
+  // };
 }
-export default DataService;
+export default GetDataService;

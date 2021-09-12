@@ -5,7 +5,7 @@ import Header from "../header/header";
 import Navbar from "../navbar/navbar";
 import styles from "./community.module.css";
 
-const Community = ({ userObj, dataService }) => {
+const Community = ({ userObj, getDataService }) => {
   const history = useHistory();
   const [click, setClick] = useState(false);
   const [contents, setContents] = useState([]);
@@ -15,19 +15,19 @@ const Community = ({ userObj, dataService }) => {
   useEffect(() => {
     setLoading(true);
 
-    dataService //
+    getDataService //
       .firstContentsData()
       .then((res) => {
         setContents(res.contentsArr);
         setLastKey(res.lastKey);
         setLoading(false);
       });
-  }, [dataService]);
+  }, [getDataService]);
 
   const fetchMoreData = (key) => {
     if (key > 0) {
       setLoading(true);
-      dataService //
+      getDataService //
         .nextContentsData(key)
         .then((res) => {
           setLastKey(res.lastKey);

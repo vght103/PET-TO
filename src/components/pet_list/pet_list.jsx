@@ -5,7 +5,7 @@ import Navbar from "../navbar/navbar";
 import PetItem from "../pet_item/pet_item";
 import styles from "./pet_list.module.css";
 
-const PetList = ({ userObj, dataService }) => {
+const PetList = ({ userObj, getDataService }) => {
   const history = useHistory();
   const [click, setClick] = useState(false);
   const [pets, setPets] = useState([]);
@@ -15,19 +15,19 @@ const PetList = ({ userObj, dataService }) => {
   useEffect(() => {
     setLoading(true);
 
-    dataService //
+    getDataService //
       .firstPetData()
       .then((res) => {
         setPets(res.petsArr);
         setLastKey(res.lastKey);
         setLoading(false);
       });
-  }, [dataService]);
+  }, [getDataService]);
 
   const fetchMoreData = (key) => {
     if (key > 0) {
       setLoading(true);
-      dataService //
+      getDataService //
         .nextPetsData(key)
         .then((res) => {
           setLastKey(res.lastKey);

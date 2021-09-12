@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import styles from "./app.module.css";
 import RouterList from "./components/router_list";
 
-function App({ FileInput, authService, dataService }) {
+function App({ FileInput, authService, getDataService }) {
   const [userObj, setUserObj] = useState(null);
 
   // 사용자 있을 시 자동으로 home 이동
@@ -20,7 +20,7 @@ function App({ FileInput, authService, dataService }) {
       <div className={styles.app}>
         <RouterList
           authService={authService}
-          dataService={dataService}
+          getDataService={getDataService}
           userObj={userObj}
           FileInput={FileInput}
         />

@@ -1,27 +1,19 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import { firestoreService, storageService } from "../../service/firebase";
+import AddComment from "../add_comment/add_comment";
 import styles from "./content_info.module.css";
 
-const ContentInfo = (props) => {
+const ContentInfo = ({ userObj, getDataService }) => {
   const location = useLocation();
   const history = useHistory();
   const [click, setClick] = useState(false);
-  const [comment, setComment] = useState(null);
   const [loading, setLoading] = useState(false);
+  // const [comments, setComments] = useState([]);
 
-  const inputRef = useRef();
-  const buttonRef = useRef();
-  const textRef = useRef();
+  // 댓글 불러오기
 
-  const goToCommunity = () => {
-    history.push("/contents-list");
-  };
-
-  const handleClick = () => {
-    setClick(!click);
-  };
-
+  // 게시글 삭제
   const onDeleteData = async () => {
     setLoading(true);
     const ok = window.confirm("게시글을 삭제하시겠습니까?");
@@ -34,31 +26,21 @@ const ContentInfo = (props) => {
     } else {
       return;
     }
+
     setLoading(false);
     goToCommunity();
   };
 
-  const commentClick = (event) => {
-    event.preventDefault();
-    commentResult();
-  };
-  const commentEnter = (event) => {
-    if (event.key === "Enter") {
-      commentResult();
-    }
+  const goToCommunity = () => {
+    history.push("/contents-list");
   };
 
-  const commentResult = () => {
-    const inputText = inputRef.current.value;
-    if (!inputText) {
-      return;
-    }
-    setComment(inputText);
-    // setComment(null);
+  const handleClick = () => {
+    setClick(!click);
   };
 
   return (
-    <section>
+    <section className={styles.content_info}>
       <div className={styles.header}>
         <button className={styles.cancel} onClick={goToCommunity}>
           <i className="fas fa-arrow-left fa-2x"></i>
@@ -104,34 +86,10 @@ const ContentInfo = (props) => {
         </div>
       </div>
 
-      <div className={styles.comment_container}>
-        <h4>댓글</h4>
-        <div>
-          {comment && (
-            <div className={styles.uploaded_comment}>
-              <span className={styles.comment_writer}>
-                {location.state.item.creatorName}
-              </span>
-              <p ref={textRef} className={styles.comment_text}>
-                {comment}
-              </p>
-            </div>
-          )}
-          <input
-            ref={inputRef}
-            placeholder="댓글을 입력해주세요"
-            onKeyPress={commentEnter}
-            className={styles.comment_input}
-          />
-          <button
-            ref={buttonRef}
-            className={`${styles.comment_button}`}
-            onClick={commentClick}
-          >
-            <i className="fas fa-arrow-right"></i>
-          </button>
-        </div>
-      </div>
+      {/* <div className={styles.add_comment}> */}
+      <AddComment userObj={userObj} getDataService={getDataService} />
+      {/* </div> */}
+
       {loading && <div className={styles.loading}></div>}
     </section>
   );
