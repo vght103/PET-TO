@@ -1,0 +1,135 @@
+.add_pets {
+  height: 100%;
+  position: relative;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+
+.cancel {
+  border: none;
+  margin-left: 1em;
+  padding: 0.5em;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.title > h2 {
+  margin: 0.8em 1em;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90%;
+}
+
+.pet_number_box {
+  width: 100%;
+  margin-bottom: 1em;
+  padding: 1.5em 0.5em;
+  border-bottom: 1px solid lightgray;
+}
+.pet_number_box > h3 {
+  display: inline-block;
+}
+
+.pet_number_box > label::before {
+  content: ":";
+  padding: 0 0.5em;
+}
+
+.pet_number {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.applicant > h3 {
+  margin: 1em 0.5em;
+  font-size: 1rem;
+}
+
+.input_box {
+  width: 100%;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  border-bottom: 1px solid lightgray;
+}
+
+.input_box > p {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.8em;
+}
+
+.name,
+.pet_number,
+.email,
+.phone,
+.region,
+.raise,
+.experience,
+.place,
+.textarea,
+.protector {
+  width: 100%;
+  border: none;
+  font-size: 1rem;
+}
+
+.name::placeholder,
+.email::placeholder,
+.phone::placeholder,
+.region::placeholder,
+.raise::placeholder,
+.experience::placeholder,
+.place::placeholder,
+.protector::placeholder,
+.textarea::placeholder {
+  opacity: 0.5;
+}
+
+.textarea {
+  height: 150px;
+}
+
+.submit_button {
+  color: white;
+  background-color: skyblue;
+  border: none;
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding: 0.5em 0;
+  transition: 0.3s linear;
+  cursor: pointer;
+}
+
+.submit_button:disabled {
+  background-color: lightgray;
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+  border: 3px solid lightgray;
+  border-top: 3px solid skyblue;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

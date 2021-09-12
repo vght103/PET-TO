@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import styles from "./pet_info.module.css";
 import { useLocation } from "react-router";
@@ -7,6 +7,7 @@ import { firestoreService, storageService } from "../../service/firebase";
 const PetInfo = (props) => {
   const location = useLocation();
   const history = useHistory();
+  const [petInfo, setPetInfo] = useState(location.state.item);
   const [click, setClick] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -15,8 +16,10 @@ const PetInfo = (props) => {
   };
 
   const goToSurvey = () => {
-    window.open("https://forms.gle/tX7ofs4qZFMtXqaF8", "_blank");
-    goToHome();
+    history.push({
+      pathname: "/peto-application",
+      state: petInfo,
+    });
   };
 
   const handleClick = () => {
@@ -28,10 +31,8 @@ const PetInfo = (props) => {
 
     const ok = window.confirm("게시글을 삭제하시겠습니까?");
     if (ok) {
-      await firestoreService
-        .doc(`pets-list/${location.state.item.id}`)
-        .delete();
-      await storageService.refFromURL(location.state.item.imgFilesUrl).delete();
+      await firestoreService.doc(`pets-list/${petInfo.id}`).delete();
+      await storageService.refFromURL(petInfo.imgFilesUrl).delete();
       setLoading(false);
     } else {
       return;
@@ -68,36 +69,40 @@ const PetInfo = (props) => {
       </div>
 
       <img
-        src={location.state.item.imgFilesUrl}
-        alt={`${location.state.item.name} 사진입니다`}
+        src={petInfo.imgFilesUrl}
+        alt={`${petInfo.name} 사진입니다`}
         className={styles.pet_img}
       />
       <div className={styles.pet_detail}>
-        <h3>{location.state.item.title}</h3>
+        <h3>{petInfo.title}</h3>
         <ul className={styles.detail_info}>
           <li>
+            <span>NO</span>
+            <span>{petInfo.createAt.seconds}</span>
+          </li>
+          <li>
             <span>이름</span>
-            <span>{location.state.item.name}</span>
+            <span>{petInfo.name}</span>
           </li>
           <li>
             <span>견종</span>
-            <span>{location.state.item.breed}</span>
+            <span>{petInfo.breed}</span>
           </li>
           <li>
             <span>나이</span>
-            <span>{location.state.item.age}</span>
+            <span>{petInfo.age}</span>
           </li>
           <li>
             <span>성별</span>
-            <span>{location.state.item.gender}</span>
+            <span>{petInfo.gender}</span>
           </li>
           <li>
             <span>무게</span>
-            <span>{location.state.item.weight}</span>
+            <span>{petInfo.weight}</span>
           </li>
           <li>
             <span className={styles.character}>성격</span>
-            <p>{location.state.item.character}</p>
+            <p>{petInfo.character}</p>
           </li>
         </ul>
       </div>

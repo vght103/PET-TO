@@ -32,6 +32,12 @@ const Navbar = (props) => {
               <span className={styles.nav_text}>나의정보</span>
             </NavLink>
           </li>
+          {/* <li>
+            <NavLink to="/chat">
+              <i className="far fa-user fa-lg"></i>
+              <span className={styles.nav_text}>관리자</span>
+            </NavLink>
+          </li> */}
         </ul>
       </nav>
     </>

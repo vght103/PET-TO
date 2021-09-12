@@ -9,6 +9,8 @@ import Intro from "./intro/intro";
 import PetInfo from "./pet_info/pet_info";
 import PetList from "./pet_list/pet_list";
 import Profile from "./profile/profile";
+import ApplicationForm from "./survey_form/application_form";
+import SurveyForm from "./survey_form/application_form";
 
 const RouterList = ({ FileInput, authService, userObj, getDataService }) => (
   <Switch>
@@ -42,6 +44,10 @@ const RouterList = ({ FileInput, authService, userObj, getDataService }) => (
     </Route>
     <Route exact path="/contents-list/content-info">
       <ContentInfo userObj={userObj} getDataService={getDataService} />
+    </Route>
+
+    <Route path="/peto-application">
+      <ApplicationForm userObj={userObj} />
     </Route>
   </Switch>
 );
