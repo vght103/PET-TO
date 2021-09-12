@@ -43,6 +43,11 @@ const ApplicationForm = ({ userObj }) => {
         experience: experienceRef.current.value,
         applicationText: textareaRef.current.value,
       });
+
+      alert("임시보호 신청이 완료되었습니다.");
+    } else {
+      setLoading(false);
+      return;
     }
     setLoading(false);
     formRef.current.reset();
@@ -184,7 +189,7 @@ const ApplicationForm = ({ userObj }) => {
         </div>
 
         <div className={styles.input_box}>
-          <p>반려동물과 함께 할 보호자가 1명 이상인가요??</p>
+          <p>반려동물과 함께 할 보호자가 2명 이상인가요??</p>
           <input
             ref={protectorRef}
             name="protector"
