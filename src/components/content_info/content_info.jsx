@@ -1,25 +1,26 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import { firestoreService, storageService } from "../../service/firebase";
 import AddComment from "../add_comment/add_comment";
+import CommentItem from "../comment_item/comment_item";
 import styles from "./content_info.module.css";
 
-const ContentInfo = memo(({ userObj }) => {
-  const location = useLocation();
+const ContentInfo = ({ userObj }) => {
   const history = useHistory();
   const [click, setClick] = useState(false);
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
+
+  const location = useLocation();
   const [contentItem, setContentItem] = useState(location.state.item);
 
   // 댓글 불러오기
 
-  console.log(location);
-
   useEffect(() => {
+    setLoading(true);
     firestoreService //
       .collection("comments-list")
-      .orderBy("createdAt", "asc")
+      .orderBy("createdAt", "desc")
       .onSnapshot((snapshot) => {
         const commentsArr = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -28,6 +29,7 @@ const ContentInfo = memo(({ userObj }) => {
 
         setComments(commentsArr);
       });
+    setLoading(false);
   }, []);
 
   // 게시글 삭제
@@ -81,6 +83,7 @@ const ContentInfo = memo(({ userObj }) => {
         )}
       </div>
 
+      {/* 유저 닉네임 */}
       <div className={styles.info}>
         <span className={styles.info_category}>{contentItem.category}</span>
         <div className={styles.user}>
@@ -100,23 +103,27 @@ const ContentInfo = memo(({ userObj }) => {
         </div>
       </div>
 
+      {/* 댓글 리스트 */}
+      <div className={styles.comment_box}>
+        <h4>댓글</h4>
+        <ul className={styles.comments_ul}>
+          {comments.map((comment) => (
+            <CommentItem
+              key={comment.id}
+              comment={comment}
+              contentItem={contentItem}
+            />
+          ))}
+        </ul>
+      </div>
+
       {/* <div className={styles.add_comment}> */}
-      <AddComment userObj={userObj} />
+      <AddComment userObj={userObj} contentItem={contentItem} />
       {/* </div> */}
 
       {loading && <div className={styles.loading}></div>}
     </section>
   );
-});
+};
 
 export default ContentInfo;
-{
-  /* <ul className={styles.comments_ul}>
-        {comments.map((comment) => (
-          <li key={comment.id} className={styles.comment_list}>
-            <span className={styles.comment_writer}>{comment.creatorName}</span>
-            <p className={styles.commentText}>{comment.commentText}</p>
-          </li>
-        ))}
-      </ul> */
-}

@@ -1,10 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import styles from "./navbar.module.css";
 
-const Navbar = () => {
-  useEffect(() => {});
+const Navbar = ({ userId }) => {
+  const [admin, setAdmin] = useState(false);
+
+  useEffect(() => {
+    const adminId = "FNv4KYNBQeVaW1iGJp12RME2yVC3";
+
+    if (adminId === userId) {
+      setAdmin(true);
+    }
+  }, [userId]);
+
   return (
     <nav>
       <ul className={styles.navbar}>
@@ -28,12 +37,14 @@ const Navbar = () => {
           </NavLink>
         </li>
 
-        {/* <li>
+        {admin && (
+          <li>
             <NavLink to="/admin">
               <i className="far fa-user fa-lg"></i>
               <span className={styles.nav_text}>관리자</span>
             </NavLink>
-          </li> */}
+          </li>
+        )}
       </ul>
     </nav>
   );

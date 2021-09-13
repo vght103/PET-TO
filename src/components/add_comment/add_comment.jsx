@@ -2,7 +2,7 @@ import React, { memo, useRef, useState } from "react";
 import { firestoreService } from "../../service/firebase";
 import styles from "./add_comment.module.css";
 
-const AddComment = memo(({ userObj }) => {
+const AddComment = memo(({ userObj, contentItem }) => {
   // const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -33,7 +33,7 @@ const AddComment = memo(({ userObj }) => {
         creatorName: userObj.displayName,
         creatorPhoto: userObj.photoURL,
         commentText: inputRef.current.value,
-        // postId: contentItem.id,
+        postId: contentItem.id,
       });
     } else {
       return;
@@ -66,16 +66,6 @@ const AddComment = memo(({ userObj }) => {
 
   return (
     <div className={styles.comment_container}>
-      <h4>댓글</h4>
-
-      {/* <ul className={styles.comments_ul}>
-        {comments.map((comment) => (
-          <li key={comment.id} className={styles.comment_list}>
-            <span className={styles.comment_writer}>{comment.creatorName}</span>
-            <p className={styles.commentText}>{comment.commentText}</p>
-          </li>
-        ))}
-      </ul> */}
       <div className={styles.comment_input_box}>
         <input
           ref={inputRef}

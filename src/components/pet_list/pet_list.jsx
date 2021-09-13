@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Header from "../header/header";
-import Navbar from "../navbar/navbar";
 import PetItem from "../pet_item/pet_item";
 import styles from "./pet_list.module.css";
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Content from "../content/content";
 import Header from "../header/header";
-import Navbar from "../navbar/navbar";
 import styles from "./community.module.css";
 
 const Community = ({ userObj, getDataService }) => {
@@ -18,7 +17,6 @@ const Community = ({ userObj, getDataService }) => {
     getDataService //
       .firstContentsData()
       .then((res) => {
-        console.log(res);
         setContents(res.contentsArr);
         setLastKey(res.lastKey);
         setLoading(false);

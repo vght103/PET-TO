@@ -1,0 +1,13 @@
+.comment_list {
+  margin-bottom: 0.5em;
+}
+
+.comment_writer {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.commentText {
+  font-size: 0.8rem;
+}

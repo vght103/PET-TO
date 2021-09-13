@@ -1,4 +1,4 @@
-import React, { memo, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useHistory } from "react-router";
 import { firestoreService, storageService } from "../../service/firebase";
