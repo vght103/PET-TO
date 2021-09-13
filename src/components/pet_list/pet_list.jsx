@@ -93,7 +93,7 @@ const PetList = ({ userObj, getDataService }) => {
       </div>
       {loading && <div className={styles.loading}></div>}
 
-      <Navbar />
+      {/* <Navbar /> */}
     </section>
   );
 };

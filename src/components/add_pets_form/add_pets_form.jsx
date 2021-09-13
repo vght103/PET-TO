@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useHistory } from "react-router";
 import { firestoreService, storageService } from "../../service/firebase";
@@ -27,6 +27,7 @@ const AddPetsForm = ({ userObj }) => {
 
     const ok = window.confirm("등록하시겠습니까?");
     if (ok) {
+      setFormValues(false);
       const imgFilesRef = storageService
         .ref()
         .child(`${userObj.uid}/${uuidv4()}`);

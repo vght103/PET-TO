@@ -18,6 +18,7 @@ const Community = ({ userObj, getDataService }) => {
     getDataService //
       .firstContentsData()
       .then((res) => {
+        console.log(res);
         setContents(res.contentsArr);
         setLastKey(res.lastKey);
         setLoading(false);
@@ -91,7 +92,7 @@ const Community = ({ userObj, getDataService }) => {
       </div>
       {loading && <div className={styles.loading}></div>}
 
-      <Navbar />
+      {/* <Navbar /> */}
     </section>
   );
 };

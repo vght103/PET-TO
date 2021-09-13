@@ -1,17 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import { firestoreService, storageService } from "../../service/firebase";
 import AddComment from "../add_comment/add_comment";
 import styles from "./content_info.module.css";
 
-const ContentInfo = ({ userObj, getDataService }) => {
+const ContentInfo = memo(({ userObj }) => {
   const location = useLocation();
   const history = useHistory();
   const [click, setClick] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState([]);
+  const [contentItem, setContentItem] = useState(location.state.item);
 
   // 댓글 불러오기
+
+  console.log(location);
+
+  useEffect(() => {
+    firestoreService //
+      .collection("comments-list")
+      .orderBy("createdAt", "asc")
+      .onSnapshot((snapshot) => {
+        const commentsArr = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        setComments(commentsArr);
+      });
+  }, []);
 
   // 게시글 삭제
   const onDeleteData = async () => {
@@ -19,14 +36,13 @@ const ContentInfo = ({ userObj, getDataService }) => {
     const ok = window.confirm("게시글을 삭제하시겠습니까?");
 
     if (ok) {
-      await firestoreService
-        .doc(`contents-list/${location.state.item.id}`)
-        .delete();
-      await storageService.refFromURL(location.state.item.imgFilesUrl).delete();
+      await firestoreService.doc(`contents-list/${contentItem.id}`).delete();
+      if (contentItem.imgFilesUrl) {
+        await storageService.refFromURL(contentItem.imgFilesUrl).delete();
+      }
     } else {
       return;
     }
-
     setLoading(false);
     goToCommunity();
   };
@@ -66,33 +82,41 @@ const ContentInfo = ({ userObj, getDataService }) => {
       </div>
 
       <div className={styles.info}>
-        <span className={styles.info_category}>{location.state.category}</span>
+        <span className={styles.info_category}>{contentItem.category}</span>
         <div className={styles.user}>
           <img
-            src={location.state.item.creatorPhoto}
-            alt={`${location.state.item.creatorName} 사진`}
+            src={contentItem.creatorPhoto}
+            alt={`${contentItem.creatorName} 사진`}
             width="30px"
             height="30px"
             className={styles.user_img}
           />
 
-          <span className={styles.user_name}>
-            {location.state.item.creatorName}
-          </span>
+          <span className={styles.user_name}>{contentItem.creatorName}</span>
         </div>
         <div className={styles.content}>
-          <p>{location.state.item.contentText}</p>
-          <img src={location.state.item.imgFilesUrl} alt="" />
+          <p>{contentItem.contentText}</p>
+          <img src={contentItem.imgFilesUrl} alt="" />
         </div>
       </div>
 
       {/* <div className={styles.add_comment}> */}
-      <AddComment userObj={userObj} getDataService={getDataService} />
+      <AddComment userObj={userObj} />
       {/* </div> */}
 
       {loading && <div className={styles.loading}></div>}
     </section>
   );
-};
+});
 
 export default ContentInfo;
+{
+  /* <ul className={styles.comments_ul}>
+        {comments.map((comment) => (
+          <li key={comment.id} className={styles.comment_list}>
+            <span className={styles.comment_writer}>{comment.creatorName}</span>
+            <p className={styles.commentText}>{comment.commentText}</p>
+          </li>
+        ))}
+      </ul> */
+}

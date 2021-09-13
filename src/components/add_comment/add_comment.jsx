@@ -1,43 +1,44 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import { firestoreService } from "../../service/firebase";
 import styles from "./add_comment.module.css";
 
-const AddComment = ({ userObj, getDataService }) => {
-  const [comments, setComments] = useState([]);
-  const [lastKey, setLastKey] = useState(null);
-  const [loding, setLoading] = useState(false);
+const AddComment = memo(({ userObj }) => {
+  // const [comments, setComments] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const inputRef = useRef();
   const buttonRef = useRef();
 
-  useEffect(() => {
-    firestoreService //
-      .collection("comments-list")
-      .orderBy("createdAt", "asc")
-      .onSnapshot((snapshot) => {
-        const commentsArr = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-          lastContent: doc.data().createdAt,
-        }));
-        setLastKey(comments.lastContent);
-        setComments(commentsArr);
-      });
-  }, []);
+  // useEffect(() => {
+  //   firestoreService //
+  //     .collection("comments-list")
+  //     .orderBy("createdAt", "asc")
+  //     .onSnapshot((snapshot) => {
+  //       const commentsArr = snapshot.docs.map((doc) => ({
+  //         id: doc.id,
+  //         ...doc.data(),
+  //       }));
+
+  //       setComments(commentsArr);
+  //     });
+  // }, []);
 
   const onSubmit = async () => {
     const ok = window.confirm("댓글을 등록하시겠습니까?");
     if (ok) {
+      setLoading(true);
       await firestoreService.collection("comments-list").add({
         createdAt: new Date(),
         creatorId: userObj.uid,
         creatorName: userObj.displayName,
         creatorPhoto: userObj.photoURL,
         commentText: inputRef.current.value,
+        // postId: contentItem.id,
       });
     } else {
       return;
     }
+    setLoading(false);
   };
 
   const commentClick = (event) => {
@@ -67,14 +68,14 @@ const AddComment = ({ userObj, getDataService }) => {
     <div className={styles.comment_container}>
       <h4>댓글</h4>
 
-      <ul className={styles.comments_ul}>
+      {/* <ul className={styles.comments_ul}>
         {comments.map((comment) => (
           <li key={comment.id} className={styles.comment_list}>
             <span className={styles.comment_writer}>{comment.creatorName}</span>
             <p className={styles.commentText}>{comment.commentText}</p>
           </li>
         ))}
-      </ul>
+      </ul> */}
       <div className={styles.comment_input_box}>
         <input
           ref={inputRef}
@@ -90,8 +91,9 @@ const AddComment = ({ userObj, getDataService }) => {
           <i className="fas fa-arrow-right fa-lg"></i>
         </button>
       </div>
+      {loading && <div className={styles.loading}></div>}
     </div>
   );
-};
+});
 
 export default AddComment;

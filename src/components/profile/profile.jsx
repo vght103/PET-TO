@@ -9,7 +9,6 @@ const Profile = ({ authService, userObj }) => {
   const onLogout = () => {
     authService.logout();
     history.push("/");
-    console.log("로그아웃 완료");
   };
 
   return (
@@ -77,10 +76,10 @@ const Profile = ({ authService, userObj }) => {
           </ul>
         </div>
       </div>
-
+      {/* 
       <div className={styles.navbar}>
         <Navbar />
-      </div>
+      </div> */}
     </section>
   );
 };

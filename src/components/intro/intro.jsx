@@ -25,7 +25,7 @@ const Intro = ({ authService }) => {
         goToHome(user.uid);
       }
     });
-  });
+  }, []);
 
   return (
     <div className={styles.intro}>

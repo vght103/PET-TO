@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
 import styles from "./pet_info.module.css";
 import { useLocation } from "react-router";
@@ -34,7 +34,11 @@ const PetInfo = (props) => {
     const ok = window.confirm("게시글을 삭제하시겠습니까?");
     if (ok) {
       await firestoreService.doc(`pets-list/${petInfo.id}`).delete();
-      await storageService.refFromURL(petInfo.imgFilesUrl).delete();
+
+      if (petInfo.imgFilesUrl) {
+        await storageService.refFromURL(petInfo.imgFilesUrl).delete();
+      }
+
       setLoading(false);
     } else {
       return;

@@ -37,12 +37,14 @@ const AddContentForm = ({ userObj }) => {
         creatorPhoto: userObj.photoURL,
         category: selectRef.current.value,
         contentText: textareaRef.current.value,
+
         imgFilesUrl,
       });
     } else {
       return;
     }
 
+    setFormValues(false);
     formRef.current.reset();
     goToCommunity();
   };

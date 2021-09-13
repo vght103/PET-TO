@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import styles from "./app.module.css";
+import Header from "./components/header/header";
+import Navbar from "./components/navbar/navbar";
 import RouterList from "./components/router_list";
 
 function App({ FileInput, authService, getDataService }) {
@@ -24,6 +26,9 @@ function App({ FileInput, authService, getDataService }) {
           userObj={userObj}
           FileInput={FileInput}
         />
+        <div className={styles.navbar}>
+          <Navbar userObj={userObj} />
+        </div>
       </div>
     </BrowserRouter>
   );
