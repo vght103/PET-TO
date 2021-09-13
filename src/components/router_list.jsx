@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import AddContentForm from "./add_content_form/add_content_form";
 import AddPetsForm from "./add_pets_form/add_pets_form";
+import Admin from "./admin/admin";
 import Chat from "./chat/chat";
 import Community from "./community/community";
 import ContentInfo from "./content_info/content_info";
@@ -10,7 +11,6 @@ import PetInfo from "./pet_info/pet_info";
 import PetList from "./pet_list/pet_list";
 import Profile from "./profile/profile";
 import ApplicationForm from "./survey_form/application_form";
-import SurveyForm from "./survey_form/application_form";
 
 const RouterList = ({ FileInput, authService, userObj, getDataService }) => (
   <Switch>
@@ -48,6 +48,10 @@ const RouterList = ({ FileInput, authService, userObj, getDataService }) => (
 
     <Route path="/peto-application">
       <ApplicationForm userObj={userObj} />
+    </Route>
+
+    <Route path="/admin">
+      <Admin />
     </Route>
   </Switch>
 );

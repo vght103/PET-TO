@@ -16,10 +16,12 @@ const PetInfo = (props) => {
   };
 
   const goToSurvey = () => {
-    history.push({
-      pathname: "/peto-application",
-      state: petInfo,
-    });
+    const ok = window.confirm("임시보호 신청을 하시겠습니까?");
+    ok &&
+      history.push({
+        pathname: "/peto-application",
+        state: petInfo,
+      });
   };
 
   const handleClick = () => {

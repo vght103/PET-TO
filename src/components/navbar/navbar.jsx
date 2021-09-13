@@ -1,9 +1,9 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import styles from "./navbar.module.css";
 
-const Navbar = (props) => {
+const Navbar = ({}) => {
   return (
     <>
       <nav>
@@ -20,20 +20,16 @@ const Navbar = (props) => {
               <span>커뮤니티</span>
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/chat">
-              <i className="far fa-comments fa-lg"></i>
-              <span className={styles.nav_text}>채팅</span>
-            </NavLink>
-          </li>
+
           <li>
             <NavLink to="/profile">
               <i className="fas fa-user fa-lg"></i>
               <span className={styles.nav_text}>나의정보</span>
             </NavLink>
           </li>
+
           {/* <li>
-            <NavLink to="/chat">
+            <NavLink to="/admin">
               <i className="far fa-user fa-lg"></i>
               <span className={styles.nav_text}>관리자</span>
             </NavLink>

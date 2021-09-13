@@ -1,27 +1,59 @@
 .profile {
   display: flex;
   flex-direction: column;
-
-  justify-content: space-between;
+  /* justify-content: space-between; */
   width: 100%;
   height: 100%;
+  position: relative;
+}
+
+.header {
+  border-bottom: 5px solid lightgray;
+  padding: 1em 0.5em;
+}
+
+.user_box {
+  display: flex;
+  align-items: center;
+  border-bottom: 5px solid lightgray;
+  padding: 1em 0.5em;
+}
+
+.user_photo {
+  width: 3.5rem;
+  border-radius: 50%;
 }
 
 .user_info {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  height: 100%;
+  margin-left: 1em;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
-.info_li {
-  margin-bottom: 0.5em;
+.my_profile {
+  overflow-y: auto;
 }
 
-.info_li > li > span:first-child::after {
-  content: ":";
-  padding: 0 0.3em;
+.application_list,
+.community_list,
+.public_list {
+  border-bottom: 1px solid lightgray;
+  padding: 1em 0;
+}
+
+.application_list > li,
+.community_list > li,
+.public_list > li {
+  padding: 0.8em 0.5em;
+}
+
+.application_list > li > span,
+.community_list > li > span,
+.public_list > li > span {
+  margin-left: 0.5em;
+  font-size: 1rem;
 }
 
 .survey {
@@ -42,12 +74,15 @@
 }
 
 .logout_button {
-  background-color: skyblue;
-  color: white;
-  padding: 1em;
-  margin-top: 1em;
-  font-size: 1rem;
   border: none;
-  cursor: pointer;
-  width: 100%;
+  background-color: transparent;
+  margin-left: 0.5em;
+  font-size: 1rem;
 }
+
+/* .navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+} */
