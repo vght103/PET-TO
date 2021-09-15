@@ -15,13 +15,12 @@ const ContentInfo = ({ userObj }) => {
   const [contentItem] = useState(location.state.item);
 
   // 댓글 불러오기
-
   // useEffect(() => {
   //   setLoading(true);
   //   firestoreService //
   //     .collection("comments-list")
   //     //글번호로 댓글검색
-  //     .where("postId", "")
+  //     .where("post-id", "")
   //     .orderBy("createdAt", "desc")
   //     //데이터 한번만 가져오기
   //     .get()

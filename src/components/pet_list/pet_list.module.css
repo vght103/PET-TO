@@ -1,7 +1,8 @@
 .pet_list_wrap {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  flex: 1;
   height: 100%;
   position: relative;
   overflow: auto;

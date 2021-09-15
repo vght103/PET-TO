@@ -10,6 +10,10 @@
   padding: 1em 0.5em;
 }
 
+.application {
+  overflow: auto;
+}
+
 .application > h3 {
   margin: 1em 0;
 }

@@ -15,8 +15,8 @@ const Navbar = ({ userId }) => {
   }, [userId]);
 
   return (
-    <nav className={styles.nav}>
-      <ul className={styles.navbar}>
+    <nav className={styles.navbar}>
+      <ul className={styles.nav_list}>
         <li>
           <NavLink to="/pet-list">
             <i className="fas fa-home fa-lg"></i>

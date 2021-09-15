@@ -27,9 +27,8 @@ function App({ FileInput, authService, getDataService }) {
           userObj={userObj}
           FileInput={FileInput}
         />
-        <div className={styles.navbar}>
-          <Navbar userId={userId} />
-        </div>
+
+        <Navbar userId={userId} />
       </div>
     </BrowserRouter>
   );

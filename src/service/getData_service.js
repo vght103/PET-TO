@@ -150,6 +150,8 @@ class GetDataService {
         });
         lastKey = doc.data().createdAt;
       });
+      console.log(lastKey);
+      console.log(applicationArr);
       return { applicationArr, lastKey };
     } catch (error) {
       console.log(error);

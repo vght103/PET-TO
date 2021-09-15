@@ -25,6 +25,7 @@ const Admin = ({ getDataService }) => {
       getDataService //
         .nextApplicationData(key)
         .then((res) => {
+          console.log(res);
           setLastKey(res.lastKey);
           setApplications(applications.concat(res.applicationArr));
           setLoading(false);
@@ -41,19 +42,23 @@ const Admin = ({ getDataService }) => {
     let scrollTop = event.target.scrollTop;
     let clientHeight = event.target.clientHeight;
     let scrollHeigth = event.target.scrollHeight;
-
     if (scrollTop + (clientHeight + 1) >= scrollHeigth) {
       fetchMoreData(lastKey);
     }
   };
   document.addEventListener("scroll", handleScroll);
 
+  const testbutton = () => {
+    getDataService.nextApplicationData(lastKey);
+  };
+
   return (
     <section className={styles.admin}>
       <div className={styles.header}>
         <h2>관리자 페이지</h2>
       </div>
-      <div className={styles.application}>
+      <button onClick={testbutton}>testbutton</button>
+      <div className={styles.application} onScroll={handleScroll}>
         <h3>임시보호 신청자 리스트</h3>
         <ul onScroll={handleScroll}>
           {applications.map((item) => (
