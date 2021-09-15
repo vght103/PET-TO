@@ -48,16 +48,11 @@ const Admin = ({ getDataService }) => {
   };
   document.addEventListener("scroll", handleScroll);
 
-  const testbutton = () => {
-    getDataService.nextApplicationData(lastKey);
-  };
-
   return (
     <section className={styles.admin}>
       <div className={styles.header}>
         <h2>관리자 페이지</h2>
       </div>
-      <button onClick={testbutton}>testbutton</button>
       <div className={styles.application} onScroll={handleScroll}>
         <h3>임시보호 신청자 리스트</h3>
         <ul onScroll={handleScroll}>
