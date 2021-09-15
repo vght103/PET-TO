@@ -10,9 +10,9 @@ const AddContentForm = ({ userObj }) => {
   const formRef = useRef();
   const textareaRef = useRef();
   const selectRef = useRef();
-
   const [imgFiles, setImageFiles] = useState();
   const [formValues, setFormValues] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -20,6 +20,9 @@ const AddContentForm = ({ userObj }) => {
     const ok = window.confirm("등록하시겠습니까?");
 
     if (ok) {
+      setLoading(true);
+
+      // 이미지 추가
       const imgFilesRef = storageService
         .ref()
         .child(`${userObj.uid}/${uuidv4()}`);
@@ -30,6 +33,7 @@ const AddContentForm = ({ userObj }) => {
         imgFilesUrl = await response.ref.getDownloadURL();
       }
 
+      // 컨텐츠 내용 추가
       await firestoreService.collection("contents-list").add({
         createdAt: new Date(),
         creatorId: userObj.uid,
@@ -37,9 +41,10 @@ const AddContentForm = ({ userObj }) => {
         creatorPhoto: userObj.photoURL,
         category: selectRef.current.value,
         contentText: textareaRef.current.value,
-
         imgFilesUrl,
       });
+
+      setLoading(false);
     } else {
       return;
     }
@@ -131,6 +136,7 @@ const AddContentForm = ({ userObj }) => {
           완료
         </button>
       </form>
+      {loading && <div className={styles.loading}></div>}
     </section>
   );
 };

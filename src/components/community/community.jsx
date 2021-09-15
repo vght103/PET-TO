@@ -10,10 +10,10 @@ const Community = ({ userObj, getDataService }) => {
   const [contents, setContents] = useState([]);
   const [lastKey, setLastKey] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [postId, setPostId] = useState([]);
 
   useEffect(() => {
     setLoading(true);
-
     getDataService //
       .firstContentsData()
       .then((res) => {
@@ -53,7 +53,9 @@ const Community = ({ userObj, getDataService }) => {
   document.addEventListener("scroll", handleScroll);
 
   const goToAddContentForm = () => {
-    history.push("/content-add-form");
+    history.push({
+      pathname: "/content-add-form",
+    });
   };
 
   const handleClick = () => setClick(!click);

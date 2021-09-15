@@ -74,7 +74,7 @@
 .raise,
 .experience,
 .place,
-.textarea,
+/* .textarea, */
 .protector {
   width: 100%;
   border: none;
@@ -95,6 +95,9 @@
 
 .textarea {
   height: 150px;
+  padding: 0.5em;
+  border: 1px solid lightgray;
+  width: 100%;
 }
 
 .submit_button {

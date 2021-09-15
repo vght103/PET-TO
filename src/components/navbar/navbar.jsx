@@ -15,7 +15,7 @@ const Navbar = ({ userId }) => {
   }, [userId]);
 
   return (
-    <nav>
+    <nav className={styles.nav}>
       <ul className={styles.navbar}>
         <li>
           <NavLink to="/pet-list">

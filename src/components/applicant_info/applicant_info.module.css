@@ -1,0 +1,77 @@
+.applicant {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  position: relative;
+}
+
+.header > h2 {
+  margin: 0.8em 1em;
+}
+
+.cancel {
+  border: none;
+  margin-left: 1em;
+  padding: 0.5em;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.applicant_info {
+  border: 1px solid lightgray;
+  padding: 1em 0.5em;
+}
+
+.applicant_box {
+  overflow: auto;
+}
+
+.info_list > li {
+  margin: 0.5em 0;
+}
+
+.info_list > li > span:first-child {
+  font-weight: bold;
+}
+
+.info_list > li > span:first-child::after {
+  content: ":";
+  padding: 0 0.5em;
+}
+
+.applicant_answer {
+  border: 1px solid lightgray;
+  padding: 1em 0.5em;
+}
+
+.answer_list > li {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0 2em;
+}
+
+.answer_list > li > span {
+  display: inline-block;
+  margin-bottom: 0.5em;
+}
+
+.answer_list > li > span:first-child::before {
+  content: "※";
+  margin-right: 0.3em;
+}
+
+.answer_list > li > p {
+  font-weight: bold;
+}
+
+.answer_list > li > p::before {
+  content: "→";
+  margin-right: 0.3em;
+}

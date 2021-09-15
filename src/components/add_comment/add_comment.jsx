@@ -33,7 +33,6 @@ const AddComment = memo(({ userObj, contentItem }) => {
         creatorName: userObj.displayName,
         creatorPhoto: userObj.photoURL,
         commentText: inputRef.current.value,
-        postId: contentItem.id,
       });
     } else {
       return;

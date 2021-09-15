@@ -65,15 +65,17 @@ class GetDataService {
 
       let contentsArr = [];
       let lastKey = null;
+      let postId = null;
 
       dbContents.forEach((doc) => {
         contentsArr.push({
           id: doc.id,
           ...doc.data(),
         });
+
         lastKey = doc.data().createdAt;
       });
-      return { contentsArr, lastKey };
+      return { contentsArr, lastKey, postId };
     } catch (error) {
       console.log(error);
     }
@@ -104,25 +106,54 @@ class GetDataService {
     }
   };
 
-  // 댓글 데이터
-  // firstCommentData = async () => {
-  //   const dbComments = await firestoreService
-  //     .collection("comments-list")
-  //     .orderBy("createdAt", "asc")
-  //     // .limit(10)
-  //     .get();
+  // 신청서 리스트 데이터
+  firstApplicationData = async () => {
+    try {
+      const dbApplication = await firestoreService
+        .collection("application-list")
+        .orderBy("createdAt", "desc")
+        .limit(6)
+        .get();
 
-  //   let commentsArr = [];
-  //   let lastKey = null;
+      let applicationArr = [];
+      let lastKey = null;
 
-  //   dbComments.forEach((doc) => {
-  //     commentsArr.push({
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     });
-  //     lastKey = doc.data().createdAt;
-  //   });
-  //   return { commentsArr, lastKey };
-  // };
+      dbApplication.forEach((doc) => {
+        applicationArr.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+        lastKey = doc.data().createdAt;
+      });
+      return { applicationArr, lastKey };
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  nextApplicationData = async (key) => {
+    try {
+      const dbApplication = await firestoreService
+        .collection("application-list")
+        .orderBy("createdAt", "desc")
+        .startAfter(key)
+        .limit(6)
+        .get();
+
+      let applicationArr = [];
+      let lastKey = null;
+
+      dbApplication.forEach((doc) => {
+        applicationArr.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+        lastKey = doc.data().createdAt;
+      });
+      return { applicationArr, lastKey };
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 export default GetDataService;

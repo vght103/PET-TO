@@ -1,0 +1,32 @@
+.pet_item {
+  width: 100%;
+  /* margin-bottom: 0.5em; */
+  border: 1px solid lightgray;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+.pet_wrap {
+  display: flex;
+}
+
+.pet_img {
+  width: 7rem;
+}
+
+.pet_text {
+  margin: 0.8em 0.8em;
+  font-size: 0.8rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.pet_text > p {
+  margin: 0.4em 0;
+}

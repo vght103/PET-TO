@@ -12,9 +12,32 @@ const ContentInfo = ({ userObj }) => {
   const [comments, setComments] = useState([]);
 
   const location = useLocation();
-  const [contentItem, setContentItem] = useState(location.state.item);
+  const [contentItem] = useState(location.state.item);
 
   // 댓글 불러오기
+
+  // useEffect(() => {
+  //   setLoading(true);
+  //   firestoreService //
+  //     .collection("comments-list")
+  //     //글번호로 댓글검색
+  //     .where("postId", "")
+  //     .orderBy("createdAt", "desc")
+  //     //데이터 한번만 가져오기
+  //     .get()
+  //     .then((snapshot) => {
+  //       if (snapshot.exists()) {
+  //         const commentsArr = snapshot.val();
+  //         console.log(commentsArr);
+  //         setComments(commentsArr);
+  //       } else {
+  //         console.log("No data available");
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // }, []);
 
   useEffect(() => {
     setLoading(true);

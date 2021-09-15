@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import AddContentForm from "./add_content_form/add_content_form";
 import AddPetsForm from "./add_pets_form/add_pets_form";
 import Admin from "./admin/admin";
+import ApplicantInfo from "./applicant_info/applicant_info";
 import Chat from "./chat/chat";
 import Community from "./community/community";
 import ContentInfo from "./content_info/content_info";
@@ -51,7 +52,11 @@ const RouterList = ({ FileInput, authService, userObj, getDataService }) => (
     </Route>
 
     <Route path="/admin">
-      <Admin />
+      <Admin getDataService={getDataService} />
+    </Route>
+
+    <Route path="/applicant-info">
+      <ApplicantInfo />
     </Route>
   </Switch>
 );
