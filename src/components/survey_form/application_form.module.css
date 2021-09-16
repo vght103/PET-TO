@@ -2,11 +2,6 @@
   display: none;
 } */
 
-.add_pets {
-  height: 100%;
-  position: relative;
-}
-
 .title {
   display: flex;
   align-items: center;
@@ -26,10 +21,7 @@
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 90%;
+  background-color: white;
 }
 
 .pet_number_box {
@@ -106,6 +98,7 @@
 
 .submit_button {
   color: white;
+  width: 100%;
   background-color: skyblue;
   border: none;
   font-weight: 600;

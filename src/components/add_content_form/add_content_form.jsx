@@ -13,6 +13,7 @@ const AddContentForm = ({ userObj }) => {
   const [imgFiles, setImageFiles] = useState();
   const [formValues, setFormValues] = useState(false);
   const [loading, setLoading] = useState(false);
+  // const [postId, setPostId] = useState(null);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -28,12 +29,14 @@ const AddContentForm = ({ userObj }) => {
         .child(`${userObj.uid}/${uuidv4()}`);
 
       let imgFilesUrl = null;
+
       if (imgFiles) {
         const response = await imgFilesRef.putString(imgFiles, "data_url");
         imgFilesUrl = await response.ref.getDownloadURL();
       }
 
       // 컨텐츠 내용 추가
+
       await firestoreService.collection("contents-list").add({
         createdAt: new Date(),
         creatorId: userObj.uid,
@@ -41,6 +44,7 @@ const AddContentForm = ({ userObj }) => {
         creatorPhoto: userObj.photoURL,
         category: selectRef.current.value,
         contentText: textareaRef.current.value,
+
         imgFilesUrl,
       });
 

@@ -213,14 +213,15 @@ const ApplicationForm = ({ userObj }) => {
             ></textarea>
           </li>
         </ul>
-
-        <button
-          disabled={!formValues}
-          className={styles.submit_button}
-          onClick={onSubmit}
-        >
-          완료
-        </button>
+        <div className={styles.button_box}>
+          <button
+            disabled={!formValues}
+            className={styles.submit_button}
+            onClick={onSubmit}
+          >
+            완료
+          </button>
+        </div>
       </form>
 
       {loading && <div className={styles.loading}></div>}

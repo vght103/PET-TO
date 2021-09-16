@@ -10,7 +10,6 @@ const Community = ({ userObj, getDataService }) => {
   const [contents, setContents] = useState([]);
   const [lastKey, setLastKey] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [postId, setPostId] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -19,6 +18,7 @@ const Community = ({ userObj, getDataService }) => {
       .then((res) => {
         setContents(res.contentsArr);
         setLastKey(res.lastKey);
+
         setLoading(false);
       });
   }, [getDataService]);
@@ -59,9 +59,15 @@ const Community = ({ userObj, getDataService }) => {
   };
 
   const handleClick = () => setClick(!click);
+
+  const updatedId = () => {
+    getDataService.updateContentId();
+  };
+
   return (
     <section className={styles.community}>
       <Header />
+      <button onClick={updatedId}>버튼</button>
       <ul className={styles.content_list} onScroll={handleScroll}>
         {contents.map((item) => (
           <Content

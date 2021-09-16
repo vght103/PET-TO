@@ -29,13 +29,13 @@
   display: inline-block;
   background-color: lightgray;
   border-radius: 5px;
-  padding: 0 0.8em;
+  padding: 0 0.5em;
   font-size: 0.7rem;
   margin-bottom: 1em;
 }
 
 .content_text {
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .user_name {

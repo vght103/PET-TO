@@ -65,7 +65,6 @@ class GetDataService {
 
       let contentsArr = [];
       let lastKey = null;
-      let postId = null;
 
       dbContents.forEach((doc) => {
         contentsArr.push({
@@ -75,11 +74,19 @@ class GetDataService {
 
         lastKey = doc.data().createdAt;
       });
-      return { contentsArr, lastKey, postId };
+      return { contentsArr, lastKey };
     } catch (error) {
       console.log(error);
     }
   };
+
+  // updateContentId = (key) => {
+  //   const updateId = firestoreService.collection("contents-list").doc();
+  //   updateId.set({
+  //     postId: key,
+  //   });
+  //   console.log(key);
+  // };
 
   nextContentsData = async (key) => {
     try {

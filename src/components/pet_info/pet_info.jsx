@@ -7,7 +7,7 @@ import { firestoreService, storageService } from "../../service/firebase";
 const PetInfo = (props) => {
   const location = useLocation();
   const history = useHistory();
-  const [petInfo, setPetInfo] = useState(location.state.item);
+  const [petInfo] = useState(location.state.item);
   const [click, setClick] = useState(false);
   const [loading, setLoading] = useState(false);
 
