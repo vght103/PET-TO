@@ -62,10 +62,6 @@
   display: block;
 }
 
-.info {
-  /* margin: 0.5em; */
-}
-
 .info_category {
   display: inline-block;
   background-color: lightgray;
@@ -107,15 +103,28 @@
   margin: 0 auto;
 }
 
-.comment_box h4 {
-  padding: 0.8em 0.5em;
+.coment_title {
+  display: flex;
+  align-items: center;
   border-bottom: 1px solid lightgray;
+}
+
+.coment_title h4 {
+  padding: 0.8em 0.5em;
+}
+
+.like_button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-left: 0.5em;
+  color: red;
 }
 
 .comments_ul {
   overflow-y: auto;
   padding: 1em 0.5em;
-  background-color: #fff7f5;
+  background-color: #fffcf9;
 }
 
 .loading {

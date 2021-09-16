@@ -1,13 +1,60 @@
 .comment_list {
-  margin-bottom: 0.5em;
+  display: flex;
+  margin-bottom: 1.8em;
 }
 
+.comment_list > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 0.8em;
+}
 .comment_writer {
   display: inline-block;
   font-weight: bold;
   font-size: 0.9rem;
+  margin-bottom: 0.3em;
 }
 
 .commentText {
   font-size: 0.8rem;
+}
+
+.menu {
+  position: absolute;
+  right: -5px;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu_button {
+  cursor: pointer;
+  width: 7rem;
+  text-align: center;
+  padding: 0.5em;
+}
+
+.menu_list {
+  display: none;
+  margin-top: 0.5em;
+  background-color: white;
+  border: 1px solid lightgray;
+  text-align: center;
+
+  /* padding: 0.5em; */
+}
+.menu_list > li {
+  padding: 0.5em;
+}
+
+.menu_list > li:hover {
+  cursor: pointer;
+  background-color: lightblue;
+  width: 100%;
+}
+
+.menu_list.active {
+  display: block;
 }

@@ -22,7 +22,7 @@ const ContentInfo = ({ userObj }) => {
       .collection("comments-list")
       //글번호로 댓글검색
       .where("postId", "==", contentItem.id)
-      // .orderBy("createdAt", "desc")
+      .orderBy("createdAt", "desc")
       //데이터 한번만 가져오기
       .get()
       .then((snapshot) => {
@@ -31,27 +31,13 @@ const ContentInfo = ({ userObj }) => {
           comments.push(Object.assign({}, doc.data(), { id: doc.id }));
         });
         setComments(comments);
-        // if (snapshot.exists()) {
-        //   const commentsArr = snapshot.val()
-        //   console.log(commentsArr);
-        //   setComments(commentsArr);
-        // } else {
-        //   console.log("No data available");
-        // }
       })
       .catch((err) => {
         console.error(err);
       });
-    // .onSnapshot((snapshot) => {
-    //   const commentsArr = snapshot.docs.map((doc) => ({
-    //     id: doc.id,
-    //     ...doc.data(),
-    //   }));
 
-    //   setComments(commentsArr);
-    // });
     setLoading(false);
-  }, []);
+  }, [contentItem.id]);
 
   // 게시글 삭제
   const onDeleteData = async () => {
@@ -119,8 +105,8 @@ const ContentInfo = ({ userObj }) => {
           <img
             src={contentItem.creatorPhoto}
             alt={`${contentItem.creatorName} 사진`}
-            width="30px"
-            height="30px"
+            width="45px"
+            height="45px"
             className={styles.user_img}
           />
 
@@ -134,13 +120,19 @@ const ContentInfo = ({ userObj }) => {
 
       {/* 댓글 리스트 */}
       <div className={styles.comment_box}>
-        <h4>댓글</h4>
+        <div className={styles.coment_title}>
+          <h4>댓글</h4>
+          <span>{comments.length}</span>
+          <button className={styles.like_button} onClick={handleClick}>
+            <i className="far fa-heart fa-lg"></i>
+          </button>
+        </div>
         <ul className={styles.comments_ul}>
           {comments.map((comment) => (
             <CommentItem
               key={comment.id}
               comment={comment}
-              contentItem={contentItem}
+              isOwner={userObj.uid === comment.creatorId}
             />
           ))}
         </ul>
