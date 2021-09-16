@@ -9,20 +9,6 @@ const AddComment = memo(({ userObj, contentItem, addedComment }) => {
   const inputRef = useRef();
   const buttonRef = useRef();
 
-  // useEffect(() => {
-  //   firestoreService //
-  //     .collection("comments-list")
-  //     .orderBy("createdAt", "asc")
-  //     .onSnapshot((snapshot) => {
-  //       const commentsArr = snapshot.docs.map((doc) => ({
-  //         id: doc.id,
-  //         ...doc.data(),
-  //       }));
-
-  //       setComments(commentsArr);
-  //     });
-  // }, []);
-
   const onSubmit = async () => {
     const ok = window.confirm("댓글을 등록하시겠습니까?");
     if (ok) {
@@ -71,7 +57,7 @@ const AddComment = memo(({ userObj, contentItem, addedComment }) => {
   };
 
   return (
-    <div className={styles.comment_container}>
+    <>
       <div className={styles.comment_input_box}>
         <input
           ref={inputRef}
@@ -88,7 +74,7 @@ const AddComment = memo(({ userObj, contentItem, addedComment }) => {
         </button>
       </div>
       {loading && <div className={styles.loading}></div>}
-    </div>
+    </>
   );
 });
 

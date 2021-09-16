@@ -1,7 +1,7 @@
 .content_item {
   width: 100%;
-  border-top: 4px solid lightgray;
-  border-bottom: 4px solid lightgray;
+  border-top: 2px solid lightgray;
+  border-bottom: 2px solid lightgray;
   padding: 0.5em;
   cursor: pointer;
   overflow: hidden;
@@ -15,7 +15,7 @@
 
 .content_img {
   align-self: center;
-  width: 50%;
+  width: 80%;
   margin-bottom: 1.5em;
 }
 
@@ -35,9 +35,11 @@
 }
 
 .content_text {
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .user_name {
-  opacity: 0.8;
+  font-size: 0.8rem;
+  font-weight: bold;
+  opacity: 0.7;
 }

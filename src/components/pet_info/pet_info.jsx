@@ -50,7 +50,7 @@ const PetInfo = (props) => {
   return (
     <section className={styles.pet_info}>
       <div className={styles.header}>
-        <button className={styles.cancel} onClick={goToHome}>
+        <button className={styles.backspace} onClick={goToHome}>
           <i className="fas fa-arrow-left fa-2x"></i>
         </button>
         <h2>PET 정보</h2>

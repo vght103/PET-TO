@@ -71,6 +71,7 @@
 
 .category {
   border: 1px solid lightgray;
+  background-color: transparent;
 }
 
 .content_info {

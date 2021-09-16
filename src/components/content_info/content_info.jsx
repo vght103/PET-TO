@@ -7,11 +7,10 @@ import styles from "./content_info.module.css";
 
 const ContentInfo = ({ userObj }) => {
   const history = useHistory();
+  const location = useLocation();
   const [click, setClick] = useState(false);
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
-
-  const location = useLocation();
   const [contentItem] = useState(location.state.item);
 
   // 댓글 불러오기
@@ -72,7 +71,7 @@ const ContentInfo = ({ userObj }) => {
   return (
     <section className={styles.content_info}>
       <div className={styles.header}>
-        <button className={styles.cancel} onClick={goToCommunity}>
+        <button className={styles.backspace} onClick={goToCommunity}>
           <i className="fas fa-arrow-left fa-2x"></i>
         </button>
         <h2>컨텐츠 정보</h2>
@@ -119,10 +118,11 @@ const ContentInfo = ({ userObj }) => {
       <div className={styles.comment_box}>
         <div className={styles.coment_title}>
           <h4>댓글</h4>
-          <span>{comments.length}</span>
-          <button className={styles.like_button} onClick={handleClick}>
-            <i className="far fa-heart fa-lg"></i>
-          </button>
+          {comments.length === 0 ? (
+            ""
+          ) : (
+            <span className={styles.comments_lengh}>{comments.length}</span>
+          )}
         </div>
         <ul className={styles.comments_ul}>
           {comments.map((comment) => (
@@ -135,13 +135,11 @@ const ContentInfo = ({ userObj }) => {
         </ul>
       </div>
 
-      {/* <div className={styles.add_comment}> */}
       <AddComment
         userObj={userObj}
         contentItem={contentItem}
         addedComment={addedComment}
       />
-      {/* </div> */}
 
       {loading && <div className={styles.loading}></div>}
     </section>

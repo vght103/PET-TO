@@ -5,6 +5,10 @@
   overflow-y: auto;
 }
 
+.content_info .add_comment {
+  justify-self: center;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -12,7 +16,7 @@
   position: relative;
 }
 
-.cancel {
+.backspace {
   border: none;
   margin-left: 1em;
   padding: 0.5em;
@@ -97,10 +101,12 @@
 
 .content > p {
   margin: 2em 0.5em;
+  line-height: 30px;
 }
 
 .content > img {
   margin: 0 auto;
+  width: 100%;
 }
 
 .coment_title {
@@ -113,17 +119,19 @@
   padding: 0.8em 0.5em;
 }
 
-.like_button {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  margin-left: 0.5em;
-  color: red;
+.comments_lengh {
+  display: inline-block;
+  color: #767575;
+  background-color: whitesmoke;
+  box-shadow: 1px 1px 6px 3px lightgrey;
+  border-radius: 50%;
+  padding: 0.2em 0.5em;
+  font-weight: bold;
 }
 
 .comments_ul {
   overflow-y: auto;
-  background-color: #fff2e6;
+  background-color: #fff8f1;
 }
 
 .loading {

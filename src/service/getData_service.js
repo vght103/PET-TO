@@ -60,7 +60,7 @@ class GetDataService {
       const dbContents = await firestoreService
         .collection("contents-list")
         .orderBy("createdAt", "desc")
-        .limit(10)
+        .limit(6)
         .get();
 
       let contentsArr = [];
@@ -94,7 +94,7 @@ class GetDataService {
         .collection("contents-list")
         .orderBy("createdAt", "desc")
         .startAfter(key)
-        .limit(10)
+        .limit(6)
         .get();
 
       let contentsArr = [];

@@ -1,21 +1,40 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router";
+import { firestoreService } from "../../service/firebase";
 import styles from "./applicant_info.module.css";
 
 const ApplicantInfo = (props) => {
   const location = useLocation();
   const history = useHistory();
   const [applicantInfo] = useState(location.state);
+  const [click, setClick] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const goToAdmin = () => {
     history.push("/admin");
+  };
+
+  const handleClick = () => {
+    setClick(!click);
+  };
+
+  const onCancelApplicant = async () => {
+    const ok = window.confirm("게시글을 삭제하시겠습니까?");
+    setLoading(true);
+    if (ok) {
+      await firestoreService
+        .doc(`application-list/${applicantInfo.id}`)
+        .delete();
+    }
+    setLoading(false);
+    goToAdmin();
   };
 
   console.log(applicantInfo);
   return (
     <section className={styles.applicant}>
       <div className={styles.header}>
-        <button className={styles.cancel} onClick={goToAdmin}>
+        <button className={styles.backspace} onClick={goToAdmin}>
           <i className="fas fa-arrow-left fa-2x"></i>
         </button>
         <h2>신청자 상세정보</h2>
@@ -70,8 +89,24 @@ const ApplicantInfo = (props) => {
               <p>{location.state.applicationText}</p>
             </li>
           </ul>
+          <div className={styles.confirm_button}>
+            <button
+              className={
+                click
+                  ? `${styles.confirm} ${styles.active}`
+                  : `${styles.confirm}`
+              }
+              onClick={handleClick}
+            >
+              {click ? <span>확인완료</span> : <span>신청확인</span>}
+            </button>
+            <button className={styles.cancel} onClick={onCancelApplicant}>
+              신청취소
+            </button>
+          </div>
         </div>
       </div>
+      {loading && <div className={styles.loading}></div>}
     </section>
   );
 };

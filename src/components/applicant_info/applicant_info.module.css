@@ -16,7 +16,7 @@
   margin: 0.8em 1em;
 }
 
-.cancel {
+.backspace {
   border: none;
   margin-left: 1em;
   padding: 0.5em;
@@ -27,13 +27,20 @@
 .applicant_info {
   border: 1px solid lightgray;
   padding: 1em 0.5em;
+  background-color: whitesmoke;
 }
 
 .applicant_box {
   overflow: auto;
 }
 
+.info_list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .info_list > li {
+  width: 50%;
   margin: 0.5em 0;
 }
 
@@ -60,6 +67,7 @@
 .answer_list > li > span {
   display: inline-block;
   margin-bottom: 0.5em;
+  font-weight: bold;
 }
 
 .answer_list > li > span:first-child::before {
@@ -68,10 +76,72 @@
 }
 
 .answer_list > li > p {
-  font-weight: bold;
+  /* font-weight: bold; */
+  background-color: whitesmoke;
+  border: 1px solid lightgray;
+  padding: 1em 0.5em;
+  border-radius: 10px;
+  line-height: 30px;
 }
 
-.answer_list > li > p::before {
-  content: "→";
-  margin-right: 0.3em;
+.confirm_button {
+  text-align: center;
+}
+.confirm_button > button :hover {
+  opacity: 0.7;
+}
+
+.confirm {
+  border: none;
+  padding: 0.5em;
+  margin: 0 0.5em;
+  background-color: skyblue;
+  font-size: 1rem;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.confirm.active {
+  background-color: rgb(72 185 72);
+  transition: 0.3s ease-in-out;
+}
+
+.cancel {
+  border: none;
+  padding: 0.5em;
+  margin: 0 0.5em;
+  background-color: lightcoral;
+  font-size: 1rem;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm:hover,
+.cancel:hover {
+  opacity: 0.7;
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+  border: 3px solid lightgray;
+  border-top: 3px solid skyblue;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

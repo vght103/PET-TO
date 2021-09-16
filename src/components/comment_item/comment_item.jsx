@@ -30,7 +30,9 @@ const CommentItem = ({ comment, isOwner }) => {
       <li className={styles.comment_list}>
         <div className={styles.writer_info}>
           <img src={comment.creatorPhoto} alt="" />
-          <span className={styles.writer_name}>{comment.creatorName}</span>
+          <div>
+            <span className={styles.writer_name}>{comment.creatorName}</span>
+          </div>
           {isOwner && (
             <>
               <button className={styles.menu_button} onClick={handleClick}>
@@ -43,9 +45,8 @@ const CommentItem = ({ comment, isOwner }) => {
                     : `${styles.menu_list}`
                 }
               >
-                {/* <li onClick={onEditData}>게시글 수정</li> */}
+                <li>수정</li>
                 <li onClick={onDeleteData}>삭제</li>
-                <li onClick={onDeleteData}>수정</li>
               </ul>
             </>
           )}
