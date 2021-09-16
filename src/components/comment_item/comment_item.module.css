@@ -1,15 +1,23 @@
 .comment_list {
   display: flex;
-  margin-bottom: 1.8em;
+  flex-direction: column;
+  padding: 0.5em;
+  border-bottom: 1px solid lightgray;
 }
 
-.comment_list > img {
+.writer_info {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.writer_info > img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 0.8em;
 }
-.comment_writer {
+.writer_name {
   display: inline-block;
   font-weight: bold;
   font-size: 0.9rem;
@@ -21,29 +29,28 @@
 }
 
 .menu {
-  position: absolute;
-  right: -5px;
-  top: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .menu_button {
+  position: absolute;
+  right: 0;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
-  width: 7rem;
+  width: 2.5rem;
   text-align: center;
   padding: 0.5em;
 }
 
 .menu_list {
   display: none;
-  margin-top: 0.5em;
+  position: absolute;
+  right: 0;
   background-color: white;
   border: 1px solid lightgray;
-  text-align: center;
-
-  /* padding: 0.5em; */
 }
 .menu_list > li {
   padding: 0.5em;
@@ -57,4 +64,30 @@
 
 .menu_list.active {
   display: block;
+  position: absolute;
+  right: 30px;
+  top: 0;
+  box-shadow: 3px 4px 9px -3px;
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+  border: 3px solid lightgray;
+  border-top: 3px solid skyblue;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

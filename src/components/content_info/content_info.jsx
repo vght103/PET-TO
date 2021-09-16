@@ -66,9 +66,6 @@ const ContentInfo = ({ userObj }) => {
 
   //새로운 댓글 추가 함수
   const addedComment = (comment) => {
-    console.log(comment);
-    console.log(comments);
-
     setComments([comment, ...comments]);
   };
 
