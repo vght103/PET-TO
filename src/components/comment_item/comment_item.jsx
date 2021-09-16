@@ -15,6 +15,7 @@ const CommentItem = ({ comment, isOwner }) => {
       window.location.reload();
       setLoading(false);
     } else {
+      setLoading(false);
       return;
     }
   };

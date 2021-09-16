@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router";
 import styles from "./content.module.css";
 
 const Content = ({ item, isOwner }) => {
   const history = useHistory();
-  const [time] = useState(item.createdAt.toDate());
 
   const goToContentInfo = () => {
     history.push({
@@ -12,7 +11,6 @@ const Content = ({ item, isOwner }) => {
       state: { item, isOwner },
     });
   };
-  console.log(time);
 
   return (
     <li className={styles.content_item} onClick={goToContentInfo}>
