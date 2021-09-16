@@ -1,23 +1,25 @@
 .comment_container {
-  position: relative;
+  /* position: relative; */
   height: 100%;
 }
 
 .comment_input_box {
-  position: absolute;
-  bottom: 0;
+  /* position: absolute;
+  bottom: 0; */
+  display: flex;
   width: 100%;
-  background-color: lightgray;
-  padding: 0.5em 0.3em;
+  /* background-color: lightgray; */
+  /* padding: 0.5em 0.3em; */
 }
 
 .comment_input {
   padding: 0.8em;
-  background-color: #eee;
+  background-color: transparent;
   border: none;
   outline: none;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   width: 100%;
+  border: 1px solid;
 }
 
 .uploaded_comment {
@@ -25,14 +27,14 @@
 }
 
 .comment_button {
-  position: absolute;
+  /* position: absolute;
   right: 2px;
-  bottom: 8px;
+  bottom: 8px; */
   background-color: skyblue;
   color: white;
   padding: 0.7em;
   border: none;
-  border-radius: 50%;
+  /* border-radius: 50%; */
 }
 
 .comment_button:hover {

@@ -15,42 +15,41 @@ const ContentInfo = ({ userObj }) => {
   const [contentItem] = useState(location.state.item);
 
   // 댓글 불러오기
-  // useEffect(() => {
-  //   setLoading(true);
-  //   firestoreService //
-  //     .collection("comments-list")
-  //     //글번호로 댓글검색
-  //     .where("post-id", "")
-  //     .orderBy("createdAt", "desc")
-  //     //데이터 한번만 가져오기
-  //     .get()
-  //     .then((snapshot) => {
-  //       if (snapshot.exists()) {
-  //         const commentsArr = snapshot.val();
-  //         console.log(commentsArr);
-  //         setComments(commentsArr);
-  //       } else {
-  //         console.log("No data available");
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // }, []);
 
   useEffect(() => {
     setLoading(true);
     firestoreService //
       .collection("comments-list")
-      .orderBy("createdAt", "desc")
-      .onSnapshot((snapshot) => {
-        const commentsArr = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-
-        setComments(commentsArr);
+      //글번호로 댓글검색
+      .where("postId", "==", contentItem.id)
+      // .orderBy("createdAt", "desc")
+      //데이터 한번만 가져오기
+      .get()
+      .then((snapshot) => {
+        const comments = [];
+        snapshot.forEach((doc) => {
+          comments.push(Object.assign({}, doc.data(), { id: doc.id }));
+        });
+        setComments(comments);
+        // if (snapshot.exists()) {
+        //   const commentsArr = snapshot.val()
+        //   console.log(commentsArr);
+        //   setComments(commentsArr);
+        // } else {
+        //   console.log("No data available");
+        // }
+      })
+      .catch((err) => {
+        console.error(err);
       });
+    // .onSnapshot((snapshot) => {
+    //   const commentsArr = snapshot.docs.map((doc) => ({
+    //     id: doc.id,
+    //     ...doc.data(),
+    //   }));
+
+    //   setComments(commentsArr);
+    // });
     setLoading(false);
   }, []);
 
@@ -77,6 +76,14 @@ const ContentInfo = ({ userObj }) => {
 
   const handleClick = () => {
     setClick(!click);
+  };
+
+  //새로운 댓글 추가 함수
+  const addedComment = (comment) => {
+    console.log(comment);
+    console.log(comments);
+
+    setComments([comment, ...comments]);
   };
 
   return (
@@ -140,7 +147,11 @@ const ContentInfo = ({ userObj }) => {
       </div>
 
       {/* <div className={styles.add_comment}> */}
-      <AddComment userObj={userObj} contentItem={contentItem} />
+      <AddComment
+        userObj={userObj}
+        contentItem={contentItem}
+        addedComment={addedComment}
+      />
       {/* </div> */}
 
       {loading && <div className={styles.loading}></div>}
