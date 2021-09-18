@@ -10,10 +10,10 @@ const ContentItem = ({ item, isOwner }) => {
   useEffect(() => {
     const dateTime = item.createdAt.toDate();
     const year = dateTime.getFullYear();
-    const month = String(dateTime.getMonth() + 1).padStart(2, "0");
-    const date = String(dateTime.getDate()).padStart(2, "0");
-    const hours = String(dateTime.getHours()).padStart(2, "0");
-    const minutes = String(dateTime.getMinutes()).padStart(2, "0");
+    const month = dateTime.getMonth() + 1;
+    const date = dateTime.getDate();
+    const hours = dateTime.getHours();
+    const minutes = dateTime.getMinutes();
     setCreatedTime(`${year}.${month}.${date} ${hours}:${minutes}`);
   }, [item]);
 
