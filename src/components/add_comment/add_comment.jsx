@@ -3,7 +3,6 @@ import { firestoreService } from "../../service/firebase";
 import styles from "./add_comment.module.css";
 
 const AddComment = memo(({ userObj, contentItem, addedComment }) => {
-  // const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const inputRef = useRef();
