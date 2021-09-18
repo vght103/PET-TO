@@ -18,8 +18,6 @@ const CommentItem = ({ comment, isOwner }) => {
     setCreatedTime(`${year}.${month}.${date} ${hours}:${minutes}`);
   }, [comment]);
 
-  console.log(comment);
-
   const onDeleteData = async () => {
     setLoading(true);
 
