@@ -5,16 +5,23 @@ import styles from "./content_item.module.css";
 
 const ContentItem = ({ item, isOwner }) => {
   const history = useHistory();
-  const [createdTime, setCreatedTime] = useState(null);
+  const [createdTime, setCreatedTime] = useState();
+
+  // useEffect(() => {
+  // const dateTime = item.createdAt.toDate();
+  // const year = dateTime.getFullYear();
+  // const month = dateTime.getMonth() + 1;
+  // const date = dateTime.getDate();
+  // const hours = dateTime.getHours();
+  // const minutes = dateTime.getMinutes();
+  // setCreatedTime(`${year}.${month}.${date} ${hours}:${minutes}`);
+  // }, [item]);
 
   useEffect(() => {
-    const dateTime = item.createdAt.toDate();
-    const year = dateTime.getFullYear();
-    const month = dateTime.getMonth() + 1;
-    const date = dateTime.getDate();
-    const hours = dateTime.getHours();
-    const minutes = dateTime.getMinutes();
-    setCreatedTime(`${year}.${month}.${date} ${hours}:${minutes}`);
+    console.log(item.createdAt.toDate().toISOString());
+    const dateTime = item.createdAt.toDate().toISOString();
+    setCreatedTime(dateTime);
+    console.log(createdTime);
   }, [item]);
 
   const goToContentInfo = () => {
@@ -29,7 +36,7 @@ const ContentItem = ({ item, isOwner }) => {
       <div className={styles.content_wrap}>
         <div className={styles.content_info}>
           <span className={styles.category}>{item.category}</span>
-          <span>{createdTime}</span>
+          {/* <span>{createdTime}</span> */}
           <p className={styles.content_text}>{item.contentText}</p>
         </div>
         {item.imgFilesUrl && (
@@ -37,6 +44,7 @@ const ContentItem = ({ item, isOwner }) => {
         )}
         <div>
           <span className={styles.user_name}>{item.creatorName}</span>
+          <span>{createdTime}</span>
         </div>
       </div>
     </li>

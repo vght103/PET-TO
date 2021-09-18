@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { firestoreService, storageService } from "../../service/firebase";
@@ -43,6 +43,7 @@ const AddContentForm = ({ userObj }) => {
         creatorPhoto: userObj.photoURL,
         category: selectRef.current.value,
         contentText: textareaRef.current.value,
+
         imgFilesUrl,
       });
       setLoading(false);
