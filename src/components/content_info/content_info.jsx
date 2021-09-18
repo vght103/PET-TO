@@ -21,7 +21,7 @@ const ContentInfo = ({ userObj }) => {
       .collection("comments-list")
       //글번호로 댓글검색
       .where("postId", "==", contentItem.id)
-      .orderBy("createdAt", "desc")
+      .orderBy("createdAt", "asc")
       //데이터 한번만 가져오기
       .get()
       .then((snapshot) => {
@@ -97,6 +97,7 @@ const ContentInfo = ({ userObj }) => {
       {/* 유저 닉네임 */}
       <div className={styles.info}>
         <span className={styles.info_category}>{contentItem.category}</span>
+        <span>{location.state.createdTime}</span>
         <div className={styles.user}>
           <img
             src={contentItem.creatorPhoto}

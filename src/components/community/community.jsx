@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import Content from "../content/content";
+import ContentItem from "../content_item/content_item";
 import Header from "../header/header";
 import styles from "./community.module.css";
 
@@ -18,7 +18,6 @@ const Community = ({ userObj, getDataService }) => {
       .then((res) => {
         setContents(res.contentsArr);
         setLastKey(res.lastKey);
-
         setLoading(false);
       });
   }, [getDataService]);
@@ -65,7 +64,7 @@ const Community = ({ userObj, getDataService }) => {
       <Header />
       <ul className={styles.content_list} onScroll={handleScroll}>
         {contents.map((item) => (
-          <Content
+          <ContentItem
             key={item.id}
             item={item}
             isOwner={userObj.uid === item.creatorId}

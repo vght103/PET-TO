@@ -13,7 +13,6 @@ const AddContentForm = ({ userObj }) => {
   const [imgFiles, setImageFiles] = useState();
   const [formValues, setFormValues] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const [postId, setPostId] = useState(null);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -44,10 +43,8 @@ const AddContentForm = ({ userObj }) => {
         creatorPhoto: userObj.photoURL,
         category: selectRef.current.value,
         contentText: textareaRef.current.value,
-
         imgFilesUrl,
       });
-
       setLoading(false);
     } else {
       return;

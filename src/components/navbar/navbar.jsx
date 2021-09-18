@@ -7,7 +7,8 @@ const Navbar = ({ userId }) => {
   const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
-    const adminId = "FNv4KYNBQeVaW1iGJp12RME2yVC3";
+    // const adminId = "FNv4KYNBQeVaW1iGJp12RME2yVC3";
+    const adminId = process.env.REACT_APP_AUTHSERVICE_USERID;
 
     if (adminId === userId) {
       setAdmin(true);
