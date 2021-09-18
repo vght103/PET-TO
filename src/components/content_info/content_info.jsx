@@ -21,7 +21,7 @@ const ContentInfo = ({ userObj }) => {
       .collection("comments-list")
       //글번호로 댓글검색
       .where("postId", "==", contentItem.id)
-      .orderBy("createdAt", "asc")
+      .orderBy("createdAt", "desc")
       //데이터 한번만 가져오기
       .get()
       .then((snapshot) => {
