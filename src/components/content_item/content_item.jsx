@@ -9,19 +9,12 @@ const ContentItem = ({ item, isOwner }) => {
   useEffect(() => {
     const dateTime = item.createdAt.toDate();
     const year = dateTime.getFullYear();
-    const month = dateTime.getMonth() + 1;
-    const date = dateTime.getDate();
-    const hours = dateTime.getHours();
-    const minutes = dateTime.getMinutes();
+    const month = String(dateTime.getMonth() + 1).padStart(2, "0");
+    const date = String(dateTime.getDate()).padStart(2, "0");
+    const hours = String(dateTime.getHours()).padStart(2, "0");
+    const minutes = String(dateTime.getMinutes()).padStart(2, "0");
     setCreatedTime(`${year}.${month}.${date} ${hours}:${minutes}`);
-  }, [item]);
-
-  // useEffect(() => {
-  //   console.log(item.createdAt.toDate().toISOString());
-  //   const dateTime = item.createdAt.toDate().toISOString();
-  //   setCreatedTime(dateTime);
-  //   console.log(createdTime);
-  // }, [createdTime]);
+  }, [item.createdAt]);
 
   const goToContentInfo = () => {
     history.push({
@@ -35,7 +28,7 @@ const ContentItem = ({ item, isOwner }) => {
       <div className={styles.content_wrap}>
         <div className={styles.content_info}>
           <span className={styles.category}>{item.category}</span>
-          {/* <span>{createdTime}</span> */}
+          <span>{createdTime}</span>
           <p className={styles.content_text}>{item.contentText}</p>
         </div>
         {item.imgFilesUrl && (
@@ -43,7 +36,6 @@ const ContentItem = ({ item, isOwner }) => {
         )}
         <div>
           <span className={styles.user_name}>{item.creatorName}</span>
-          <span>{createdTime}</span>
         </div>
       </div>
     </li>

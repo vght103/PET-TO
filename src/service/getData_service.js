@@ -83,14 +83,6 @@ class GetDataService {
     }
   };
 
-  // updateContentId = (key) => {
-  //   const updateId = firestoreService.collection("contents-list").doc();
-  //   updateId.set({
-  //     postId: key,
-  //   });
-  //   console.log(key);
-  // };
-
   nextContentsData = async (key) => {
     try {
       const dbContents = await firestoreService

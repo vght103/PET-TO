@@ -21,7 +21,6 @@ const AddComment = memo(({ userObj, contentItem, addedComment }) => {
         postId: contentItem.id,
       };
       let doc = await firestoreService.collection("comments-list").add(data);
-      console.log(doc.id);
       data.id = doc.id;
 
       //새로운 댓글 추가

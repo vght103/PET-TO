@@ -1,22 +1,21 @@
-import React, { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
+import React, { useState, useEffect } from "react";
 import { firestoreService } from "../../service/firebase";
 import styles from "./comment_item.module.css";
 
 const CommentItem = ({ comment, isOwner }) => {
   const [click, setClick] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const [createdTime, setCreatedTime] = useState(null);
+  const [createdTime, setCreatedTime] = useState(null);
 
-  // useEffect(() => {
-  //   const dateTime = comment.createdAt.toDate();
-  //   const year = dateTime.getFullYear();
-  //   const month = String(dateTime.getMonth() + 1).padStart(2, "0");
-  //   const date = String(dateTime.getDate()).padStart(2, "0");
-  //   const hours = String(dateTime.getHours()).padStart(2, "0");
-  //   const minutes = String(dateTime.getMinutes()).padStart(2, "0");
-  //   setCreatedTime(`${year}.${month}.${date} ${hours}:${minutes}`);
-  // }, [comment]);
+  useEffect(() => {
+    const dateTime = comment.createdAt.toDate();
+    const year = dateTime.getFullYear();
+    const month = String(dateTime.getMonth() + 1).padStart(2, "0");
+    const date = String(dateTime.getDate()).padStart(2, "0");
+    const hours = String(dateTime.getHours()).padStart(2, "0");
+    const minutes = String(dateTime.getMinutes()).padStart(2, "0");
+    setCreatedTime(`${year}.${month}.${date} ${hours}:${minutes}`);
+  }, [comment]);
 
   const onDeleteData = async () => {
     setLoading(true);
@@ -43,7 +42,7 @@ const CommentItem = ({ comment, isOwner }) => {
           <img src={comment.creatorPhoto} alt={comment.creatorPhoto} />
           <div>
             <span className={styles.writer_name}>{comment.creatorName}</span>
-            {/* <span className={styles.date}>{createdTime}</span> */}
+            <span className={styles.date}>{createdTime}</span>
           </div>
           {isOwner ? (
             <>
