@@ -15,7 +15,7 @@ const CommentItem = ({ comment, isOwner }) => {
     const hours = String(dateTime.getHours()).padStart(2, "0");
     const minutes = String(dateTime.getMinutes()).padStart(2, "0");
     setCreatedTime(`${year}.${month}.${date} ${hours}:${minutes}`);
-  }, [comment]);
+  }, [comment.createdAt]);
 
   const onDeleteData = async () => {
     setLoading(true);

@@ -61,7 +61,6 @@ const PetList = ({ userObj, getDataService }) => {
   return (
     <section className={styles.pet_list_wrap}>
       <Header />
-      <h1>contentItem 에 useEffect 처리하기</h1>
       <ul className={styles.pet_list} onScroll={handleScroll}>
         {pets.map((item) => (
           <PetItem
