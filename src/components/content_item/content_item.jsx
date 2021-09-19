@@ -1,28 +1,28 @@
 import React from "react";
 import { useHistory } from "react-router";
-import { useEffect, useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react";
 import styles from "./content_item.module.css";
 
 const ContentItem = ({ item, isOwner }) => {
   const history = useHistory();
   const [createdTime, setCreatedTime] = useState();
 
-  // useEffect(() => {
-  // const dateTime = item.createdAt.toDate();
-  // const year = dateTime.getFullYear();
-  // const month = dateTime.getMonth() + 1;
-  // const date = dateTime.getDate();
-  // const hours = dateTime.getHours();
-  // const minutes = dateTime.getMinutes();
-  // setCreatedTime(`${year}.${month}.${date} ${hours}:${minutes}`);
-  // }, [item]);
-
   useEffect(() => {
-    console.log(item.createdAt.toDate().toISOString());
-    const dateTime = item.createdAt.toDate().toISOString();
-    setCreatedTime(dateTime);
-    console.log(createdTime);
+    const dateTime = item.createdAt.toDate();
+    const year = dateTime.getFullYear();
+    const month = dateTime.getMonth() + 1;
+    const date = dateTime.getDate();
+    const hours = dateTime.getHours();
+    const minutes = dateTime.getMinutes();
+    setCreatedTime(`${year}.${month}.${date} ${hours}:${minutes}`);
   }, [item]);
+
+  // useEffect(() => {
+  //   console.log(item.createdAt.toDate().toISOString());
+  //   const dateTime = item.createdAt.toDate().toISOString();
+  //   setCreatedTime(dateTime);
+  //   console.log(createdTime);
+  // }, [createdTime]);
 
   const goToContentInfo = () => {
     history.push({
