@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { useEffect, useState } from "react";
 import styles from "./content_item.module.css";
 
 const ContentItem = ({ item, isOwner }) => {
