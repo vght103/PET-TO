@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { firestoreService } from "../../service/firebase";
 import styles from "./add_comment.module.css";
 
-const AddComment = ({ userObj, contentItem, addedComment }) => {
+const AddComment = ({ userObj, addedComment, contentItem }) => {
   const [loading, setLoading] = useState(false);
 
   const inputRef = useRef();
@@ -25,8 +25,6 @@ const AddComment = ({ userObj, contentItem, addedComment }) => {
 
       //새로운 댓글 추가
       addedComment(data);
-      // CommentItem에 toDate() 오류로 새로고침 실행
-      window.location.reload();
     } else {
       return;
     }

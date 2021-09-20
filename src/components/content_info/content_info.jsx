@@ -12,7 +12,6 @@ const ContentInfo = ({ userObj }) => {
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
   const [contentItem] = useState(location.state.item);
-
   // 댓글 불러오기
 
   useEffect(() => {
@@ -34,7 +33,6 @@ const ContentInfo = ({ userObj }) => {
       .catch((err) => {
         console.error(err);
       });
-
     setLoading(false);
   }, [contentItem.id]);
 
@@ -45,6 +43,7 @@ const ContentInfo = ({ userObj }) => {
 
     if (ok) {
       await firestoreService.doc(`contents-list/${contentItem.id}`).delete();
+
       if (contentItem.imgFilesUrl) {
         await storageService.refFromURL(contentItem.imgFilesUrl).delete();
       }

@@ -1,23 +1,39 @@
 .nav_list {
   display: flex;
   justify-content: space-around;
-  background-color: whitesmoke;
-  padding: 0.5em;
+  border-radius: ;
+  background-color: #48bbed;
+
   height: 4rem;
+}
+
+.nav_list > li {
+  display: flex;
+  align-items: center;
+  padding: 0.2em 0;
 }
 
 .nav_list > li > a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 5rem;
   text-align: center;
+  height: 100%;
   cursor: pointer;
 }
 
-.nav_list > li > a.active {
-  background-color: darksalmon;
+.nav_list > li :hover {
+  background-color: white;
+  color: #48bbed;
+  border-radius: 5px;
+  transition: 0.2s linear;
+}
+.active {
+  background-color: white;
+  color: #48bbed;
+  border-radius: 5px;
 }
 
 .nav_list > li > a > span {
@@ -25,5 +41,5 @@
 }
 
 .nav_text {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
