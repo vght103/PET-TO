@@ -13,7 +13,6 @@ const ContentInfo = ({ userObj }) => {
   const [comments, setComments] = useState([]);
   const [contentItem] = useState(location.state.item);
   // 댓글 불러오기
-
   useEffect(() => {
     setLoading(true);
     firestoreService //
@@ -96,7 +95,7 @@ const ContentInfo = ({ userObj }) => {
       {/* 유저 닉네임 */}
       <div className={styles.info}>
         <span className={styles.info_category}>{contentItem.category}</span>
-        <span>{location.state.createdTime}</span>
+        <span className={styles.date}>{location.state.createdTime}</span>
         <div className={styles.user}>
           <img
             src={contentItem.creatorPhoto}

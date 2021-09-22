@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import LikeButton from "../like_button/like_button";
 import styles from "./content_item.module.css";
 
 const ContentItem = ({ item, isOwner }) => {
@@ -19,26 +20,33 @@ const ContentItem = ({ item, isOwner }) => {
   const goToContentInfo = () => {
     history.push({
       pathname: "/contents-list/content-info",
-      state: { item, isOwner },
+      state: { item, isOwner, createdTime },
     });
   };
 
   return (
-    <li className={styles.content_item} onClick={goToContentInfo}>
-      <div className={styles.content_wrap}>
-        <div className={styles.content_info}>
-          <span className={styles.category}>{item.category}</span>
-          <span>{createdTime}</span>
-          <p className={styles.content_text}>{item.contentText}</p>
+    <>
+      <li className={styles.content_item}>
+        <div className={styles.content_wrap} onClick={goToContentInfo}>
+          <div className={styles.content_info}>
+            <span className={styles.category}>{item.category}</span>
+            <span>{createdTime}</span>
+            <p className={styles.content_text}>{item.contentText}</p>
+          </div>
+          {item.imgFilesUrl && (
+            <img
+              src={item.imgFilesUrl}
+              alt="gd"
+              className={styles.content_img}
+            />
+          )}
         </div>
-        {item.imgFilesUrl && (
-          <img src={item.imgFilesUrl} alt="gd" className={styles.content_img} />
-        )}
-        <div>
+        <div className={styles.content_footer}>
           <span className={styles.user_name}>{item.creatorName}</span>
+          <LikeButton />
         </div>
-      </div>
-    </li>
+      </li>
+    </>
   );
 };
 

@@ -15,8 +15,9 @@
 
 .content_img {
   align-self: center;
-  width: 80%;
+  width: 60%;
   margin-bottom: 1.5em;
+  border-radius: 10px;
 }
 
 .content_info {
@@ -37,6 +38,10 @@
 
 .content_text {
   font-size: 0.8rem;
+}
+
+.content_footer {
+  margin: 0.5em;
 }
 
 .user_name {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import styles from "./navbar.module.css";
 
@@ -8,7 +8,6 @@ const Navbar = ({ userId }) => {
   const [click, setClick] = useState(false);
 
   useEffect(() => {
-    // const adminId = "FNv4KYNBQeVaW1iGJp12RME2yVC3";
     const adminId = process.env.REACT_APP_AUTHSERVICE_USERID;
 
     if (adminId === userId) {
@@ -19,7 +18,6 @@ const Navbar = ({ userId }) => {
   const handleClick = () => {
     setClick(!click);
   };
-  console.log(click);
 
   return (
     <nav className={styles.navbar}>
