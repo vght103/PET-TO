@@ -74,11 +74,13 @@ const PetInfo = (props) => {
         )}
       </div>
 
-      <img
-        src={petInfo.imgFilesUrl}
-        alt={`${petInfo.name} 사진입니다`}
-        className={styles.pet_img}
-      />
+      <div className={styles.image_box}>
+        <img
+          src={petInfo.imgFilesUrl}
+          alt={`${petInfo.name} 사진입니다`}
+          className={styles.pet_img}
+        />
+      </div>
       <div className={styles.pet_detail}>
         <h3>{petInfo.title}</h3>
         <ul className={styles.detail_info}>
@@ -108,7 +110,7 @@ const PetInfo = (props) => {
           </li>
           <li>
             <span className={styles.character}>성격</span>
-            <p>{petInfo.character}</p>
+            <p className={styles.character_text}>{petInfo.character}</p>
           </li>
         </ul>
       </div>

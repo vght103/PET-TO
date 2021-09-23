@@ -43,7 +43,6 @@ const AddContentForm = ({ userObj }) => {
         creatorPhoto: userObj.photoURL,
         category: selectRef.current.value,
         contentText: textareaRef.current.value,
-
         imgFilesUrl,
       });
       setLoading(false);
@@ -57,20 +56,40 @@ const AddContentForm = ({ userObj }) => {
   };
 
   const onChangeFile = (event) => {
-    const {
-      target: { files },
-    } = event;
+    setLoading(true);
 
-    const contentFiles = files[0];
+    const fileArray = event.target.files;
+    const filesLength = fileArray.length > 5 ? 5 : fileArray.length;
+    let fileURLs = [];
 
-    const imgsReader = new FileReader();
-    imgsReader.onloadend = (finishedEvent) => {
-      const imgResult = finishedEvent.currentTarget.result;
-
-      setImageFiles(imgResult);
-    };
-    imgsReader.readAsDataURL(contentFiles);
+    for (let i = 0; i < filesLength; i++) {
+      const file = fileArray[i];
+      const imageReader = new FileReader();
+      imageReader.onloadend = () => {
+        fileURLs[i] = imageReader.result;
+        setImageFiles([...fileURLs]);
+      };
+      imageReader.readAsDataURL(file);
+    }
+    setLoading(false);
   };
+  console.log(imgFiles);
+
+  // const onChangeFile = (event) => {
+  //   const {
+  //     target: { files },
+  //   } = event;
+
+  //   const contentFiles = files[0];
+
+  //   const imgsReader = new FileReader();
+  //   imgsReader.onloadend = (finishedEvent) => {
+  //     const imgResult = finishedEvent.currentTarget.result;
+
+  //     setImageFiles(imgResult);
+  //   };
+  //   imgsReader.readAsDataURL(contentFiles);
+  // };
 
   const onFileClear = () => {
     setImageFiles(null);

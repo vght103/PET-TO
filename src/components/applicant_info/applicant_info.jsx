@@ -30,7 +30,6 @@ const ApplicantInfo = (props) => {
     goToAdmin();
   };
 
-  console.log(applicantInfo);
   return (
     <section className={styles.applicant}>
       <div className={styles.header}>
