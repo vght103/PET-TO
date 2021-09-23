@@ -33,13 +33,10 @@ const ContentItem = ({ item, isOwner }) => {
             <span>{createdTime}</span>
             <p className={styles.content_text}>{item.contentText}</p>
           </div>
-          {item.imgFilesUrl && (
-            <img
-              src={item.imgFilesUrl}
-              alt="gd"
-              className={styles.content_img}
-            />
-          )}
+          {item.imgFilesUrls &&
+            item.imgFilesUrls.map((photo) => (
+              <img src={photo} alt="gd" className={styles.content_img} />
+            ))}
         </div>
         <div className={styles.content_footer}>
           <span className={styles.user_name}>{item.creatorName}</span>

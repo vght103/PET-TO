@@ -23,16 +23,29 @@ const AddContentForm = ({ userObj }) => {
       setLoading(true);
 
       // 이미지 추가
-      const imgFilesRef = storageService
-        .ref()
-        .child(`${userObj.uid}/${uuidv4()}`);
 
-      let imgFilesUrl = null;
+      let imgFilesUrls = [];
 
       if (imgFiles) {
-        const response = await imgFilesRef.putString(imgFiles, "data_url");
-        imgFilesUrl = await response.ref.getDownloadURL();
+        for (let i = 0; i < imgFiles.length; i++) {
+          const imgFilesRef = storageService
+            .ref()
+            .child(`${userObj.uid}/${uuidv4()}`);
+          const response = await imgFilesRef.putString(imgFiles[i], "data_url");
+          let imgFilesUrl = await response.ref.getDownloadURL();
+          imgFilesUrls.push(imgFilesUrl);
+        }
       }
+      console.log(imgFilesUrls);
+
+      // let imgFilesUrl = null;
+
+      // if 에서 for문 돌려서 putString 하기
+      // imgfile 을 배열로 돌리기
+      // if (imgFiles) {
+      //   const response = await imgFilesRef.putString(imgFiles, "data_url");
+      //   imgFilesUrl = await response.ref.getDownloadURL();
+      // }
 
       // 컨텐츠 내용 추가
 
@@ -43,7 +56,7 @@ const AddContentForm = ({ userObj }) => {
         creatorPhoto: userObj.photoURL,
         category: selectRef.current.value,
         contentText: textareaRef.current.value,
-        imgFilesUrl,
+        imgFilesUrls,
       });
       setLoading(false);
     } else {
@@ -73,7 +86,6 @@ const AddContentForm = ({ userObj }) => {
     }
     setLoading(false);
   };
-  console.log(imgFiles);
 
   // const onChangeFile = (event) => {
   //   const {
@@ -91,9 +103,17 @@ const AddContentForm = ({ userObj }) => {
   //   imgsReader.readAsDataURL(contentFiles);
   // };
 
-  const onFileClear = () => {
-    setImageFiles(null);
+  const onFileClear = (idx) => {
+    console.log(idx, imgFiles);
+    var test = JSON.parse(JSON.stringify(imgFiles));
+    test.splice(idx, 1);
+    console.log(imgFiles);
+    setImageFiles(test);
   };
+
+  // const onFileClear = () => {
+  //   setImageFiles(null);
+  // };
 
   const goToCommunity = () => {
     history.push("/contents-list");
@@ -117,14 +137,19 @@ const AddContentForm = ({ userObj }) => {
         <div className={styles.image_box}>
           <ImageInput onChangeFile={onChangeFile} />
 
-          {imgFiles && (
-            <div className={styles.content_imgs}>
-              <img src={imgFiles} width="50px" height="50px" alt="이미지" />
-              <button className={styles.clear_button} onClick={onFileClear}>
-                ❌
-              </button>
-            </div>
-          )}
+          {imgFiles &&
+            imgFiles.map((img, idx) => (
+              <div key={idx} className={styles.content_imgs}>
+                <img src={img} width="50px" height="50px" alt="이미지" />
+                <button
+                  type="button"
+                  className={styles.clear_button}
+                  onClick={() => onFileClear(idx)}
+                >
+                  ❌
+                </button>
+              </div>
+            ))}
         </div>
 
         <select
@@ -163,3 +188,5 @@ const AddContentForm = ({ userObj }) => {
 };
 
 export default AddContentForm;
+
+// inputRef 리셋해주기

@@ -65,7 +65,7 @@ class GetDataService {
 
       let contentsArr = [];
       let lastKey = null;
-      let dateTime = null;
+      // let dateTime = null;
 
       dbContents.forEach((doc) => {
         contentsArr.push({
@@ -74,10 +74,10 @@ class GetDataService {
         });
 
         lastKey = doc.data().createdAt;
-        dateTime = doc.data().createdTime;
+        // dateTime = doc.data().createdTime;
       });
 
-      return { contentsArr, lastKey, dateTime };
+      return { contentsArr, lastKey };
     } catch (error) {
       console.log(error);
     }

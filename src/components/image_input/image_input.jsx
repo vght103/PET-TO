@@ -39,7 +39,7 @@ const ImageInput = ({ onChangeFile }) => {
   };
 
   return (
-    <section className={styles.container}>
+    <div className={styles.container}>
       <input
         ref={inputRef}
         multiple
@@ -61,7 +61,7 @@ const ImageInput = ({ onChangeFile }) => {
         </div>
       )}
       {loading && <div className={styles.loading}></div>} */}
-    </section>
+    </div>
   );
 };
 

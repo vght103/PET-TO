@@ -8,15 +8,18 @@ const CommentItem = ({ comment, isOwner }) => {
 
   const [createdTime, setCreatedTime] = useState(null);
 
-  // useEffect(() => {
-  //   const dateTime = comment.createdAt;
-  //   const year = dateTime.getFullYear();
-  //   const month = String(dateTime.getMonth() + 1).padStart(2, "0");
-  //   const date = String(dateTime.getDate()).padStart(2, "0");
-  //   const hours = String(dateTime.getHours()).padStart(2, "0");
-  //   const minutes = String(dateTime.getMinutes()).padStart(2, "0");
-  //   setCreatedTime(`${year}.${month}.${date} ${hours}:${minutes}`);
-  // }, [comment.createdAt]);
+  useEffect(() => {
+    let dateTime = comment.createdAt;
+    if (dateTime.constructor !== Date) {
+      dateTime = dateTime.toDate();
+    }
+    const year = dateTime.getFullYear();
+    const month = String(dateTime.getMonth() + 1).padStart(2, "0");
+    const date = String(dateTime.getDate()).padStart(2, "0");
+    const hours = String(dateTime.getHours()).padStart(2, "0");
+    const minutes = String(dateTime.getMinutes()).padStart(2, "0");
+    setCreatedTime(`${year}.${month}.${date} ${hours}:${minutes}`);
+  }, [comment.createdAt]);
 
   const onDeleteData = async () => {
     setLoading(true);
@@ -43,7 +46,7 @@ const CommentItem = ({ comment, isOwner }) => {
           <img src={comment.creatorPhoto} alt={comment.creatorPhoto} />
           <div>
             <span className={styles.writer_name}>{comment.creatorName}</span>
-            {/* <span className={styles.date}>{createdTime}</span> */}
+            <span className={styles.date}>{createdTime}</span>
           </div>
           {isOwner ? (
             <>

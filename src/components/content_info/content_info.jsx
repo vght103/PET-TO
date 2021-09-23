@@ -12,7 +12,9 @@ const ContentInfo = ({ userObj }) => {
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
   const [contentItem] = useState(location.state.item);
+
   // 댓글 불러오기
+
   useEffect(() => {
     setLoading(true);
     firestoreService //
