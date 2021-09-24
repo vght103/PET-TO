@@ -97,21 +97,26 @@
   font-weight: bold;
 }
 
-.content {
+.content_box {
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid lightgray;
   padding-bottom: 2em;
 }
 
-.content > p {
+.content_box > p {
   margin: 2em 0.5em;
   line-height: 30px;
 }
 
-.content > img {
+.content_box > .img_list > li {
+  width: 70%;
   margin: 0 auto;
-  width: 80%;
+  margin-bottom: 1em;
+}
+
+.content_box img {
+  width: 100%;
   border-radius: 10px;
 }
 

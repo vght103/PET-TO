@@ -14,7 +14,7 @@ const ContentInfo = ({ userObj }) => {
   const [contentItem] = useState(location.state.item);
 
   // 댓글 불러오기
-
+  // console.log(contentItem);
   useEffect(() => {
     setLoading(true);
     firestoreService //
@@ -109,9 +109,16 @@ const ContentInfo = ({ userObj }) => {
 
           <span className={styles.user_name}>{contentItem.creatorName}</span>
         </div>
-        <div className={styles.content}>
+        <div className={styles.content_box}>
           <p>{contentItem.contentText}</p>
-          <img src={contentItem.imgFilesUrl} alt="" />
+          <ul className={styles.img_list}>
+            {contentItem.imgFilesUrls &&
+              contentItem.imgFilesUrls.map((photo) => (
+                <li key={photo}>
+                  <img src={photo} alt="" />
+                </li>
+              ))}
+          </ul>
         </div>
       </div>
 

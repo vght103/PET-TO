@@ -6,7 +6,7 @@ import styles from "./content_item.module.css";
 const ContentItem = ({ item, isOwner }) => {
   const history = useHistory();
   const [createdTime, setCreatedTime] = useState();
-
+  console.log(item);
   useEffect(() => {
     const dateTime = item.createdAt.toDate();
     const year = dateTime.getFullYear();
@@ -33,14 +33,18 @@ const ContentItem = ({ item, isOwner }) => {
             <span>{createdTime}</span>
             <p className={styles.content_text}>{item.contentText}</p>
           </div>
-          {item.imgFilesUrls &&
-            item.imgFilesUrls.map((photo) => (
-              <img src={photo} alt="gd" className={styles.content_img} />
-            ))}
-        </div>
-        <div className={styles.content_footer}>
-          <span className={styles.user_name}>{item.creatorName}</span>
-          <LikeButton />
+          <ul className={styles.img_list}>
+            {item.imgFilesUrls &&
+              item.imgFilesUrls.map((photo) => (
+                <li key={photo}>
+                  <img src={photo} alt="gd" className={styles.content_img} />
+                </li>
+              ))}
+          </ul>
+          <div className={styles.content_footer}>
+            <span className={styles.user_name}>{item.creatorName}</span>
+            <LikeButton />
+          </div>
         </div>
       </li>
     </>
