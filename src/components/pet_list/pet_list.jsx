@@ -10,6 +10,7 @@ const PetList = ({ userObj, getDataService }) => {
   const [pets, setPets] = useState([]);
   const [lastKey, setLastKey] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [searchData, setSearchData] = useState();
 
   useEffect(() => {
     setLoading(true);
@@ -23,6 +24,7 @@ const PetList = ({ userObj, getDataService }) => {
       });
   }, [getDataService]);
 
+  console.log(searchData);
   const fetchMoreData = (key) => {
     if (key > 0) {
       setLoading(true);
@@ -39,6 +41,8 @@ const PetList = ({ userObj, getDataService }) => {
         });
     }
   };
+
+  // 검색기능
 
   //무한 스크롤
   const handleScroll = (event) => {
@@ -60,7 +64,8 @@ const PetList = ({ userObj, getDataService }) => {
 
   return (
     <section className={styles.pet_list_wrap}>
-      <Header />
+      <Header setSearchData={setSearchData} getDataService={getDataService} />
+
       <ul className={styles.pet_list} onScroll={handleScroll}>
         {pets.map((item) => (
           <PetItem

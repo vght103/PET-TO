@@ -158,5 +158,25 @@ class GetDataService {
       console.log(error);
     }
   };
+
+  // 검색 데이터
+  searchData = async (key) => {
+    let searchValue = key;
+    let searchArray = [];
+
+    const dbSearch = await firestoreService //
+      .collection("pets-list")
+      .where("breed", "==", searchValue)
+      .get();
+
+    dbSearch.forEach((doc) => {
+      searchArray.push({
+        id: doc.id,
+        ...doc.data(),
+      });
+    });
+
+    return { searchArray, searchValue };
+  };
 }
 export default GetDataService;

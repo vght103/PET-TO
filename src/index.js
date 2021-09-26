@@ -5,6 +5,7 @@ import App from "./app";
 import "@fortawesome/fontawesome-free/js/all.js";
 import AuthService from "./service/auth_service";
 import GetDataService from "./service/getData_service";
+// import "bootstrap/dist/css/bootstrap.css";
 
 const authService = new AuthService();
 const getDataService = new GetDataService();

@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router";
 import styles from "./application_item.module.css";
 
 const ApplicationItem = ({ item }) => {
   const history = useHistory();
-
-  const [check, setCheck] = useState();
 
   const goToDetail = () => {
     history.push({

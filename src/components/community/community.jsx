@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import ContentItem from "../content_item/content_item";
 import Header from "../header/header";
 import styles from "./community.module.css";
+import { Button } from "react-bootstrap";
 
 const Community = ({ userObj, getDataService }) => {
   const history = useHistory();

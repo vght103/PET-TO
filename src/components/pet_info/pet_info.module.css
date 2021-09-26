@@ -88,13 +88,22 @@
 
 .detail_info > li > span:first-child {
   display: inline-block;
-  background-color: #eee;
-  width: 3rem;
+  /* background-color: #eee; */
+  width: 4rem;
   font-weight: 600;
   text-align: center;
-  padding: 0.3em;
-  margin-right: 0.5em;
+  /* padding: 0.3em;
+  margin-right: 0.5em; */
   border-radius: 10px;
+}
+
+.detail_info > li > span:first-child::after {
+  content: ":";
+  padding: 0 0.5em;
+}
+
+.detail_info > li:last-child > span::after {
+  content: "";
 }
 
 .character {

@@ -6,7 +6,6 @@ import styles from "./content_item.module.css";
 const ContentItem = ({ item, isOwner }) => {
   const history = useHistory();
   const [createdTime, setCreatedTime] = useState();
-  console.log(item);
   useEffect(() => {
     const dateTime = item.createdAt.toDate();
     const year = dateTime.getFullYear();
