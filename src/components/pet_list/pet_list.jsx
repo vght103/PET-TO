@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Header from "../header/header";
 import PetItem from "../pet_item/pet_item";
+import SearchResult from "../search_result/search_result";
 import styles from "./pet_list.module.css";
 
 const PetList = ({ userObj, getDataService }) => {
@@ -24,7 +25,6 @@ const PetList = ({ userObj, getDataService }) => {
       });
   }, [getDataService]);
 
-  console.log(searchData);
   const fetchMoreData = (key) => {
     if (key > 0) {
       setLoading(true);
@@ -67,13 +67,23 @@ const PetList = ({ userObj, getDataService }) => {
       <Header setSearchData={setSearchData} getDataService={getDataService} />
 
       <ul className={styles.pet_list} onScroll={handleScroll}>
-        {pets.map((item) => (
-          <PetItem
-            key={item.id}
-            item={item}
-            isOwner={userObj.uid === item.creatorId}
-          />
-        ))}
+        {searchData
+          ? searchData.map((data) => (
+              <SearchResult
+                key={data.id}
+                data={data}
+                isOwner={userObj.uid === data.creatorId}
+              />
+            ))
+          : pets.map((item) => (
+              <PetItem
+                key={item.id}
+                item={item}
+                isOwner={userObj.uid === item.creatorId}
+              />
+            ))}
+
+        {}
       </ul>
 
       <div className={styles.add_button}>

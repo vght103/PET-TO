@@ -1,40 +1,38 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./header.module.css";
 
 const Header = ({ setSearchData, getDataService }) => {
   const history = useHistory();
   const inputRef = useRef();
+  const [inputValue, setInputValue] = useState(null);
 
-  const onSearchData = () => {
-    const inputValue = inputRef.current.value;
-    if (!inputValue) {
-      return;
-    }
-    getDataService
-      .searchData(inputValue)
-      .then((doc) => setSearchData(doc.searchArray));
+  const goToHome = () => {
+    history.push("/");
   };
 
-  const searchEnter = (event) => {
-    if (event.key === "Enter") {
+  const onSearchData = () => {
+    const inputText = inputRef.current.value;
+
+    if (inputText) {
+      getDataService.searchData(inputText).then((doc) => {
+        setSearchData(doc.searchArray);
+        setInputValue(doc.searchValue);
+      });
+    }
+  };
+  const onClickSearch = () => {
+    const inputText = inputRef.current.value;
+    if (inputText) {
       onSearchData();
     }
   };
 
-  // const onSearchResult = () => {
-  //   const inputValue = inputRef.current.value;
-
-  //   firestoreService //
-  //     .collection("pets-list")
-  //     .where("breed", "==", inputValue)
-  //     .get()
-  //     .then((querySnapshot) => {
-  //       querySnapshot.forEach((doc) => console.log(doc.data()));
-  //     });
-
-  //   console.log(inputValue);
-  // };
+  const onSearchEnter = (event) => {
+    if (event.key === "Enter") {
+      onSearchData();
+    }
+  };
 
   return (
     <header className={styles.header}>
@@ -48,9 +46,9 @@ const Header = ({ setSearchData, getDataService }) => {
         <input
           ref={inputRef}
           className={styles.search_input}
-          onKeyPress={searchEnter}
+          onKeyPress={onSearchEnter}
         />
-        <button className={styles.button} onClick={onSearchData}>
+        <button className={styles.button} onClick={onClickSearch}>
           <i className="fas fa-search"></i>
         </button>
       </div>
