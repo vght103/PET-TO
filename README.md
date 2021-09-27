@@ -24,3 +24,12 @@ In the project directory, you can run:
 - env 파일에 비노출 정보 등록하여 사용 (Firebase API id 및 User id 등)
 - Service 폴더에 Firebase 와 통신하는 코드를 별도로 정리하여 사용 (로그인 / 데이터 불러오기)
 
+![1](https://user-images.githubusercontent.com/74849404/134853533-188446a2-3486-4447-8953-2bc2768c8694.JPG)
+
+![2](https://user-images.githubusercontent.com/74849404/134853542-12c8743b-e404-4a4d-9676-450e120e1d43.JPG)
+
+![3](https://user-images.githubusercontent.com/74849404/134853537-07a8df8f-51fc-425f-a9c4-afbe59ce67a4.JPG)
+
+![4](https://user-images.githubusercontent.com/74849404/134853539-7f2e5afc-21be-48b9-85cc-e2fda3668ace.JPG)
+
+![5](https://user-images.githubusercontent.com/74849404/134853541-fada8689-997f-4dae-8b3a-abd491a2bf57.JPG)
