@@ -9,10 +9,12 @@
 - PostCSS
 - Firebase : Authentication / Firestore Database / Storage
 
+### `신경 쓴 부분`
+- env 파일에 비노출 정보 등록하여 사용 (Firebase API id 및 User id 등)
+- Service 폴더에 Firebase 와 통신하는 코드를 별도로 정리하여 사용 (로그인 / 데이터 불러오기)
+- 이미지 등록버튼 및 코멘트 등 작은 단위도 컴포넌트화
 
-In the project directory, you can run:
-
-### `기능 구현`
+### `주요기능 구현`
 
 - React Router 를 이용한 링크 이동
 - Firebase Authservice 로그인 기능 구현
@@ -21,8 +23,7 @@ In the project directory, you can run:
 - Home Header에 견종으로 검색기능 구현
 - Form 등록시 multiple image 등록 
 - 리스트 무한 스크롤 구현
-- env 파일에 비노출 정보 등록하여 사용 (Firebase API id 및 User id 등)
-- Service 폴더에 Firebase 와 통신하는 코드를 별도로 정리하여 사용 (로그인 / 데이터 불러오기)
+
 
 ![1](https://user-images.githubusercontent.com/74849404/134853533-188446a2-3486-4447-8953-2bc2768c8694.JPG)
 
