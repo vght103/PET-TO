@@ -161,22 +161,26 @@ class GetDataService {
 
   // 검색 데이터
   searchData = async (key) => {
-    let searchValue = key;
-    let searchArray = [];
+    try {
+      let searchValue = key;
+      let searchArray = [];
 
-    const dbSearch = await firestoreService //
-      .collection("pets-list")
-      .where("breed", "==", searchValue)
-      .get();
+      const dbSearch = await firestoreService //
+        .collection("pets-list")
+        .where("breed", "in", [searchValue])
+        .get();
 
-    dbSearch.forEach((doc) => {
-      searchArray.push({
-        id: doc.id,
-        ...doc.data(),
+      dbSearch.forEach((doc) => {
+        searchArray.push({
+          id: doc.id,
+          ...doc.data(),
+        });
       });
-    });
 
-    return { searchArray, searchValue };
+      return { searchArray, searchValue };
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 export default GetDataService;

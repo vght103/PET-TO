@@ -42,8 +42,6 @@ const PetList = ({ userObj, getDataService }) => {
     }
   };
 
-  // 검색기능
-
   //무한 스크롤
   const handleScroll = (event) => {
     let scrollTop = event.target.scrollTop;

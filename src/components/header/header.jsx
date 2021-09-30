@@ -5,21 +5,18 @@ import styles from "./header.module.css";
 const Header = ({ setSearchData, getDataService }) => {
   const history = useHistory();
   const inputRef = useRef();
-  const [inputValue, setInputValue] = useState(null);
+  // const [inputValue, setInputValue] = useState();
 
-  const goToHome = () => {
-    history.push("/");
-  };
+  // const goToHome = () => {
+  //   history.push("/");
+  // };
 
   const onSearchData = () => {
     const inputText = inputRef.current.value;
 
-    if (inputText) {
-      getDataService.searchData(inputText).then((doc) => {
-        setSearchData(doc.searchArray);
-        setInputValue(doc.searchValue);
-      });
-    }
+    getDataService.searchData(inputText).then((doc) => {
+      setSearchData(doc.searchArray);
+    });
   };
   const onClickSearch = () => {
     const inputText = inputRef.current.value;
@@ -47,6 +44,7 @@ const Header = ({ setSearchData, getDataService }) => {
           ref={inputRef}
           className={styles.search_input}
           onKeyPress={onSearchEnter}
+          placeholder="견종을 입력해주세요"
         />
         <button className={styles.button} onClick={onClickSearch}>
           <i className="fas fa-search"></i>
