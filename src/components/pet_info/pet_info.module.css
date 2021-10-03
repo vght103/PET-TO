@@ -1,7 +1,7 @@
 .pet_info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  flex: 1;
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -48,8 +48,6 @@
   background-color: white;
   border: 1px solid lightgray;
   text-align: center;
-
-  /* padding: 0.5em; */
 }
 .menu_list > li {
   padding: 0.5em;
@@ -67,6 +65,7 @@
 
 .pet_img {
   width: 100%;
+  height: 380px;
 }
 
 .pet_detail > h3 {
@@ -74,41 +73,28 @@
   padding: 1em 0.5em;
 }
 
-.pet_detail > ul li {
-  margin-bottom: 1em;
-}
-
-.detail_info {
-  padding: 1em 0.5em;
+.detail_info li {
+  border-bottom: 1px solid lightgray;
+  display: flex;
 }
 
 .detail_info > li > span:first-child {
-  display: inline-block;
-  width: 4rem;
+  width: 6rem;
   font-weight: 600;
   text-align: center;
-  border-radius: 10px;
+  background-color: #eee;
+  padding: 0.5em;
 }
 
-.detail_info > li > span:first-child::after {
-  content: ":";
-  padding: 0 0.5em;
+.detail_info > li > span:last-child {
+  background-color: #fff;
+  padding: 0.5em;
+  flex: 1;
 }
 
-.detail_info > li:last-child > span::after {
-  content: "";
-}
-
-.character {
+/* .character {
   margin-bottom: 0.5em;
-}
-
-.character_text {
-  line-height: 30px;
-  border: 1px solid lightgray;
-  border-radius: 10px;
-  padding: 1em 0.5em;
-}
+} */
 
 .apply_button {
   width: 100%;

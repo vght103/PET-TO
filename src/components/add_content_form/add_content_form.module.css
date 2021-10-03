@@ -23,14 +23,12 @@
 .form {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   height: 90%;
 }
 
 .image_box {
   display: flex;
   margin-left: 0.5em;
-  /* border-bottom: 1px solid lightgray; */
 }
 
 .file {

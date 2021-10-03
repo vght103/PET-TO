@@ -1,7 +1,6 @@
 .pet_list_wrap {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   flex: 1;
   height: 100%;
   position: relative;
@@ -9,12 +8,11 @@
 }
 
 .pet_list {
-  /* display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%; */
   overflow-y: auto;
   margin-top: 0.2em;
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; */
 }
 
 .add_button {
@@ -52,7 +50,6 @@
 }
 
 .add_item.active:hover {
-  /* border-bottom: 1px solid gray; */
   background-color: rgb(226, 247, 255);
   transition: 0.3s ease-in-out;
 }

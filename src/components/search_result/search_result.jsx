@@ -20,9 +20,7 @@ const SearchResult = ({ data, isOwner }) => {
           <h3 className={styles.title}>{data.title}</h3>
           <p className={styles.name}>{`이름: ${data.name}`}</p>
           <p className={styles.breed}>{`견종: ${data.breed}`}</p>
-          {/* <p className={styles.age}>{`나이: ${item.age}`}</p> */}
           <p className={styles.gender}>{`성별: ${data.gender}`}</p>
-          {/* <p className={styles.weight}>{`무게: ${item.weight}`}</p> */}
         </div>
       </div>
     </li>

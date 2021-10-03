@@ -22,9 +22,21 @@
   padding: 0.8em;
   cursor: pointer;
   font-size: 1.5rem;
+  margin-bottom: 1em;
+  width: 400px;
 }
 
-.login_button:hover {
+.try_button {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 0.8em;
+  cursor: pointer;
+  font-size: 1.5rem;
+  width: 400px;
+}
+.login_button:hover,
+.try_button:hover {
   color: #48bbed;
   background-color: white;
   transition: 0.2s ease-in-out;

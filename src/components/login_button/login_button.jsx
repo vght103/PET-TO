@@ -1,17 +1,12 @@
-import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import styles from "./intro.module.css";
+import React from "react";
+import styles from "./login_button.module.css";
 
-const Intro = ({ authService }) => {
+const LoginButton = ({ authService }) => {
   const history = useHistory();
 
   // 구글 로그인
   const googleLogin = () => {
     authService.login();
-  };
-
-  const anonymousLogin = () => {
-    authService.testLogin().then(() => goToHome());
   };
 
   // 사용자 있을 시 자동으로 home 이동
@@ -33,15 +28,11 @@ const Intro = ({ authService }) => {
 
   return (
     <div className={styles.intro}>
-      <h1 className={styles.title}>Pet To</h1>
       <button className={styles.login_button} onClick={googleLogin}>
         Google 계정으로 시작하기
-      </button>
-      <button className={styles.try_button} onClick={anonymousLogin}>
-        체험하기
       </button>
     </div>
   );
 };
 
-export default Intro;
+export default LoginButton;

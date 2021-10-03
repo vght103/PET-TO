@@ -110,7 +110,7 @@ const PetInfo = (props) => {
           </li>
           <li>
             <span className={styles.character}>성격</span>
-            <p className={styles.character_text}>{petInfo.character}</p>
+            <span className={styles.character_text}>{petInfo.character}</span>
           </li>
         </ul>
       </div>

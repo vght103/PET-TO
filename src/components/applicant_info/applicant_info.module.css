@@ -76,7 +76,6 @@
 }
 
 .answer_list > li > p {
-  /* font-weight: bold; */
   background-color: whitesmoke;
   border: 1px solid lightgray;
   padding: 1em 0.5em;

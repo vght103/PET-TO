@@ -62,26 +62,16 @@ const PetList = ({ userObj, getDataService }) => {
 
   return (
     <section className={styles.pet_list_wrap}>
-      <Header setSearchData={setSearchData} getDataService={getDataService} />
+      {/* <Header setSearchData={setSearchData} getDataService={getDataService} /> */}
 
       <ul className={styles.pet_list} onScroll={handleScroll}>
-        {searchData
-          ? searchData.map((data) => (
-              <SearchResult
-                key={data.id}
-                data={data}
-                isOwner={userObj.uid === data.creatorId}
-              />
-            ))
-          : pets.map((item) => (
-              <PetItem
-                key={item.id}
-                item={item}
-                isOwner={userObj.uid === item.creatorId}
-              />
-            ))}
-
-        {}
+        {pets.map((item) => (
+          <PetItem
+            key={item.id}
+            item={item}
+            isOwner={userObj.uid === item.creatorId}
+          />
+        ))}
       </ul>
 
       <div className={styles.add_button}>
@@ -103,8 +93,6 @@ const PetList = ({ userObj, getDataService }) => {
         </ul>
       </div>
       {loading && <div className={styles.loading}></div>}
-
-      {/* <Navbar /> */}
     </section>
   );
 };

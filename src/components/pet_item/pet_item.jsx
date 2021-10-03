@@ -20,9 +20,7 @@ const PetItem = ({ item, isOwner }) => {
           <h3 className={styles.title}>{item.title}</h3>
           <p className={styles.name}>{`이름: ${item.name}`}</p>
           <p className={styles.breed}>{`견종: ${item.breed}`}</p>
-          {/* <p className={styles.age}>{`나이: ${item.age}`}</p> */}
           <p className={styles.gender}>{`성별: ${item.gender}`}</p>
-          {/* <p className={styles.weight}>{`무게: ${item.weight}`}</p> */}
         </div>
       </div>
     </li>

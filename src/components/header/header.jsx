@@ -5,11 +5,6 @@ import styles from "./header.module.css";
 const Header = ({ setSearchData, getDataService }) => {
   const history = useHistory();
   const inputRef = useRef();
-  // const [inputValue, setInputValue] = useState();
-
-  // const goToHome = () => {
-  //   history.push("/");
-  // };
 
   const onSearchData = () => {
     const inputText = inputRef.current.value;
@@ -39,7 +34,8 @@ const Header = ({ setSearchData, getDataService }) => {
         className={styles.logo}
         onClick={() => history.push("/pet-list")}
       />
-      <div className={styles.search}>
+      <div></div>
+      {/* <div className={styles.search}>
         <input
           ref={inputRef}
           className={styles.search_input}
@@ -49,7 +45,7 @@ const Header = ({ setSearchData, getDataService }) => {
         <button className={styles.button} onClick={onClickSearch}>
           <i className="fas fa-search"></i>
         </button>
-      </div>
+      </div> */}
     </header>
   );
 };

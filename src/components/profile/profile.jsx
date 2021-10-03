@@ -75,10 +75,6 @@ const Profile = ({ authService, userObj }) => {
           </ul>
         </div>
       </div>
-      {/* 
-      <div className={styles.navbar}>
-        <Navbar />
-      </div> */}
     </section>
   );
 };

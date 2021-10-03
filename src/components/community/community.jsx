@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import ContentItem from "../content_item/content_item";
 import Header from "../header/header";
 import styles from "./community.module.css";
-import { Button } from "react-bootstrap";
 
 const Community = ({ userObj, getDataService }) => {
   const history = useHistory();
@@ -62,7 +61,6 @@ const Community = ({ userObj, getDataService }) => {
 
   return (
     <section className={styles.community}>
-      <Header />
       <ul className={styles.content_list} onScroll={handleScroll}>
         {contents.map((item) => (
           <ContentItem
@@ -92,8 +90,6 @@ const Community = ({ userObj, getDataService }) => {
         </ul>
       </div>
       {loading && <div className={styles.loading}></div>}
-
-      {/* <Navbar /> */}
     </section>
   );
 };

@@ -123,25 +123,24 @@ const ContentInfo = ({ userObj }) => {
       </div>
 
       {/* 댓글 리스트 */}
-      <div className={styles.comment_box}>
-        <div className={styles.coment_title}>
-          <h4>댓글</h4>
-          {comments.length === 0 ? (
-            ""
-          ) : (
-            <span className={styles.comments_lengh}>{comments.length}</span>
-          )}
-        </div>
-        <ul className={styles.comments_ul}>
-          {comments.map((comment) => (
-            <CommentItem
-              key={comment.id}
-              comment={comment}
-              isOwner={userObj.uid === comment.creatorId}
-            />
-          ))}
-        </ul>
+
+      <div className={styles.coment_title}>
+        <h4>댓글</h4>
+        {comments.length === 0 ? (
+          ""
+        ) : (
+          <span className={styles.comments_lengh}>{comments.length}</span>
+        )}
       </div>
+      <ul className={styles.comments_ul}>
+        {comments.map((comment) => (
+          <CommentItem
+            key={comment.id}
+            comment={comment}
+            isOwner={userObj.uid === comment.creatorId}
+          />
+        ))}
+      </ul>
 
       <AddComment
         userObj={userObj}

@@ -36,16 +36,6 @@ const AddContentForm = ({ userObj }) => {
           imgFilesUrls.push(imgFilesUrl);
         }
       }
-      console.log(imgFilesUrls);
-
-      // let imgFilesUrl = null;
-
-      // if 에서 for문 돌려서 putString 하기
-      // imgfile 을 배열로 돌리기
-      // if (imgFiles) {
-      //   const response = await imgFilesRef.putString(imgFiles, "data_url");
-      //   imgFilesUrl = await response.ref.getDownloadURL();
-      // }
 
       // 컨텐츠 내용 추가
 
@@ -87,22 +77,6 @@ const AddContentForm = ({ userObj }) => {
     setLoading(false);
   };
 
-  // const onChangeFile = (event) => {
-  //   const {
-  //     target: { files },
-  //   } = event;
-
-  //   const contentFiles = files[0];
-
-  //   const imgsReader = new FileReader();
-  //   imgsReader.onloadend = (finishedEvent) => {
-  //     const imgResult = finishedEvent.currentTarget.result;
-
-  //     setImageFiles(imgResult);
-  //   };
-  //   imgsReader.readAsDataURL(contentFiles);
-  // };
-
   const onFileClear = (idx) => {
     console.log(idx, imgFiles);
     var test = JSON.parse(JSON.stringify(imgFiles));
@@ -110,10 +84,6 @@ const AddContentForm = ({ userObj }) => {
     console.log(imgFiles);
     setImageFiles(test);
   };
-
-  // const onFileClear = () => {
-  //   setImageFiles(null);
-  // };
 
   const goToCommunity = () => {
     history.push("/contents-list");
@@ -188,5 +158,3 @@ const AddContentForm = ({ userObj }) => {
 };
 
 export default AddContentForm;
-
-// inputRef 리셋해주기
