@@ -11,7 +11,6 @@ const PetList = ({ userObj, getDataService }) => {
   const [pets, setPets] = useState([]);
   const [lastKey, setLastKey] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [searchData, setSearchData] = useState();
 
   useEffect(() => {
     setLoading(true);
@@ -62,8 +61,6 @@ const PetList = ({ userObj, getDataService }) => {
 
   return (
     <section className={styles.pet_list_wrap}>
-      {/* <Header setSearchData={setSearchData} getDataService={getDataService} /> */}
-
       <ul className={styles.pet_list} onScroll={handleScroll}>
         {pets.map((item) => (
           <PetItem

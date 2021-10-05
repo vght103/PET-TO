@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #48bbed;
+  background-color: #74d5ff;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -11,8 +11,14 @@
 
 .title {
   color: white;
-  font-size: 8rem;
-  margin-bottom: 0.5em;
+  font-size: 5rem;
+  margin-bottom: 0.3em;
+}
+
+.logo {
+  display: inline-block;
+  width: 11rem;
+  margin-bottom: 2em;
 }
 
 .login_button {
@@ -21,14 +27,12 @@
   border: 1px solid white;
   padding: 0.8em;
   cursor: pointer;
-  font-size: 1.5rem;
-  margin-bottom: 1em;
-  width: 400px;
+  font-size: 1.2rem;
+  white-space: nowrap;
 }
 
-.login_button:hover,
-.try_button:hover {
-  color: #48bbed;
+.login_button:hover {
+  color: #74d5ff;
   background-color: white;
   transition: 0.2s ease-in-out;
 }

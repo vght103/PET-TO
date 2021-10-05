@@ -10,10 +10,6 @@ const Intro = ({ authService }) => {
     authService.login();
   };
 
-  const anonymousLogin = () => {
-    authService.testLogin().then(() => goToHome());
-  };
-
   // 사용자 있을 시 자동으로 home 이동
   useEffect(() => {
     authService.onAuthChanged((user) => {
@@ -34,6 +30,11 @@ const Intro = ({ authService }) => {
   return (
     <div className={styles.intro}>
       <h1 className={styles.title}>Pet To</h1>
+      <img
+        src={process.env.PUBLIC_URL + "/imgs/dog.png"}
+        alt="icon"
+        className={styles.logo}
+      />
       <button className={styles.login_button} onClick={googleLogin}>
         Google 계정으로 시작하기
       </button>

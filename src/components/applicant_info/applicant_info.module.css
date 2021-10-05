@@ -136,6 +136,17 @@
   animation: spin 2s linear infinite;
 }
 
+@media screen and (max-width: 400px) {
+  .info_list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info_list > li {
+    width: 100%;
+  }
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
