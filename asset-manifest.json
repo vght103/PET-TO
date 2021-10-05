@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "/PET-TO/static/css/main.6810bfc9.chunk.css",
-    "main.js": "/PET-TO/static/js/main.e6749c37.chunk.js",
-    "main.js.map": "/PET-TO/static/js/main.e6749c37.chunk.js.map",
+    "main.css": "/PET-TO/static/css/main.0a4fa8e7.chunk.css",
+    "main.js": "/PET-TO/static/js/main.ff1c205c.chunk.js",
+    "main.js.map": "/PET-TO/static/js/main.ff1c205c.chunk.js.map",
     "runtime-main.js": "/PET-TO/static/js/runtime-main.a9086f28.js",
     "runtime-main.js.map": "/PET-TO/static/js/runtime-main.a9086f28.js.map",
-    "static/js/2.e21e2181.chunk.js": "/PET-TO/static/js/2.e21e2181.chunk.js",
-    "static/js/2.e21e2181.chunk.js.map": "/PET-TO/static/js/2.e21e2181.chunk.js.map",
+    "static/js/2.6a9e132b.chunk.js": "/PET-TO/static/js/2.6a9e132b.chunk.js",
+    "static/js/2.6a9e132b.chunk.js.map": "/PET-TO/static/js/2.6a9e132b.chunk.js.map",
     "index.html": "/PET-TO/index.html",
-    "static/css/main.6810bfc9.chunk.css.map": "/PET-TO/static/css/main.6810bfc9.chunk.css.map",
-    "static/js/2.e21e2181.chunk.js.LICENSE.txt": "/PET-TO/static/js/2.e21e2181.chunk.js.LICENSE.txt"
+    "static/css/main.0a4fa8e7.chunk.css.map": "/PET-TO/static/css/main.0a4fa8e7.chunk.css.map",
+    "static/js/2.6a9e132b.chunk.js.LICENSE.txt": "/PET-TO/static/js/2.6a9e132b.chunk.js.LICENSE.txt",
+    "static/media/intro.module.css": "/PET-TO/static/media/dog2.acc25d79.jpeg"
   },
   "entrypoints": [
     "static/js/runtime-main.a9086f28.js",
-    "static/js/2.e21e2181.chunk.js",
-    "static/css/main.6810bfc9.chunk.css",
-    "static/js/main.e6749c37.chunk.js"
+    "static/js/2.6a9e132b.chunk.js",
+    "static/css/main.0a4fa8e7.chunk.css",
+    "static/js/main.ff1c205c.chunk.js"
   ]
 }
