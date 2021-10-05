@@ -37,9 +37,6 @@ const Intro = ({ authService }) => {
       <button className={styles.login_button} onClick={googleLogin}>
         Google 계정으로 시작하기
       </button>
-      <button className={styles.try_button} onClick={anonymousLogin}>
-        체험하기
-      </button>
     </div>
   );
 };
