@@ -100,7 +100,7 @@
   width: 100%;
   padding: 1em;
   border: none;
-  background-color: #9ce2ff;
+  background-color: #ffc3c3;
   color: white;
   font-size: 1rem;
   font-weight: 600;
@@ -116,7 +116,7 @@
   height: 5em;
   border-radius: 50%;
   border: 3px solid lightgray;
-  border-top: 3px solid skyblue;
+  border-top: 3px solid #ffc3c3;
   animation: spin 2s linear infinite;
 }
 

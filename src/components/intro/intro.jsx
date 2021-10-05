@@ -15,6 +15,7 @@ const Intro = ({ authService }) => {
     authService.onAuthChanged((user) => {
       if (user) {
         goToHome(user.uid);
+        console.log(user.uid);
       }
     });
   }, [authService]);
@@ -29,12 +30,11 @@ const Intro = ({ authService }) => {
 
   return (
     <div className={styles.intro}>
-      <h1 className={styles.title}>Pet To</h1>
-      <img
-        src={process.env.PUBLIC_URL + "/imgs/dog.png"}
-        alt="icon"
-        className={styles.logo}
-      />
+      <div className={styles.intro_text}>
+        <span>임시보호&무료분양</span>
+        <span>반려동물 커뮤니티</span>
+        <h2 className={styles.title}>펫투게더</h2>
+      </div>
       <button className={styles.login_button} onClick={googleLogin}>
         Google 계정으로 시작하기
       </button>

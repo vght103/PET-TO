@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import ContentItem from "../content_item/content_item";
-import Header from "../header/header";
 import styles from "./community.module.css";
 
 const Community = ({ userObj, getDataService }) => {

@@ -1,30 +1,51 @@
 .intro {
+  background: url("./dog2.jpeg") no-repeat 57%;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background-color: #74d5ff;
+  justify-content: space-around;
   width: 100%;
   height: 100%;
   position: absolute;
+  text-align: center;
 }
 
-.title {
+.intro_text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.intro_text > span {
+  width: 160px;
+  background-color: #f26666;
   color: white;
+  padding: 0.3em 0.5em;
+  margin-bottom: 0.5em;
+  border-radius: 13px;
+  font-weight: bold;
+}
+
+.intro_text > .title {
+  color: #f26666;
   font-size: 5rem;
-  margin-bottom: 0.3em;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 4em;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 .logo {
   display: inline-block;
-  width: 11rem;
+  /* width: 11rem; */
   margin-bottom: 2em;
 }
 
 .login_button {
-  background-color: transparent;
-  color: white;
-  border: 1px solid white;
+  background-color: #eee;
+  color: #f26666;
+  border: 1px solid #f26666;
   padding: 0.8em;
   cursor: pointer;
   font-size: 1.2rem;
@@ -32,7 +53,7 @@
 }
 
 .login_button:hover {
-  color: #74d5ff;
+  color: #f26666;
   background-color: white;
   transition: 0.2s ease-in-out;
 }

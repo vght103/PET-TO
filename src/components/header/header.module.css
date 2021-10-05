@@ -1,14 +1,14 @@
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: #48bbed;
-  padding: 1em;
+  background-color: #ff8a8a;
+  padding: 0.5em 1em;
   /* position: fixed; */
 }
 
 .logo {
-  width: 110px;
+  color: white;
+  font-size: 3rem;
   cursor: pointer;
 }
 

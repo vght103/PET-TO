@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import Header from "../header/header";
 import PetItem from "../pet_item/pet_item";
-import SearchResult from "../search_result/search_result";
 import styles from "./pet_list.module.css";
 
 const PetList = ({ userObj, getDataService }) => {
@@ -60,16 +58,24 @@ const PetList = ({ userObj, getDataService }) => {
   const handleClick = () => setClick(!click);
 
   return (
-    <section className={styles.pet_list_wrap}>
-      <ul className={styles.pet_list} onScroll={handleScroll}>
-        {pets.map((item) => (
-          <PetItem
-            key={item.id}
-            item={item}
-            isOwner={userObj.uid === item.creatorId}
-          />
-        ))}
-      </ul>
+    <section className={styles.home}>
+      <div className={styles.pet_list_wrap} onScroll={handleScroll}>
+        <div className={styles.banner}>
+          <img src={process.env.PUBLIC_URL + "/imgs/banner.png"} alt="" />
+        </div>
+
+        <h4>임시보호&무료분양</h4>
+
+        <ul className={styles.pet_list}>
+          {pets.map((item) => (
+            <PetItem
+              key={item.id}
+              item={item}
+              isOwner={userObj.uid === item.creatorId}
+            />
+          ))}
+        </ul>
+      </div>
 
       <div className={styles.add_button}>
         <button className={styles.plus} onClick={handleClick}>
@@ -89,6 +95,7 @@ const PetList = ({ userObj, getDataService }) => {
           </li>
         </ul>
       </div>
+
       {loading && <div className={styles.loading}></div>}
     </section>
   );

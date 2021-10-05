@@ -18,7 +18,7 @@
 }
 
 .comment_button {
-  background-color: skyblue;
+  background-color: #ffc3c3;
   color: white;
   padding: 0.7em;
   border: none;
@@ -39,7 +39,7 @@
   height: 5em;
   border-radius: 50%;
   border: 3px solid lightgray;
-  border-top: 3px solid skyblue;
+  border-top: 3px solid #ffc3c3;
   animation: spin 2s linear infinite;
 }
 

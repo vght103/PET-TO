@@ -1,8 +1,7 @@
 .nav_list {
   display: flex;
   justify-content: space-around;
-  border-radius: ;
-  background-color: #48bbed;
+  background-color: #ff8a8a;
 
   height: 4rem;
 }
@@ -26,13 +25,13 @@
 
 .nav_list > li :hover {
   background-color: white;
-  color: #48bbed;
+  color: #f26666;
   border-radius: 5px;
   transition: 0.2s linear;
 }
 .active {
   background-color: white;
-  color: #48bbed;
+  color: #f26666;
   border-radius: 5px;
 }
 

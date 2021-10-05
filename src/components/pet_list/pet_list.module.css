@@ -1,10 +1,22 @@
-.pet_list_wrap {
+.home {
   display: flex;
   flex-direction: column;
   flex: 1;
   height: 100%;
   position: relative;
   overflow: auto;
+}
+
+.pet_list_wrap {
+  overflow-y: scroll;
+}
+
+.banner > img {
+  width: 100%;
+}
+
+.pet_list_wrap > h4 {
+  margin: 1.5em 0 0.5em 0.5em;
 }
 
 .pet_list {
@@ -20,7 +32,7 @@
   bottom: 25px;
   right: 25px;
   border-radius: 50%;
-  background-color: skyblue;
+  background-color: #f26666;
 }
 
 .add_button:hover {
@@ -74,7 +86,7 @@
   height: 5em;
   border-radius: 50%;
   border: 3px solid lightgray;
-  border-top: 3px solid skyblue;
+  border-top: 3px solid #f26666;
   animation: spin 2s linear infinite;
 }
 
