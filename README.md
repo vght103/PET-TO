@@ -25,12 +25,13 @@
 - 리스트 무한 스크롤 구현
 
 
-![1](https://user-images.githubusercontent.com/74849404/134853533-188446a2-3486-4447-8953-2bc2768c8694.JPG)
+![1](https://user-images.githubusercontent.com/74849404/136097523-a4219a89-7bec-4c41-98d5-2b1a46947dd8.JPG)
 
-![2](https://user-images.githubusercontent.com/74849404/134853542-12c8743b-e404-4a4d-9676-450e120e1d43.JPG)
+![2](https://user-images.githubusercontent.com/74849404/136097527-7e253f61-7892-4525-b356-4ee4c02f1eee.JPG)
 
-![3](https://user-images.githubusercontent.com/74849404/134853537-07a8df8f-51fc-425f-a9c4-afbe59ce67a4.JPG)
+![3](https://user-images.githubusercontent.com/74849404/136097531-363d23db-2e62-46e2-91c7-7de185f8b37d.JPG)
 
-![4](https://user-images.githubusercontent.com/74849404/134853539-7f2e5afc-21be-48b9-85cc-e2fda3668ace.JPG)
+![4](https://user-images.githubusercontent.com/74849404/136097534-713367c5-3a10-4dbd-bc8d-c0d0621d340d.JPG)
 
-![5](https://user-images.githubusercontent.com/74849404/134853541-fada8689-997f-4dae-8b3a-abd491a2bf57.JPG)
+![5](https://user-images.githubusercontent.com/74849404/136097538-ad685d4a-9a71-4896-98bf-c5dcced321a8.JPG)
+
