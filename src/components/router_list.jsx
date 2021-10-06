@@ -33,7 +33,7 @@ const RouterList = ({ FileInput, authService, userObj, getDataService }) => (
     <Route path="/add-pets-form">
       <AddPetsForm userObj={userObj} FileInput={FileInput} />
     </Route>
-    <Route path="/pet-item/pet-info">
+    <Route path="/pet-item/:id">
       <PetInfo userObj={userObj} />
     </Route>
 
@@ -43,7 +43,7 @@ const RouterList = ({ FileInput, authService, userObj, getDataService }) => (
     <Route path="/content-add-form">
       <AddContentForm FileInput={FileInput} userObj={userObj} />
     </Route>
-    <Route exact path="/content-item/content-info">
+    <Route exact path="/content-item/:id">
       <ContentInfo userObj={userObj} getDataService={getDataService} />
     </Route>
 

@@ -20,8 +20,8 @@ function App({ FileInput, authService, getDataService }) {
   });
 
   return (
-    <HashRouter>
-      <div className={styles.app}>
+    <div className={styles.app}>
+      <HashRouter>
         <Header />
 
         <RouterList
@@ -31,8 +31,8 @@ function App({ FileInput, authService, getDataService }) {
           FileInput={FileInput}
         />
         <Navbar userId={userId} />
-      </div>
-    </HashRouter>
+      </HashRouter>
+    </div>
   );
 }
 
