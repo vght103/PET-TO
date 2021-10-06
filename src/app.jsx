@@ -20,7 +20,7 @@ function App({ FileInput, authService, getDataService }) {
   });
 
   return (
-    <BrowserRouter basename="/PET-TO">
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <div className={styles.app}>
         <Header />
 
