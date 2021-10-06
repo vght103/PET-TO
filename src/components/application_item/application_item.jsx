@@ -4,10 +4,9 @@ import styles from "./application_item.module.css";
 
 const ApplicationItem = ({ item }) => {
   const history = useHistory();
-
   const goToDetail = () => {
     history.push({
-      pathname: "/applicant-info",
+      pathname: `/applicant-info/${item.petId}`,
       state: item,
     });
   };

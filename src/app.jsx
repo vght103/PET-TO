@@ -20,8 +20,7 @@ function App({ FileInput, authService, getDataService }) {
   });
 
   return (
-    <HashRouter>
-      {/* <BrowserRouter basename={process.env.PUBLIC_URL}> */}
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <div className={styles.app}>
         <Header />
 
@@ -33,8 +32,7 @@ function App({ FileInput, authService, getDataService }) {
         />
         <Navbar userId={userId} />
       </div>
-      {/* </BrowserRouter> */}
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

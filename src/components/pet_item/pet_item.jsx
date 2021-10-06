@@ -4,10 +4,9 @@ import { useHistory } from "react-router-dom";
 
 const PetItem = ({ item, isOwner }) => {
   const history = useHistory();
-
   const goToPetInfo = () => {
     history.push({
-      pathname: "/pet-item/pet-info",
+      pathname: `/pet-item/${item.createAt.seconds}`,
       state: { item, isOwner },
     });
   };
