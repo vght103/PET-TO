@@ -14,11 +14,12 @@ import Profile from "./profile/profile";
 import ApplicationForm from "./survey_form/application_form";
 
 const RouterList = ({ FileInput, authService, userObj, getDataService }) => (
-  <>
+  <Switch>
     <Route exact path="/">
       <Intro authService={authService} />
     </Route>
 
+    {/* navbar */}
     <Route path="/pet-list">
       <PetList userObj={userObj} getDataService={getDataService} />
     </Route>
@@ -28,6 +29,7 @@ const RouterList = ({ FileInput, authService, userObj, getDataService }) => (
       <Profile authService={authService} userObj={userObj} />
     </Route>
 
+    {/* page */}
     <Route path="/add-pets-form">
       <AddPetsForm userObj={userObj} FileInput={FileInput} />
     </Route>
@@ -56,7 +58,7 @@ const RouterList = ({ FileInput, authService, userObj, getDataService }) => (
     <Route path="/applicant-info">
       <ApplicantInfo />
     </Route>
-  </>
+  </Switch>
 );
 
 export default RouterList;
