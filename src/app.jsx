@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import styles from "./app.module.css";
 import Header from "./components/header/header";
 import Navbar from "./components/navbar/navbar";
@@ -20,7 +20,7 @@ function App({ FileInput, authService, getDataService }) {
   });
 
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter>
       <div className={styles.app}>
         <Header />
 
@@ -32,8 +32,14 @@ function App({ FileInput, authService, getDataService }) {
         />
         <Navbar userId={userId} />
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
 export default App;
+{
+  /* <BrowserRouter basename={process.env.PUBLIC_URL}> */
+}
+{
+  /* </BrowserRouter> */
+}
