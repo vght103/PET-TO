@@ -15,7 +15,6 @@ const Intro = ({ authService }) => {
     authService.onAuthChanged((user) => {
       if (user) {
         goToHome(user.uid);
-        console.log(user.uid);
       }
     });
   }, [authService]);
