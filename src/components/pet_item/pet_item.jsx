@@ -6,7 +6,7 @@ const PetItem = ({ item, isOwner }) => {
   const history = useHistory();
   const goToPetInfo = () => {
     history.push({
-      pathname: `/pet-item/${item.createAt.seconds}`,
+      pathname: "/pet-item/pet-info",
       state: { item, isOwner },
     });
   };

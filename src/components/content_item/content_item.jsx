@@ -18,7 +18,7 @@ const ContentItem = ({ item, isOwner }) => {
 
   const goToContentInfo = () => {
     history.push({
-      pathname: `/contents-list/${item.createdAt.seconds}`,
+      pathname: "/content-item/content-info",
       state: { item, isOwner, createdTime },
     });
   };
