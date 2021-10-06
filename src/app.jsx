@@ -20,7 +20,7 @@ function App({ FileInput, authService, getDataService }) {
   });
 
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename={"petto_project"}>
       <div className={styles.app}>
         <Header />
 
